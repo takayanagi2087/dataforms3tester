@@ -65,11 +65,11 @@
 						<configuration>
 							<resources>
 								<resource>
-									<directory>src/jp/dataforms</directory>
+									<directory>src</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
-							<outputDirectory>target/classes/jp/dataforms</outputDirectory>
+							<outputDirectory>target/classes</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -80,6 +80,31 @@
 				<configuration>
 					<release>21</release>
 				</configuration>
+			</plugin>
+			<!-- CompareMap.jarの設定 -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+					<finalName>df3tester</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifestEntries>
+							<Main-Class>jp.dataforms.test.tester.PageTester</Main-Class>
+						</manifestEntries>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
