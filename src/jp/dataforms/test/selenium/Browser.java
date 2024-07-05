@@ -291,9 +291,10 @@ public class Browser {
 		if (width > 0) {
 			w = width;
 		}
-		int h = body.getSize().getHeight() + 160;
+		int h = body.getSize().getHeight();
 		Dimension dim = new Dimension(w, h);
-		this.webDriver.manage().window().setSize(dim);
+		this.setClientSize(dim);
+//		this.webDriver.manage().window().setSize(dim);
 		String ret = this.saveScreenShot(filename);
 		this.webDriver.manage().window().setSize(orgDim);
 		return ret;

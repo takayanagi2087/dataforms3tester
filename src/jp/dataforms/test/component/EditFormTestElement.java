@@ -1,10 +1,5 @@
 package jp.dataforms.test.component;
 
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import jp.dataforms.test.selenium.Browser;
@@ -16,13 +11,22 @@ public class EditFormTestElement extends FormTestElement {
 	/**
 	 * Logger.
 	 */
-	 private static Logger logger = LogManager.getLogger(EditFormTestElement.class);
+//	private static Logger logger = LogManager.getLogger(EditFormTestElement.class);
+	/**
+	 * フォームID。
+	 */
+	public static final String ID = "editForm";
+	
+	/**
+	 * 確認ボタンのID。
+	 */
+	public static final String ID_CONFIRM_BUTTON = "confirmButton";
+	
+	/**
+	 * 保存ボタンのID。
+	 */
+	public static final String ID_SAVE_BUTTON = "saveButton";
 
-	 /**
-	  * フィールドID。
-	  */
-	 public static final String ID = "editForm";
-	 
 	/**
 	 * リセットボタンのID。
 	 */
@@ -54,18 +58,28 @@ public class EditFormTestElement extends FormTestElement {
 	}
 	
 	/**
-	 * テーブルを取得します。
-	 * @param id ID。
-	 * @return テーブルのインスタンス。
+	 * 確認ボタンを取得します。
+	 * @return 確認ボタンのテスト要素。
 	 */
-	public TableTestElement getTable(final String id) {
-		String xpath = this.getXPathRange() + "//table[@data-id='" + id + "']";
-		List<WebElement> elements = this.findWebElements(By.xpath(xpath));
-		logger.debug("*** input elements=" + elements.size());
-		if (elements.size() == 1) {
-			return new TableTestElement(this.getBrowser(), this, elements.get(0));
-		}
-		return null;
+	public ButtonTestElement getConfirmButton() {
+		return this.getButton(ID_CONFIRM_BUTTON);
 	}
 
+	/**
+	 * 保存ボタンのテスト要素を取得します。
+	 * @return 保存ボタンのテスト要素。
+	 */
+	public ButtonTestElement getSaveButton() {
+		return this.getButton(ID_SAVE_BUTTON);
+	}
+
+	/**
+	 * 戻るボタンのテスト要素を取得します。
+	 * @return 戻るボタンのテスト要素。
+	 */
+	public ButtonTestElement getBackButton() {
+		return this.getButton(ID_BACK_BUTTON);
+	}
+	
+	
 }

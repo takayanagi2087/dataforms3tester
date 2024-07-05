@@ -9,11 +9,11 @@ import jp.dataforms.test.tester.PageTester;
 /**
  * プロジェクトのリセット。
  */
-public class InitProject extends PageTester {
+public class ResetProject extends PageTester {
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(InitProject.class);
+	private static Logger logger = LogManager.getLogger(ResetProject.class);
 	
 	
 	/**
@@ -30,7 +30,7 @@ public class InitProject extends PageTester {
 	 * コンストラクタ。
 	 * @param conf 設定ファイル。
 	 */
-	public InitProject() {
+	public ResetProject() {
 		super(null);
 	}
 	
