@@ -1,0 +1,12 @@
+{
+	// WebアプリケーションのURL。
+	"applicationURL":   "http://localhost:8080/sample/"
+	// Eclipseプロジェクトのパス。
+	, "projectPath": "C:/eclipse/pleiades/workspace/sample",
+	// Eclipseプロジェクトのパス
+	"tomcatConfigPath": "C:/eclipse/pleiades/workspace/Servers/Tomcat10_Java21-config",
+	// テストソース。
+	"testSrc": "C:/eclipse/workspaceDataforms3/devtooltester/testsrc",
+	// ソースのsnapshot
+	"snapshot": "C:/eclipse/workspaceDataforms3/devtooltester/snapshot"
+}
