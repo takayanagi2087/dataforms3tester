@@ -337,6 +337,7 @@ public class Browser {
 	 */
 	public void close() {
 		this.webDriver.close();
+		this.webDriver.quit();
 	}
 
 
