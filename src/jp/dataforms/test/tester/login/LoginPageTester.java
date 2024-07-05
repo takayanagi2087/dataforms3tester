@@ -25,7 +25,6 @@ public class LoginPageTester extends PageTester {
 	
 	/**
 	 * コンストラクタ。
-	 * @param confFile 設定ファイル。
 	 */
 	public LoginPageTester() {
 		super(LoginPage.class);

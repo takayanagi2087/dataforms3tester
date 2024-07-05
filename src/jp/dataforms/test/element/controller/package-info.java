@@ -1,4 +1,4 @@
 /**
- * コントローラーのテスト要素パッケージ
+ * コントローラーのテスト要素パッケージ。
  */
 package jp.dataforms.test.element.controller;

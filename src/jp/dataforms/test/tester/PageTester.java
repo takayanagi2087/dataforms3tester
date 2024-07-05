@@ -251,7 +251,6 @@ public abstract class PageTester {
 	
 	/**
 	 * コンストラクタ。
-	 * @param confFile 設定ファイルのパス。
 	 * @param pageClass ページクラス。
 	 * 
 	 */

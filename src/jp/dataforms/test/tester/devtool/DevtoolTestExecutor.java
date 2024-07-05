@@ -82,9 +82,6 @@ public class DevtoolTestExecutor extends PageTester {
 	
 	/**
 	 * コンストラクタ。
-	 * @param confFile 設定ファイル。
-	 * @param projectConf プロジェクト設定ファイル。
-	 * @param uri テストURI。
 	 */
 	public DevtoolTestExecutor() {
 		super(Page.class);

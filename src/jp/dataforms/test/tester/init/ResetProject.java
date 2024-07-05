@@ -17,18 +17,7 @@ public class ResetProject extends PageTester {
 	
 	
 	/**
-	 * 設定府ファイルのパス。
-	 */
-//	private String confFile = null;
-	
-	/**
-	 * プロジェクト設定ファイル。
-	 */
-//	private Project projectConf = null;
-
-	/**
 	 * コンストラクタ。
-	 * @param conf 設定ファイル。
 	 */
 	public ResetProject() {
 		super(null);

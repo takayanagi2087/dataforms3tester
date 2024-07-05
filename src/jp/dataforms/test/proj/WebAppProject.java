@@ -459,7 +459,12 @@ public class WebAppProject {
 		logger.info(path + "パッケージをクリアしました。");
 	}
 
-	
+	/**
+	 * 現在のソースを*.orgファイルにコピーします。
+	 * @param file コピー元フォルダ。
+	 * @param pat ファイル名パターン。
+	 * @throws Exception 例外。
+	 */
 	public void copyOrgSrc(final File file, final String pat) throws Exception {
 		logger.debug("file=" + file.getAbsolutePath());
 		File[] list = file.listFiles();
@@ -482,8 +487,8 @@ public class WebAppProject {
 	}
 	
 	/**
-	 * 現在の
-	 * @throws Exception
+	 * 現在のソースを*.orgファイルにコピーします。
+	 * @throws Exception 例外。
 	 */
 	public void saveOrgFile() throws Exception {
 		this.copyOrgSrc(new File(this.getJavaSrcPath()), "^.+\\.java$");
@@ -599,6 +604,7 @@ public class WebAppProject {
 
 	/**
 	 * スナップショットのWebソースディレクトリを取得します。
+	 * @param name スナップショット名。
 	 * @param pkg パッケージ。
 	 * @return スナップショットのWebソースディレクトリ。
 	 */
@@ -610,7 +616,7 @@ public class WebAppProject {
 
 	/**
 	 * WebAppProjectのインスタンスを取得します。
-	 * @param projectConf プロジェクト設定ファイル。
+	 * @param conf プロジェクト設定ファイル。
 	 * @return WebAppProjectのインスタンス。
 	 */
 	public static WebAppProject newWebAppProject(final jp.dataforms.test.tester.PageTester.Conf conf) {
