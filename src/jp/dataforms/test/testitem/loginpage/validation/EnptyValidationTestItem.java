@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.component.FormTestElement;
-import jp.dataforms.test.component.PageTestElement;
+import jp.dataforms.test.element.controller.FormTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.loginpage.LoginFormTestItem;
 

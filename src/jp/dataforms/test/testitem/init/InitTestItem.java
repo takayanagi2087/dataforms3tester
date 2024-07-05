@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolForm;
 import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolPage;
-import jp.dataforms.test.devtool.InitDevelopmentToolPageTestElement;
+import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.TestItem;
 

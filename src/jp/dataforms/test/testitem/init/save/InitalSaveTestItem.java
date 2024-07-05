@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.init.save;
 
 import jp.dataforms.test.annotation.TestItemInfo;
-import jp.dataforms.test.devtool.InitDevelopmentToolFormTestElement;
-import jp.dataforms.test.devtool.InitDevelopmentToolPageTestElement;
+import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolFormTestElement;
+import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.init.InitTestItem;
 

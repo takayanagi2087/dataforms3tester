@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
-import jp.dataforms.test.component.PageTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
 import lombok.Getter;
 import lombok.Setter;
 

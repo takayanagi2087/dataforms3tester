@@ -4,12 +4,12 @@ import java.io.File;
 import java.util.List;
 
 import jp.dataforms.fw.controller.Page;
-import jp.dataforms.test.app.login.LoginFormTestElement;
-import jp.dataforms.test.app.login.LoginPageTestElement;
-import jp.dataforms.test.app.menu.SiteMapFormTestElement;
-import jp.dataforms.test.app.menu.SiteMapPageTestElement;
-import jp.dataforms.test.component.ButtonTestElement;
-import jp.dataforms.test.component.PageTestElement;
+import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
+import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
+import jp.dataforms.test.element.app.menu.page.SiteMapFormTestElement;
+import jp.dataforms.test.element.app.menu.page.SiteMapPageTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
+import jp.dataforms.test.element.field.ButtonTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.tester.PageTester.TestUser;

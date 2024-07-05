@@ -17,7 +17,7 @@ import jp.dataforms.fw.util.ClassFinder;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.JsonUtil;
 import jp.dataforms.test.annotation.TestItemInfo;
-import jp.dataforms.test.component.PageTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.selenium.BrowserInfo;
 import jp.dataforms.test.testitem.TestItem;

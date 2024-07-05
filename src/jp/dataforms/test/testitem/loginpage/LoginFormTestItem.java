@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import jp.dataforms.fw.app.login.page.LoginForm;
 import jp.dataforms.fw.app.login.page.LoginPage;
-import jp.dataforms.test.app.login.LoginPageTestElement;
-import jp.dataforms.test.app.menu.SiteMapPageTestElement;
+import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
+import jp.dataforms.test.element.app.menu.page.SiteMapPageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.TestItem;
 

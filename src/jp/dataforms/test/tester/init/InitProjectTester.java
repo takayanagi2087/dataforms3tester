@@ -31,12 +31,10 @@ public class InitProjectTester extends PageTester {
 	/**
 	 * プロジェクト初期化テスト。
 	 * @param browser ブラウザ。
-	 * 
 	 * @return レスポンシブデザインテストの結果リスト。
 	 * @throws Exception 例外。
 	 */
 	protected List<TestItem> testInit(final Browser browser) throws Exception {
-//		Page page = this.getPageInstance();
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.init.save", InitTestItem.class, null, null);
 		for (TestItem ci: list) {
 			ci.exec(browser);
