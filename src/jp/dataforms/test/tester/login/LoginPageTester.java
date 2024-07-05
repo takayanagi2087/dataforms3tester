@@ -1,4 +1,4 @@
-package jp.dataforms.test.tester;
+package jp.dataforms.test.tester.login;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.openqa.selenium.Dimension;
 import jp.dataforms.fw.app.login.page.LoginForm;
 import jp.dataforms.fw.app.login.page.LoginPage;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
 import jp.dataforms.test.testitem.loginpage.LoginFormTestItem;
 
@@ -26,8 +27,8 @@ public class LoginPageTester extends PageTester {
 	 * コンストラクタ。
 	 * @param confFile 設定ファイル。
 	 */
-	public LoginPageTester(final String confFile) {
-		super(confFile, LoginPage.class);
+	public LoginPageTester() {
+		super(LoginPage.class);
 	}
 	
 	/**
@@ -59,23 +60,6 @@ public class LoginPageTester extends PageTester {
 		list.addAll(this.testValidation(browser));
 		this.saveIndexHtml(list);
 		browser.close();
-	}
-	
-	/**
-	 * メイン処理。
-	 * @param args コマンドライン。
-	 * <pre>
-	 * args[0]	...	テスト設定ファイル。
-	 * </pre>
-	 */
-	public static void main(String[] args) {
-		try {
-			LoginPageTester exec = new LoginPageTester(args[0]);
-			exec.readConf();
-			exec.exec();
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
 	}
 	
 }

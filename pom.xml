@@ -2,9 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>dataforms3Tester</groupId>
-	<artifactId>dataforms3Tester</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>jp.dataforms</groupId>
+	<artifactId>dataforms3tester</artifactId>
+	<version>3.0.1-SNAPSHOT</version>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>

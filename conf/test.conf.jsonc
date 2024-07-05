@@ -45,9 +45,21 @@
 	}
 	// テストに使用するユーザ。
 	, "userList": [
-		{ "loginId": "devuser", "password": "devuser"},		
-		{ "loginId": "admin", "password": "admin"},		
+		{ "loginId": "developer", "password": "developer"},
+		{ "loginId": "devuser", "password": "devuser"},
+		{ "loginId": "admin", "password": "admin"},	
 		{ "loginId": "user", "password": "user" },
-		{ "loginId": "guest", "password": "guest"}		
+		{ "loginId": "guest", "password": "guest"}
 	]
+	// テスト対象プロジェクト。
+	, "project": {
+		// Eclipseプロジェクトのパス。
+		"projectPath": "C:/eclipse/pleiades/workspace/sample",
+		// Eclipseプロジェクトのパス
+		"tomcatConfigPath": "C:/eclipse/pleiades/workspace/Servers/Tomcat10_Java21-config",
+		// テストソース。
+		"testSrc": "C:/eclipse/workspaceDataforms3/dataforms3tester/testsrc",
+		// ソースのsnapshot
+		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot"
+	}
 }

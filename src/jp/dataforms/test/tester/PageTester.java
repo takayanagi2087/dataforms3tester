@@ -39,7 +39,7 @@ public abstract class PageTester {
 	/**
 	 * 設定ファイルのパス。
 	 */
-	private String confFile = null;
+//	private String confFile = null;
 	
 	
 	/**
@@ -146,6 +146,38 @@ public abstract class PageTester {
 			
 		}
 	}
+
+	
+	/**
+	 * プロジェクト。
+	 */
+	@Data
+	public static class Project {
+		/**
+		 * Eclipseプロジェクトのパス。
+		 */
+		private String projectPath = null;
+		/**
+		 * Eclipseプロジェクトの設定パス。
+		 */
+		private String tomcatConfigPath = null;
+		/**
+		 * テストソース。
+		 */
+		private String testSrc = null;
+		/**
+		 * ソースのsnapshot。
+		 */
+		private String snapshot = null;
+		
+		/**
+		 * コンストラクタ。
+		 */
+		public Project() {
+			
+		}
+	}
+	
 	
 	/**
 	 * テスト設定情報。
@@ -164,6 +196,12 @@ public abstract class PageTester {
 		 * ユーザリスト。
 		 */
 		private List<TestUser> userList = null;
+		
+		/**
+		 * Eclipseプロジェクト情報。
+		 */
+		private Project project = null;
+		
 		/**
 		 * コンストラクタ。
 		 */
@@ -217,8 +255,7 @@ public abstract class PageTester {
 	 * @param pageClass ページクラス。
 	 * 
 	 */
-	public PageTester(final String confFile, final Class<? extends Page> pageClass) {
-		this.confFile = confFile;
+	public PageTester(final Class<? extends Page> pageClass) {
 		this.pageClass = pageClass;
 	}
 	
@@ -508,11 +545,12 @@ public abstract class PageTester {
 	}
 	
 	/**
-	 * 設定ファイルをﾖ見込みます。
+	 * 設定ファイルを読み込みます。
+	 * @param confFile 設定ファイル。
 	 * @throws Exception 例外。　
 	 */
-	public void readConf() throws Exception {
-		logger.debug("path=" + this.confFile);
+	public void readConf(final String confFile) throws Exception {
+		logger.debug("path=" + confFile);
 		this.conf = Conf.read(confFile);
 		logger.debug("conf=" + JsonUtil.encode(this.conf, true));
 		TestItem.setConf(this.conf);
@@ -553,11 +591,11 @@ public abstract class PageTester {
 			if (args.length == 2) {
 				@SuppressWarnings("unchecked")
 				Class<? extends PageTester> testerClass = (Class<? extends PageTester>) Class.forName(args[1]);
-				PageTester exec = testerClass.getConstructor(String.class).newInstance(args[0]);
-				exec.readConf();
+				PageTester exec = testerClass.getConstructor().newInstance();
+				exec.readConf(args[0]);
 				exec.exec();
 			} else {
-				System.err.println("使い方:jp.dataforms.test.tester.PageTester <ConfFile> <PageTesterClass>");
+				System.err.println("使い方:java -jar df3tester.jar <ConfFile> <PageTesterClass>");
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
