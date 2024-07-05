@@ -140,7 +140,6 @@ public class Browser {
 		this.setSize(dim);
 		int w = dim.width;
 		int h = dim.height;
-
 		WebElement el = this.getWebDriver().findElement(By.cssSelector("html"));
 		int width = Integer.parseInt(el.getAttribute("clientWidth"));
 		int height = Integer.parseInt(el.getAttribute("clientHeight"));
@@ -291,7 +290,7 @@ public class Browser {
 		if (width > 0) {
 			w = width;
 		}
-		int h = body.getSize().getHeight();
+		int h = body.getSize().getHeight() + 100;
 		Dimension dim = new Dimension(w, h);
 		this.setClientSize(dim);
 //		this.webDriver.manage().window().setSize(dim);

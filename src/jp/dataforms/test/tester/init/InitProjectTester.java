@@ -3,11 +3,14 @@ package jp.dataforms.test.tester.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.Dimension;
+
 import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolForm;
 import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
+import jp.dataforms.test.testitem.init.InitTestItem;
 
 /**
  * プロジェクトの初期化テスター。
@@ -25,6 +28,23 @@ public class InitProjectTester extends PageTester {
 		super(InitDevelopmentToolPage.class);
 	}
 	
+	/**
+	 * プロジェクト初期化テスト。
+	 * @param browser ブラウザ。
+	 * 
+	 * @return レスポンシブデザインテストの結果リスト。
+	 * @throws Exception 例外。
+	 */
+	protected List<TestItem> testInit(final Browser browser) throws Exception {
+//		Page page = this.getPageInstance();
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.init.save", InitTestItem.class, null, null);
+		for (TestItem ci: list) {
+			ci.exec(browser);
+			Browser.sleep(1);
+		}
+		return list;
+	}
+	
 	
 	@Override
 	public void exec() throws Exception {
@@ -33,6 +53,9 @@ public class InitProjectTester extends PageTester {
 		this.openPage(browser);
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitDevelopmentToolPage.class, InitDevelopmentToolForm.class));
+		browser.setClientSize(new Dimension(1024, 768));
+		Browser.sleep(2);
+		list.addAll(this.testInit(browser));
 		this.saveIndexHtml(list);
 		browser.close();
 	}
