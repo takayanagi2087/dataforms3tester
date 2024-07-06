@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.loginpage.validation;
+package jp.dataforms.test.testitem.app.login.page.validation;
 
 import java.io.File;
 
@@ -11,7 +11,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
-import jp.dataforms.test.testitem.loginpage.LoginFormTestItem;
+import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * LoginFormのバリデーション。

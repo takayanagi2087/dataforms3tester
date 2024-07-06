@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.loginpage;
+package jp.dataforms.test.testitem.app.login.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

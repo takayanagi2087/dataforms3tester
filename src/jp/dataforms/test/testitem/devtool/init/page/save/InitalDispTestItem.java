@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.init.save;
+package jp.dataforms.test.testitem.devtool.init.page.save;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +9,7 @@ import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestEl
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.init.InitTestItem;
+import jp.dataforms.test.testitem.devtool.init.page.InitTestItem;
 
 /**
  * プロジェクト初期化ページの確認ボタンテスト。

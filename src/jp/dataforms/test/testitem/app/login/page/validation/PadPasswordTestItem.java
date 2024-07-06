@@ -1,69 +1,77 @@
-package jp.dataforms.test.testitem.loginpage.validation;
+package jp.dataforms.test.testitem.app.login.page.validation;
 
 import java.io.File;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
+import jp.dataforms.test.element.controller.AlertDialogTestElement;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
-import jp.dataforms.test.testitem.loginpage.LoginFormTestItem;
+import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * LoginFormのバリデーション。
  */
-@TestItemInfo(group = "validation", seq = "002", type = Type.ERROR)
-public class LoginIdOnlyValidationTestItem extends LoginFormTestItem {
+@TestItemInfo(group = "validation", seq = "003", type = Type.ERROR)
+public class PadPasswordTestItem extends LoginFormTestItem {
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(LoginIdOnlyValidationTestItem.class);
+	// private static Logger logger = LogManager.getLogger(PadPasswordTestItem.class);
 
 	/**
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		ログインIDのみを入力しログインボタンを押下する。
+		ユーザIDと間違ったパスワードを入力しログインボタンを押下する。
 		""";
 
 	/**
 	 * 期待値。
 	 */
 	private static final String EXPECTED = """
-		「パスワードが入力されていません。」「パスキーが入力されていません。」というメッセージが表示されること。
+		「ユーザIDまたはパスワードが違います。」というメッセージが表示されること。
 		""";
 
 	/**
 	 * コンストラクタ。
 	 */
-	public LoginIdOnlyValidationTestItem() {
+	public PadPasswordTestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
+	
+	@Override
+	protected void start(final Browser browser) throws Exception {
+		browser.reload();
+	}
 	
 	@Override
 	protected ResultType test(final Browser browser) throws Exception {
 		PageTestElement pageTestElement = browser.getPageTestElement();
 		FormTestElement f = pageTestElement.getForm("loginForm");
 		f.getField("loginId").setValue("user");
+		f.getField("password").setValue("PadPassword");
 		f.getButton("loginButton").click();
 		Browser.sleep(2);
-	//	String message = pageTestElement.findWebElement(By.id("errorMessages")).getText().trim();
-		List<String> messageList = pageTestElement.getErrorMessageList();
-		logger.debug("text=" + messageList);
-		if (messageList.indexOf("パスワードが入力されていません。") >= 0 
-			&& messageList.indexOf("パスキーが入力されていません。") >= 0) {
-			return ResultType.SYSTEM_OK;
+		AlertDialogTestElement alertDialog = pageTestElement.getAlertDialog();
+		String msg = alertDialog.getMessage();
+		ResultType ret = null;
+		if (msg.equals("ユーザIDまたはパスワードが違います。")) {
+			ret = ResultType.SYSTEM_OK;
 		} else {
-			return ResultType.SYSTEM_NG;
+			ret = ResultType.SYSTEM_NG;
 		}
+		return ret;
 	}
 
+	@Override
+	protected void finish(final Browser browser) throws Exception {
+		browser.getPageTestElement().getAlertDialog().clickOkButton();
+	}
+	
 	@Override
 	protected String saveAttachFile(final Page page, final Browser browser, final ResultType result) throws Exception {
 		PageTestElement pageTestElement = browser.getPageTestElement();

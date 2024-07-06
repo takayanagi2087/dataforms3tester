@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.init;
+package jp.dataforms.test.testitem.devtool.init.page;
 
 import java.io.File;
 

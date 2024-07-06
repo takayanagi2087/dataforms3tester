@@ -10,7 +10,7 @@ import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.init.InitTestItem;
+import jp.dataforms.test.testitem.devtool.init.page.InitTestItem;
 
 /**
  * プロジェクトの初期化テスター。
@@ -35,7 +35,7 @@ public class InitProjectTester extends PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected List<TestItem> testInit(final Browser browser) throws Exception {
-		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.init.save", InitTestItem.class, null, null);
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.init.page.save", InitTestItem.class, null, null);
 		for (TestItem ci: list) {
 			ci.exec(browser);
 			Browser.sleep(1);

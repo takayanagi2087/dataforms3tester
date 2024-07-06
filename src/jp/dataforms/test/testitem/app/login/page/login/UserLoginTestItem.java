@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.loginpage.login;
+package jp.dataforms.test.testitem.app.login.page.login;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.selenium.Browser;

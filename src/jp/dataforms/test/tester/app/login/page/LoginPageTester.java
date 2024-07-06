@@ -12,7 +12,7 @@ import jp.dataforms.fw.app.login.page.LoginPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.loginpage.LoginFormTestItem;
+import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * ログインページテスター。
@@ -38,7 +38,7 @@ public class LoginPageTester extends PageTester {
 	 */
 	private List<TestItem> testValidation(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(1024, 540));
-		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.loginpage", LoginFormTestItem.class, null, null);
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.app.login.page", LoginFormTestItem.class, null, null);
 		for (TestItem ci: list) {
 			logger.info("GROUP:" + ci.getGroup() + ", SEQ:" + ci.getSeq());
 			logger.info("CONDITION:" + ci.getCondition());
