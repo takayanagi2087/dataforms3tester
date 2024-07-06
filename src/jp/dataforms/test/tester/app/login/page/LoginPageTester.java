@@ -1,4 +1,4 @@
-package jp.dataforms.test.tester.login;
+package jp.dataforms.test.tester.app.login.page;
 
 import java.util.ArrayList;
 import java.util.List;

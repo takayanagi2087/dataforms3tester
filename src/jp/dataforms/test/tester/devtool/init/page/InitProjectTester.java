@@ -1,4 +1,4 @@
-package jp.dataforms.test.tester.init;
+package jp.dataforms.test.tester.devtool.init.page;
 
 import java.util.ArrayList;
 import java.util.List;
