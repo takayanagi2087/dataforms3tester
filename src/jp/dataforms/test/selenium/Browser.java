@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
+import jp.dataforms.test.element.TestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import lombok.Getter;
 import lombok.Setter;
@@ -160,14 +161,41 @@ public class Browser {
 
 	/**
 	 * ページを開きます。
+	 * @param <T> ページテスト要素。
 	 * @param url URL。
-	 * @param id ページが表示されたと判定する要素ID
+	 * @param cls ページテスト要素のクラス。
+	 * @return ページテスト要素のインスタンス。
+	 */
+	public <T extends PageTestElement> T open(final String url, final Class<T> cls) {
+		By locator = By.xpath("//body");
+		return this.open(url, locator, cls);
+	}
+	
+	/**
+	 * ページを開きます。
+	 * @param url URL。
+	 * @param id ページが表示されたと判定する要素ID。
 	 * @return ページのインスタンス。
 	 */
 	public PageTestElement open(final String url, final String id) {
 		String xpath = "//*[@data-id='" + id + "']";
 		logger.debug("xpath=" + xpath);
 		return this.open(url, By.xpath(xpath));
+	}
+
+
+	/**
+	 * ページを開きます。
+	 * @param <T> ページテスト要素。
+	 * @param url URL。
+	 * @param id ページが表示されたと判定する要素ID
+	 * @param cls ページテスト要素のクラス。
+	 * @return ページテスト要素のインスタンス。
+	 */
+	public <T extends PageTestElement> T open(final String url, final String id, final Class<T> cls) {
+		String xpath = "//*[@data-id='" + id + "']";
+		logger.debug("xpath=" + xpath);
+		return this.open(url, By.xpath(xpath), cls);
 	}
 
 	
@@ -186,6 +214,24 @@ public class Browser {
 		PageTestElement page = new PageTestElement(this, null, element);
 		return page;
 	}
+	
+	/**
+	 * ページを開きます。
+	 * @param <T> ページテスト要素。
+	 * @param url URL。
+	 * @param locator ページが表示されたと判定する要素の指定。
+	 * @param cls ページテスト要素のクラス。
+	 * @return ページのインスタンス。
+	 */
+	public <T extends PageTestElement> T open(final String url, final By locator, final Class<T> cls) {
+		this.webDriver.get(url);
+		WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		Browser.sleep(5);
+		WebElement element = this.webDriver.findElement(By.xpath("//body"));
+		T ret = newPageTestElement(cls, element);
+		return ret;
+	}
 
 	/**
 	 * ページを取得します。
@@ -196,6 +242,43 @@ public class Browser {
 		PageTestElement page = new PageTestElement(this, null, element);
 		return page;
 	}
+
+	
+	/**
+	 * ページのテスト要素を取得します。
+	 * @param <T> ページのテスト要素型。 
+	 * @param cls ページのテストクラス。
+	 * @return ページのテスト要素のインスタンス。
+	 */
+	public <T extends PageTestElement> T getPageTestElement(Class<T> cls) {
+		WebElement element = this.webDriver.findElement(By.xpath("//body"));
+		T ret = newPageTestElement(cls, element);
+		return ret;
+	}
+
+	/**
+	 * ページのテスト要素のインスタンス。
+	 * @param <T> ページのテスト要素型。 
+	 * @param cls ページのテストクラス。
+	 * @param element WebElement。
+	 * @return ページのテスト要素のインスタンス。
+	 */
+	private <T extends PageTestElement> T newPageTestElement(Class<T> cls, WebElement element) {
+		T ret = null;
+		try {
+			ret = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this, null, element);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			try {
+				ret = cls.getConstructor(Browser.class, WebElement.class).newInstance(this, element);
+			} catch (Exception ex) {
+				logger.error(e.getMessage(), ex);
+			}
+		}
+		return ret;
+	}
+
+	
 	/**
 	 * HTML要素を検索する。
 	 * @param by 検索条件。
@@ -355,12 +438,18 @@ public class Browser {
 	}
 
 	/**
-	 * ページを取得します。
-	 * @return フォーム。
+	 * ブラウザのリロードを行います。
+	 * @param <T> ページのテスト要素型。 
+	 * @param cls ページのテスト要素クラス。
+	 * @return ページのテスト要素インスタンス。
 	 */
-/*	public Page getPage() {
+	public <T extends PageTestElement> T reload(final Class<T> cls) {
+		this.webDriver.navigate().refresh();
+		Browser.sleep(5);
+		By locator = By.xpath("//body");
+		this.waitVisibility(locator);
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
-		Page page = new Page(this, null, element);
-		return page;
-	}*/
+		return this.newPageTestElement(cls, element);
+	}
+	
 }

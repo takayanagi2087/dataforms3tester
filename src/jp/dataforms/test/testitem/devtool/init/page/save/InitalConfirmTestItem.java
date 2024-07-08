@@ -35,8 +35,8 @@ public class InitalConfirmTestItem extends InitTestItem {
 	
 	
 	@Override
-	protected ResultType test(Browser browser) throws Exception {
-		InitDevelopmentToolPageTestElement p = this.getInitDevelopmentToolPageTestElement(browser);
+	protected ResultType test(final Browser browser) throws Exception {
+		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getConfirmButton().click();
 		Browser.sleep(2);

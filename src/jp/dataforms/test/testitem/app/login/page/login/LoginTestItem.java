@@ -47,7 +47,7 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 	
 	@Override
 	protected ResultType test(final Browser browser) throws Exception {
-		LoginPageTestElement pageTestElement = this.getLoginPageTestElement(browser);
+		LoginPageTestElement pageTestElement = browser.getPageTestElement(LoginPageTestElement.class); //this.getLoginPageTestElement(browser);
 		Conf conf = TestItem.getConf();
 		TestUser user = conf.getTestUser(this.getLoginId());
 		LoginFormTestElement f = pageTestElement.getLoginForm();
@@ -85,7 +85,7 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 	 */
 	protected boolean findLink(final Browser browser, final String url) {
 		boolean ret = false;
-		SiteMapPageTestElement pte = this.getSietMapPageTestElement(browser);
+		SiteMapPageTestElement pte = browser.getPageTestElement(SiteMapPageTestElement.class); // this.getSietMapPageTestElement(browser);
 		SiteMapFormTestElement fte = pte.getSiteMapForm();
 		List<String> list = fte.getLinkList();
 		for (String link: list) {

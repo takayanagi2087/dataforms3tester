@@ -45,7 +45,7 @@ public class InitalDispTestItem extends InitTestItem {
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-		InitDevelopmentToolPageTestElement p = this.getInitDevelopmentToolPageTestElement(browser);
+		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		String projectPath = f.getProjectPath().getValue();
 		String javaSrcPath = f.getJavaSrcPath().getValue();

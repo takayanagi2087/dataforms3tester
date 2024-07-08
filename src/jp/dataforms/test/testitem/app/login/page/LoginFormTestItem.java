@@ -1,13 +1,7 @@
 package jp.dataforms.test.testitem.app.login.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import jp.dataforms.fw.app.login.page.LoginForm;
 import jp.dataforms.fw.app.login.page.LoginPage;
-import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
-import jp.dataforms.test.element.app.menu.page.SiteMapPageTestElement;
-import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.TestItem;
 
 /**
@@ -21,27 +15,5 @@ public abstract class LoginFormTestItem extends TestItem {
 	 */
 	public LoginFormTestItem(final String condition, final String expected) {
 		super(LoginPage.class, LoginForm.class, condition, expected);
-	}
-	
-	/**
-	 * ログインページのテスト要素を取得します。
-	 * @param browser ブラウザ。
-	 * @return ログインページのテスト要素。
-	 */
-	protected LoginPageTestElement getLoginPageTestElement(final Browser browser) {
-		WebElement element = browser.findElement(By.xpath("//body"));
-		LoginPageTestElement page = new LoginPageTestElement(browser, element);
-		return page;
-	}
-	
-	/**
-	 * サイトマップページのテスト要素を取得します。
-	 * @param browser ブラウザ。
-	 * @return サイトマップページのテスト要素。
-	 */
-	protected SiteMapPageTestElement getSietMapPageTestElement(final Browser browser) {
-		WebElement element = browser.findElement(By.xpath("//body"));
-		SiteMapPageTestElement page = new SiteMapPageTestElement(browser, element);
-		return page;
 	}
 }
