@@ -23,6 +23,6 @@ public class LoginPageTestElement extends PageTestElement {
 	 * @return ログインフォームのテスト要素。
 	 */
 	public LoginFormTestElement getLoginForm() {
-		return (LoginFormTestElement) this.getForm(LoginFormTestElement.ID, LoginFormTestElement.class);
+		return this.getForm(LoginFormTestElement.ID, LoginFormTestElement.class);
 	}
 }

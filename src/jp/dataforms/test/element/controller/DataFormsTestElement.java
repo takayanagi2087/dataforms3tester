@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import jp.dataforms.test.element.TestElement;
-import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
 import jp.dataforms.test.selenium.Browser;
 
 /**
@@ -45,14 +44,15 @@ public class DataFormsTestElement extends TestElement {
 
 	/**
 	 * フォームを取得します。
+	 * @param <T> フォームテスト要素型。
 	 * @param id フォームID。
 	 * @param cls フォームクラス。
 	 * @return フォーム。
 	 */
-	public FormTestElement getForm(final String id, final Class<? extends FormTestElement> cls) {
+	public <T extends FormTestElement> T getForm(final String id, final Class<T> cls) {
 		try {
 			WebElement element = this.getWebElement().findElement(By.xpath("//form[@data-id='" + id + "']"));
-			FormTestElement form = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this.getBrowser(), this, element);
+			T form = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this.getBrowser(), this, element);
 			return form;
 		} catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
@@ -62,15 +62,16 @@ public class DataFormsTestElement extends TestElement {
 
 	/**
 	 * フォームを取得します。
+	 * @param <T> フォームテスト要素型。
 	 * @param cls フォームクラス。
 	 * @return フォーム。
 	 */
-	public FormTestElement getForm(final Class<? extends FormTestElement> cls) {
+	public <T extends FormTestElement> T getForm(final Class<T> cls) {
 		try {
 			java.lang.reflect.Field field = cls.getField("ID");
 			String id = (String) field.get(null);
 			WebElement element = this.getWebElement().findElement(By.xpath("//form[@data-id='" + id + "']"));
-			FormTestElement form = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this.getBrowser(), this, element);
+			T form = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this.getBrowser(), this, element);
 			return form;
 		} catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
@@ -78,8 +79,6 @@ public class DataFormsTestElement extends TestElement {
 		return null;
 	}
 
-	
-	
 	/**
 	 * フォームを取得します。
 	 * @param id フォームID。
@@ -88,6 +87,7 @@ public class DataFormsTestElement extends TestElement {
 	public FormTestElement getForm(final String id) {
 		return this.getForm(id, FormTestElement.class);
 	}
+
 
 	/**
 	 * 問い合わせフォームを取得します。
@@ -99,6 +99,18 @@ public class DataFormsTestElement extends TestElement {
 	}
 
 	/**
+	 * 問い合わせフォームを取得します。
+	 * @param <T> フォームテスト要素型。
+	 * @param cls フォームクラス。
+	 * @return 問い合わせフォーム。
+	 */
+	public <T extends QueryFormTestElement> T getQueryForm(final Class<T> cls) {
+		T f =  this.getForm(cls);
+		return f;
+	}
+
+
+	/**
 	 * 問い合わせ結果フォームを取得します。
 	 * @return 問い合わせフォーム。
 	 */
@@ -108,6 +120,18 @@ public class DataFormsTestElement extends TestElement {
 	}
 
 	/**
+	 * 問い合わせ結果フォームを取得します。
+	 * @param <T> フォームテスト要素型。
+	 * @param cls フォームクラス。
+	 * @return 問い合わせ結果フォーム。
+	 */
+	public <T extends QueryResultFormTestElement> T getQueryResultForm(final Class<T> cls) {
+		T f = this.getForm(cls);
+		return f;
+	}
+
+	
+	/**
 	 * 編集フォームを取得します。
 	 * @return 編集フォーム。
 	 */
@@ -116,13 +140,25 @@ public class DataFormsTestElement extends TestElement {
 		return f;
 	}
 
+	
+	/**
+	 * 編集フォームを取得します。
+	 * @param <T> フォームテスト要素型。
+	 * @param cls フォームクラス。
+	 * @return 編集フォームフォーム。
+	 */
+	public <T extends EditFormTestElement> T getEditForm(final Class<T> cls) {
+		T f = (T) this.getForm(cls);
+		return f;
+	}
+
 	/**
 	 * ログインフォームを取得します。
 	 * @return ログインフォーム。
 	 */
-	public LoginFormTestElement getLoginForm() {
+/*	public LoginFormTestElement getLoginForm() {
 		LoginFormTestElement f = (LoginFormTestElement) this.getForm(LoginFormTestElement.class);
 		return f;
-	}
+	}*/
 
 }

@@ -23,7 +23,7 @@ public class InitDevelopmentToolPageTestElement extends PageTestElement {
 	 * @return ログインフォームのテスト要素。
 	 */
 	public InitDevelopmentToolFormTestElement getInitDevelopmentToolForm() {
-		return (InitDevelopmentToolFormTestElement) this.getForm(InitDevelopmentToolFormTestElement.ID, InitDevelopmentToolFormTestElement.class);
+		return this.getForm(InitDevelopmentToolFormTestElement.ID, InitDevelopmentToolFormTestElement.class);
 	}
 
 }

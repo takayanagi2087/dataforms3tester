@@ -266,11 +266,11 @@ public class Browser {
 	private <T extends PageTestElement> T newPageTestElement(Class<T> cls, WebElement element) {
 		T ret = null;
 		try {
-			ret = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this, null, element);
+			ret = cls.getConstructor(Browser.class, WebElement.class).newInstance(this, element);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			try {
-				ret = cls.getConstructor(Browser.class, WebElement.class).newInstance(this, element);
+				ret = cls.getConstructor(Browser.class, TestElement.class, WebElement.class).newInstance(this, null, element);
 			} catch (Exception ex) {
 				logger.error(e.getMessage(), ex);
 			}
