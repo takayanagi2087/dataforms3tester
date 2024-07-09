@@ -452,4 +452,12 @@ public class Browser {
 		return this.newPageTestElement(cls, element);
 	}
 	
+	/**
+	 * ページのタイトルを取得します。
+	 * @return ページのタイトル。
+	 */
+	public String getTitle() {
+		WebElement element = this.webDriver.findElement(By.xpath("//title"));
+		return element.getText();
+	}
 }

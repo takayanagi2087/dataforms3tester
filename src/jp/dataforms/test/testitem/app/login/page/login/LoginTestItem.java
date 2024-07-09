@@ -1,9 +1,7 @@
 package jp.dataforms.test.testitem.app.login.page.login;
 
-import java.io.File;
 import java.util.List;
 
-import jp.dataforms.fw.controller.Page;
 import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
 import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
 import jp.dataforms.test.element.app.menu.page.SiteMapFormTestElement;
@@ -60,15 +58,6 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 	}
 
 
-	@Override
-	protected String saveAttachFile(final Page page, final Browser browser, final ResultType result) throws Exception {
-		String imageFile =  this.getTestItemPath() + "/" + this.getFileName() + ".png";
-		String path = browser.saveScreenShot(imageFile);
-		File f = new File(path);
-		String ret = "<img src='" + f.getName() + "' width='1024'/>";
-		return ret;
-	}
-	
 	@Override
 	protected void finish(final Browser browser) throws Exception {
 		Browser.sleep(2);

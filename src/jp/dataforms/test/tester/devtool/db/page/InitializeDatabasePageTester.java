@@ -3,14 +3,11 @@ package jp.dataforms.test.tester.devtool.db.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import jp.dataforms.fw.devtool.db.page.DeveloperEditForm;
+import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
 
 /**
  * データベース初期化 ページテスター。
@@ -19,7 +16,7 @@ public class InitializeDatabasePageTester extends PageTester {
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(InitializeDatabasePageTester.class);
+//	private static Logger logger = LogManager.getLogger(InitializeDatabasePageTester.class);
 	
 	/**
 	 * コンストラクタ。
@@ -50,9 +47,11 @@ public class InitializeDatabasePageTester extends PageTester {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
+		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
+		list.addAll(this.testResponsive(browser, InitializeDatabasePage.class, DeveloperEditForm.class));
 		// list.addAll(this.testSomething(browser));
-		this.saveIndexHtml(list);
+		this.saveIndexHtml(pageName, list);
 		browser.close();
 	}
 	

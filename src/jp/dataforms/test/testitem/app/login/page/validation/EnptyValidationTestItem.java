@@ -1,11 +1,8 @@
 package jp.dataforms.test.testitem.app.login.page.validation;
 
-import java.io.File;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import jp.dataforms.fw.controller.Page;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.controller.FormTestElement;
@@ -59,16 +56,5 @@ public class EnptyValidationTestItem extends LoginFormTestItem {
 			return ResultType.SYSTEM_NG;
 		}
 	}
-
-	@Override
-	protected String saveAttachFile(final Page page, final Browser browser, final ResultType result) throws Exception {
-		PageTestElement pageTestElement = browser.getPageTestElement();
-		String imageFile =  this.getTestItemPath() + "/" + this.getFileName() + ".png";
-		String path = pageTestElement.getBrowser().saveScreenShot(imageFile);
-		File f = new File(path);
-		String ret = "<img src='" + f.getName() + "' width='1024'/>";
-		return ret;
-	}
-	
 
 }

@@ -1,10 +1,7 @@
 package jp.dataforms.test.testitem.page.responsive;
 
-import java.io.File;
-
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.fw.controller.WebComponent;
-import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.TestItem;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,12 +51,4 @@ public abstract class ResponsiveTestItem extends TestItem {
 		super(pageClass, compClass, condition, expected);
 	}
 	
-	@Override
-	protected String saveAttachFile(final Page page, final Browser browser, final ResultType result) throws Exception {
-		String imageFile =  this.getTestItemPath() + "/" + this.getFileName() + ".png";
-		String path = browser.saveResizedScreenShot(imageFile);
-		File f = new File(path);
-		String ret = "<img src='" + f.getName() + "' width='1024'/>";
-		return ret;
-	}
 }

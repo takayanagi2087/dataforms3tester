@@ -54,10 +54,11 @@ public class LoginPageTester extends PageTester {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
+		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, LoginPage.class, LoginForm.class));
 		list.addAll(this.testValidation(browser));
-		this.saveIndexHtml(list);
+		this.saveIndexHtml(pageName, list);
 		browser.close();
 	}
 	

@@ -49,12 +49,13 @@ public class InitProjectTester extends PageTester {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
+		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitDevelopmentToolPage.class, InitDevelopmentToolForm.class));
 		browser.setClientSize(new Dimension(1024, 768));
 		Browser.sleep(2);
 		list.addAll(this.testInit(browser));
-		this.saveIndexHtml(list);
+		this.saveIndexHtml(pageName, list);
 		browser.close();
 	}
 

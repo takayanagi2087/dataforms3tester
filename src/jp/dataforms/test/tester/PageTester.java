@@ -353,17 +353,6 @@ public abstract class PageTester {
 		return browser;
 	}
 	
-	
-	/**
-	 * ページのインスタンスを取得します。
-	 * @return ページのインスタンス。
-	 * @throws Exception 例外。
-	 */
-	protected Page getPageInstance() throws Exception {
-		Page page = this.pageClass.getConstructor().newInstance();
-		return page;
-	}
-	
 	/**
 	 * レスポンシブデザインテストを実行します。
 	 * @param browser ブラウザ。
@@ -374,7 +363,6 @@ public abstract class PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected List<TestItem> testResponsive(final Browser browser, final Class<? extends Page> pageClass, final Class<? extends WebComponent> compClass) throws Exception {
-//		Page page = this.getPageInstance();
 		ResponsiveTestItem.setHeight(540);
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.page", ResponsiveTestItem.class, pageClass, compClass);
 		for (TestItem ci: list) {
@@ -474,8 +462,8 @@ public abstract class PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected PageTestResult readOldTestResult() throws Exception {
-		Page page = this.pageClass.getConstructor().newInstance();
-		String fn = TestItem.getTestResult() + "/" + page.getClass().getName() + "/index.html";
+		// Page page = this.pageClass.getConstructor().newInstance();
+		String fn = TestItem.getTestResult() + "/" + this.pageClass.getName() + "/index.html";
 		File f = new File(fn);
 		PageTestResult ret = null;
 		if (f.exists()) {
@@ -496,19 +484,20 @@ public abstract class PageTester {
 	
 	/**
 	 * 保存するページのテスト結果を作成します。
+	 * @param pageName ページ名称。
 	 * @param list テスト結果リスト。
 	 * @return ページのテスト結果。
 	 * @throws Exception 例外。
 	 */
-	protected PageTestResult getPageTestResult(final List<TestItem> list) throws Exception {
-		Page page = this.pageClass.getConstructor().newInstance();
+	protected PageTestResult getPageTestResult(final String pageName, final List<TestItem> list) throws Exception {
+		// Page page = this.pageClass.getConstructor().newInstance();
 		List<TestItemResult> testItemList = new ArrayList<TestItemResult>();
 		for (TestItem ti: list) {
 			testItemList.add(ti.getTestItemResult());
 		}
 		PageTestResult result = new PageTestResult();
-		result.setPageName(page.getPageName());
-		result.setPageClassName(page.getClass().getName());
+		result.setPageName(pageName);
+		result.setPageClassName(this.pageClass.getName());
 		result.setTestItemList(testItemList);
 		return result;
 	}
@@ -516,11 +505,12 @@ public abstract class PageTester {
 	
 	/**
 	 * テスト結果リストindex.htmlの作成。
+	 * @param pageName ページ名。
 	 * @param list テスト結果リスト。
 	 * @throws Exception 例外。
 	 */
-	protected void saveIndexHtml(final List<TestItem> list) throws Exception {
-		PageTestResult newResult = this.getPageTestResult(list);
+	protected void saveIndexHtml(final String pageName, final List<TestItem> list) throws Exception {
+		PageTestResult newResult = this.getPageTestResult(pageName, list);
 		PageTestResult result = this.readOldTestResult();
 		if (result == null) {
 			result = newResult;
@@ -530,7 +520,7 @@ public abstract class PageTester {
 		String json = JsonUtil.encode(result, true);
 		
 		Template indexTemplate = this.getTemplate();
-		Page page = this.pageClass.getConstructor().newInstance();
+//		Page page = this.pageClass.getConstructor().newInstance();
 		String source = indexTemplate.getSource();
 		Pattern p = Pattern.compile("\\$\\{resultList\\}");
 		Matcher m = p.matcher(indexTemplate.getSource());
@@ -539,7 +529,7 @@ public abstract class PageTester {
 			int e = m.end();
 			source = source.substring(0, s) + json + source.substring(e);
 		}
-		String fn = TestItem.getTestResult() + "/" + page.getClass().getName() + "/index.html";
+		String fn = TestItem.getTestResult() + "/" + this.pageClass.getName() + "/index.html";
 		FileUtil.writeTextFile(fn, source, "utf-8");
 	}
 	

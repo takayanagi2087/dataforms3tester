@@ -131,17 +131,6 @@ public abstract class TestItem {
 		return fmt.format(this.testDate);
 	}
 	
-	
-	/**
-	 * ページのインスタンスを取得します。
-	 * @return ページのインスタンス。
-	 * @throws Exception 例外。
-	 */
-	protected Page getPageInstance() throws Exception {
-		Page page = this.pageClass.getConstructor().newInstance();
-		return page;
-	}
-	
 	/**
 	 * コンストラクタ。
 	 * @param pageClass ページクラス。
@@ -275,14 +264,17 @@ public abstract class TestItem {
 	
 	/**
 	 * 添付ファイルを作成します。
-	 * @param page ページクラスのインスタンス。
 	 * @param browser ブラウザ。
 	 * @param result テスト要素。
 	 * @return リンク情報。
 	 * @throws Exception 例外。
 	 */
-	protected String saveAttachFile(final Page page, final Browser browser, final ResultType result) throws Exception {
-		return "";
+	protected String saveAttachFile(final Browser browser, final ResultType result) throws Exception {
+		String imageFile =  this.getTestItemPath() + "/" + this.getFileName() + ".png";
+		String path = browser.saveResizedScreenShot(imageFile);
+		File f = new File(path);
+		String ret = "<img src='" + f.getName() + "' width='1024'/>";
+		return ret;
 	}
 	
 	/**
@@ -324,16 +316,17 @@ public abstract class TestItem {
 		Date today = new Date();
 		this.setTestDate(today);
 		this.setResult(result);
-		Page page = this.getPageInstance();
-		templ.replace("pageName", page.getPageName());
-		templ.replace("pageClass", page.getClass().getName());
+//		Page page = this.getPageInstance();
+//		templ.replace("pageName", page.getPageName());
+		templ.replace("pageName", browser.getTitle());
+		templ.replace("pageClass", this.pageClass.getName());
 		templ.replace("group", this.getGroup());
 		templ.replace("seq", this.getSeq());
 		templ.replace("condition", this.getCondition());
 		templ.replace("expected", this.getExpected());
 		templ.replace("testDate", this.getTestDateText());
 		templ.replace("result", result.name());
-		templ.replace("attachFiles", this.saveAttachFile(page, browser, result));
+		templ.replace("attachFiles", this.saveAttachFile(browser, result));
 		logger.debug("html=" + templ.getSource());
 		String resultPath = this.getTestItemHtmlPath();
 		File dir = new File(resultPath).getParentFile();
