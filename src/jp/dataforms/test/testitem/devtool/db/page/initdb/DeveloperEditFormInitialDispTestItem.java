@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page;
+package jp.dataforms.test.testitem.devtool.db.page.initdb;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
@@ -17,7 +17,7 @@ import jp.dataforms.test.selenium.Browser;
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DeveloperEditFormDispTestItem extends DeveloperEditFormTestItem {
+public class DeveloperEditFormInitialDispTestItem extends DeveloperEditFormTestItem {
 	/**
 	 * テスト条件。
 	 */
@@ -35,7 +35,7 @@ public class DeveloperEditFormDispTestItem extends DeveloperEditFormTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public DeveloperEditFormDispTestItem() {
+	public DeveloperEditFormInitialDispTestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

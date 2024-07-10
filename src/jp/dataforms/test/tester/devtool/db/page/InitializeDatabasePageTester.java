@@ -10,8 +10,8 @@ import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.devtool.db.page.DatabaseInfoFormTestItem;
-import jp.dataforms.test.testitem.devtool.db.page.DeveloperEditFormTestItem;
+import jp.dataforms.test.testitem.devtool.db.page.initdb.DatabaseInfoFormTestItem;
+import jp.dataforms.test.testitem.devtool.db.page.initdb.DeveloperEditFormTestItem;
 
 /**
  * データベース初期化 ページテスター。

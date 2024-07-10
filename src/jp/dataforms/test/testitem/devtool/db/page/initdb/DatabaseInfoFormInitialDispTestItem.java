@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page;
+package jp.dataforms.test.testitem.devtool.db.page.initdb;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,12 +26,12 @@ import jp.dataforms.test.selenium.Browser;
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DatabaseInfoFormDispTestItem extends DatabaseInfoFormTestItem {
+public class DatabaseInfoFormInitialDispTestItem extends DatabaseInfoFormTestItem {
 	
 	/**
 	 * Logger.
 	 */
-	private Logger logger = LogManager.getLogger(DatabaseInfoFormDispTestItem.class);
+	private Logger logger = LogManager.getLogger(DatabaseInfoFormInitialDispTestItem.class);
 	
 	/**
 	 * テスト条件。
@@ -50,7 +50,7 @@ public class DatabaseInfoFormDispTestItem extends DatabaseInfoFormTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public DatabaseInfoFormDispTestItem() {
+	public DatabaseInfoFormInitialDispTestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

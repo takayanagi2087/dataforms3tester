@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page;
+package jp.dataforms.test.testitem.devtool.db.page.initdb;
 
 import java.util.List;
 
@@ -14,30 +14,30 @@ import jp.dataforms.test.selenium.Browser;
  */
 @TestItemInfo(
 	// テスト項目の情報を記述します。
-	group = "validation", 		// テスト項目を分類する文字列を指定します。
-	seq = "001",			// テストの実行順を指定します。 
+	group = "validation", 	// テスト項目を分類する文字列を指定します。
+	seq = "003",			// テストの実行順を指定します。 
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DeveloperEditFormReqTestItem extends DeveloperEditFormTestItem {
+public class DeveloperEditFormMailValidationTestItem extends DeveloperEditFormTestItem {
 	/**
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		何も入力せずに確認ボタンを押下する。
+		メールアドレスにメールアドレス以外の値を入力し確認ボタンを押下する。
 		""";
 
 	/**
 	 * 期待値。
 	 */
 	private static final String EXPECTED = """
-		必須項目のチェックが行われること。
+		「パスワードが一致しません。」というメッセージが表示されること。
 		""";
 
 	/**
 	 * コンストラクタ。
 	 */
-	public DeveloperEditFormReqTestItem() {
+	public DeveloperEditFormMailValidationTestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
@@ -45,21 +45,18 @@ public class DeveloperEditFormReqTestItem extends DeveloperEditFormTestItem {
 	 * メッセージリスト。
 	 */
 	private static final String[] MSG_LIST = {
-		"ログインIDが入力されていません。",
-		"パスワードが入力されていません。",
-		"パスワード(確認)が入力されていません。",
-		"氏名が入力されていません。",
+		"メールアドレスには正しいメールアドレスを入力してください。"
 	};
 	
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
+		browser.reload();
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
-		f.getLoginId().setValue("");;
-		f.getUserName().setValue("");
-		f.getPassword().setValue("");
-		f.getPasswordCheck().setValue("");
+		f.getPassword().setValue("password");
+		f.getPasswordCheck().setValue("password");
+		f.getMailAddress().setValue("aaa");
 		f.getConfirmButton().click();
 		Browser.sleep(2);
 		List<String> list = p.getErrorMessageList();

@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page;
+package jp.dataforms.test.testitem.devtool.db.page.initdb;
 
 import jp.dataforms.test.testitem.TestItem;
 import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
