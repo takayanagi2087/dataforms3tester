@@ -44,12 +44,17 @@ public class InitializeDatabasePageTester extends PageTester {
 		return list;
 	}
 
+	/**
+	 * DeveloperEditFormのテストを行います。
+	 * @param browser ブラウザ。
+	 * @return テスト結果リスト。
+	 * @throws Exception 例外。
+	 */
 	private List<TestItem> testDeveloperEditForm(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(1024, 540));
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DeveloperEditFormTestItem.class, null, null);
-		for (TestItem ci: list) {
-			ci.exec(browser);
-		}
+		this.execTestItemList(browser, list, "disp");
+		this.execTestItemList(browser, list, "validation");
 		return list;
 	}
 

@@ -321,6 +321,41 @@ public abstract class PageTester {
 		this.sortCheckItem(ret);
 		return ret;
 	}
+	
+
+	protected List<TestItem> execTestItemList(final Browser browser, final List<TestItem> list, final String group) throws Exception {
+		List<TestItem> ret = new ArrayList<TestItem>();
+		for (TestItem ci: list) {
+			logger.info("GROUP:" + ci.getGroup() + ", SEQ:" + ci.getSeq());
+			logger.info("CONDITION:" + ci.getCondition());
+			if (group == null) {
+				ci.exec(browser);
+				ret.add(ci);
+			} else {
+				if (group.equals(ci.getGroup())) {
+					ci.exec(browser);
+					ret.add(ci);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	/**
+	 * レスポンシブデザインテストを実行します。
+	 * @param browser ブラウザ。
+	 * @param pageClass ページクラス。
+	 * @param compClass コンポーネントクラス。
+	 * 
+	 * @return レスポンシブデザインテストの結果リスト。
+	 * @throws Exception 例外。
+	 */
+	protected List<TestItem> testResponsive(final Browser browser, final Class<? extends Page> pageClass, final Class<? extends WebComponent> compClass) throws Exception {
+		ResponsiveTestItem.setHeight(540);
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.page", ResponsiveTestItem.class, pageClass, compClass);
+		return this.execTestItemList(browser, list, null);
+	}
+
 
 	/**
 	 * チェック項目リストをソートします。
@@ -352,27 +387,8 @@ public abstract class PageTester {
 		Browser browser = new Browser(bi);
 		return browser;
 	}
+
 	
-	/**
-	 * レスポンシブデザインテストを実行します。
-	 * @param browser ブラウザ。
-	 * @param pageClass ページクラス。
-	 * @param compClass コンポーネントクラス。
-	 * 
-	 * @return レスポンシブデザインテストの結果リスト。
-	 * @throws Exception 例外。
-	 */
-	protected List<TestItem> testResponsive(final Browser browser, final Class<? extends Page> pageClass, final Class<? extends WebComponent> compClass) throws Exception {
-		ResponsiveTestItem.setHeight(540);
-		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.page", ResponsiveTestItem.class, pageClass, compClass);
-		for (TestItem ci: list) {
-			logger.info("GROUP:" + ci.getGroup() + ", SEQ:" + ci.getSeq());
-			logger.info("CONDITION:" + ci.getCondition());
-			ci.exec(browser);
-			Browser.sleep(1);
-		}
-		return list;
-	}
 	
 	/**
 	 * ページのテンプレートを取得します。
