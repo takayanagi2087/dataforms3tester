@@ -11,6 +11,7 @@ import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
 import jp.dataforms.test.testitem.devtool.db.page.DatabaseInfoFormTestItem;
+import jp.dataforms.test.testitem.devtool.db.page.DeveloperEditFormTestItem;
 
 /**
  * データベース初期化 ページテスター。
@@ -29,7 +30,7 @@ public class InitializeDatabasePageTester extends PageTester {
 	}
 	
 	/**
-	 * 何かのテストを行います。
+	 * DatabaseInfoFormのテストを行います。
 	 * @param browser ブラウザ。
 	 * @return テスト結果リスト。
 	 * @throws Exception 例外。
@@ -42,7 +43,16 @@ public class InitializeDatabasePageTester extends PageTester {
 		}
 		return list;
 	}
-	
+
+	private List<TestItem> testDeveloperEditForm(final Browser browser) throws Exception {
+		browser.setClientSize(new Dimension(1024, 540));
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DeveloperEditFormTestItem.class, null, null);
+		for (TestItem ci: list) {
+			ci.exec(browser);
+		}
+		return list;
+	}
+
 	
 	@Override
 	public void exec() throws Exception {
@@ -53,6 +63,7 @@ public class InitializeDatabasePageTester extends PageTester {
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitializeDatabasePage.class, DeveloperEditForm.class));
 		list.addAll(this.testDatabaseInfoForm(browser));
+		list.addAll(this.testDeveloperEditForm(browser));
 		this.saveIndexHtml(pageName, list);
 		browser.close();
 	}
