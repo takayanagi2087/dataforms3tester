@@ -352,6 +352,7 @@ public class Browser {
 	 */
 	public static void sleep(int sec) {
 		try {
+			logger.debug("sleep=" + sec);
 			Thread.sleep(sec * 1000);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -457,7 +458,9 @@ public class Browser {
 	 * @return ページのタイトル。
 	 */
 	public String getTitle() {
-		WebElement element = this.webDriver.findElement(By.xpath("//title"));
-		return element.getText();
+		WebElement element = this.webDriver.findElement(By.id("pageName"));
+		String title = element.getText();
+		logger.debug("title=" + title);
+		return title;
 	}
 }

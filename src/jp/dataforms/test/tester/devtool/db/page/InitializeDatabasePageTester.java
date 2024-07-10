@@ -3,11 +3,14 @@ package jp.dataforms.test.tester.devtool.db.page;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.Dimension;
+
 import jp.dataforms.fw.devtool.db.page.DeveloperEditForm;
 import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
+import jp.dataforms.test.testitem.devtool.db.page.DatabaseInfoFormTestItem;
 
 /**
  * データベース初期化 ページテスター。
@@ -16,7 +19,7 @@ public class InitializeDatabasePageTester extends PageTester {
 	/**
 	 * Logger.
 	 */
-//	private static Logger logger = LogManager.getLogger(InitializeDatabasePageTester.class);
+	// private static Logger logger = LogManager.getLogger(InitializeDatabasePageTester.class);
 	
 	/**
 	 * コンストラクタ。
@@ -31,16 +34,15 @@ public class InitializeDatabasePageTester extends PageTester {
 	 * @return テスト結果リスト。
 	 * @throws Exception 例外。
 	 */
-/*	private List<TestItem> testSomething(final Browser browser) throws Exception {
+	private List<TestItem> testDatabaseInfoForm(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(1024, 540));
-		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.something", SomethingTestItem.class, null, null);
+		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DatabaseInfoFormTestItem.class, null, null);
 		for (TestItem ci: list) {
 			ci.exec(browser);
-			Browser.sleep(1);
 		}
 		return list;
 	}
-*/	
+	
 	
 	@Override
 	public void exec() throws Exception {
@@ -50,7 +52,7 @@ public class InitializeDatabasePageTester extends PageTester {
 		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitializeDatabasePage.class, DeveloperEditForm.class));
-		// list.addAll(this.testSomething(browser));
+		list.addAll(this.testDatabaseInfoForm(browser));
 		this.saveIndexHtml(pageName, list);
 		browser.close();
 	}

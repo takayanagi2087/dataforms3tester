@@ -47,4 +47,12 @@ public class FieldTestElement extends TestElement {
 		return element.getAttribute("value");
 	}
 
+	/**
+	 * フィールドの値を取得します。
+	 * @return フィールドの値。
+	 */
+	public String getText() {
+		WebElement element = this.getWebElement();
+		return element.getText();
+	}
 }

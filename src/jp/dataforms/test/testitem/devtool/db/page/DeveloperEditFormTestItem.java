@@ -1,11 +1,12 @@
 package jp.dataforms.test.testitem.devtool.db.page;
 
-import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolForm;
-import jp.dataforms.fw.devtool.init.page.InitDevelopmentToolPage;
 import jp.dataforms.test.testitem.TestItem;
+import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
+import jp.dataforms.fw.devtool.db.page.DeveloperEditForm;
+
 
 /**
- * 開発者編集フォームのテスト項目のベースクラス。
+ * DeveloperEditFormテスト項目基本クラス。
  */
 public abstract class DeveloperEditFormTestItem extends TestItem {
 	/**
@@ -14,6 +15,7 @@ public abstract class DeveloperEditFormTestItem extends TestItem {
 	 * @param expected 期待値。
 	 */
 	public DeveloperEditFormTestItem(final String condition, final String expected) {
-		super(InitDevelopmentToolPage.class, InitDevelopmentToolForm.class, condition, expected);
+		super(InitializeDatabasePage.class, DeveloperEditForm.class, condition, expected);
 	}
 }
+

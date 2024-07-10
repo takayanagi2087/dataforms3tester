@@ -270,10 +270,10 @@ public abstract class TestItem {
 	 * @throws Exception 例外。
 	 */
 	protected String saveAttachFile(final Browser browser, final ResultType result) throws Exception {
-		String imageFile =  this.getTestItemPath() + "/" + this.getFileName() + ".png";
+		String imageFile =  this.getTestItemPath() + "/img/" + this.getFileName() + ".png";
 		String path = browser.saveResizedScreenShot(imageFile);
 		File f = new File(path);
-		String ret = "<img src='" + f.getName() + "' width='1024'/>";
+		String ret = "<img src='./img/" + f.getName() + "' width='1024'/>";
 		return ret;
 	}
 	
