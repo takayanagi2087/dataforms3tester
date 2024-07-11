@@ -2,6 +2,7 @@ package jp.dataforms.test.tester;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +17,7 @@ import jp.dataforms.fw.menu.FunctionMap;
 import jp.dataforms.fw.util.ClassFinder;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.JsonUtil;
+import jp.dataforms.fw.util.WebClient;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
@@ -109,6 +111,10 @@ public abstract class PageTester {
 	@Data
 	public static class WebApplication {
 		/**
+		 * コンテキストパス。
+		 */
+		private String contextPath = null;
+		/**
 		 *  WebアプリケーションのURL。
 		 */
 		private String applicationURL = null;
@@ -191,6 +197,10 @@ public abstract class PageTester {
 		 * 管理者パスワード。
 		 */
 		private String adminPassword = null;
+		/**
+		 * TomcatマネージャーのURL。
+		 */
+		private String managerUrl = null;
 	}
 	
 	/**
@@ -593,6 +603,28 @@ public abstract class PageTester {
 		return pt;
 	}
 
+	
+	/**
+	 * 指定したWebアプリケーションをリロードする。
+	 * @param context コンテキストパース。
+	 * @return HTTP ステータス。
+	 * @throws Exception 例外。
+	 */
+	public int reloadWebApp(final String context) throws Exception {
+		String url = this.conf.getTomcat().getManagerUrl();
+		String user = this.conf.getTomcat().getAdminUser();
+		String password = this.conf.getTomcat().getAdminPassword();
+		String basicSource  = user + ":" + password;
+		String basicCrypt = Base64.getEncoder().encodeToString(basicSource.getBytes());
+		String reloadUrl = url + "/reload?path=" + context;
+		logger.info("reloadURL=" + reloadUrl);
+		WebClient client = new WebClient(reloadUrl, WebClient.METHOD_GET);
+		client.addRequestHeader("Authorization", "basic " + basicCrypt);
+		String resp = (String) client.call();
+		logger.info("status=" + client.getHttpStatus());
+		logger.info("resp=" + resp);
+		return client.getHttpStatus();
+	}
 	
 	/**
 	 * テスト実行。

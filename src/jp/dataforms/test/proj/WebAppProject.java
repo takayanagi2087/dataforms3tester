@@ -187,11 +187,16 @@ public class WebAppProject {
 	 * @throws Exception 例外。
 	 */
 	private void initDB() throws Exception {
-		File dbpath = new File(this.path + "/javadb");
-		if (dbpath.exists()) {
-			FileUtils.cleanDirectory(dbpath);
-			dbpath.delete();
-			logger.info("データベースをクリアしました。");
+		try {
+			File dbpath = new File(this.path + "/javadb");
+			if (dbpath.exists()) {
+				FileUtils.cleanDirectory(dbpath);
+				dbpath.delete();
+				logger.info("データベースをクリアしました。");
+			}
+		} catch (Exception e) {
+			logger.error("データベースファイルがロックされています。Tomcatを停止してください。");
+			throw e;
 		}
 	}
 

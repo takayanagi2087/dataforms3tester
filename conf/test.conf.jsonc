@@ -38,9 +38,11 @@
 	}
 	// テスト対象のアプリケーション
 	, "testApp" : {
+		// アプリケーションのコンテキストパス。
+		"contextPath": "/sample"
 		// WebアプリケーションのURL。
-		"applicationURL":   "http://localhost:8080/sample/"
-		// テスト結果の保存パス
+		, "applicationURL":   "http://localhost:8080/sample/"
+		// テスト結果の保存パス。
 		, "testResult": "C:/eclipse/workspaceDataforms3/dataforms3tester/result"
 	}
 	// テストに使用するユーザ。
@@ -67,6 +69,8 @@
 		// Tomcatの管理者ユーザ
 		"adminUser" : "admin",
 		// Tomcatの管理者ユーザ
-		"adminPassword" : "admin"
+		"adminPassword" : "admin",
+		// Tomcatの管理コマンドのURL
+		"managerUrl": "http://localhost:8080/manager/text"
 	}
 }

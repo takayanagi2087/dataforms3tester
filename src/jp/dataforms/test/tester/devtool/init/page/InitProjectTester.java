@@ -57,6 +57,7 @@ public class InitProjectTester extends PageTester {
 		list.addAll(this.testInit(browser));
 		this.saveIndexHtml(pageName, list);
 		browser.close();
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 	}
 
 }
