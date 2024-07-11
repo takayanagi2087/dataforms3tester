@@ -88,6 +88,7 @@ public class DatabaseInfoFormInitialDispTestItem extends DatabaseInfoFormTestIte
 			}
 		}
 		Browser.sleep(2);
+		this.saveScreenShot(browser);
 		return ret;
 	}
 

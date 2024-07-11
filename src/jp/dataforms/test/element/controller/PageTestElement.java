@@ -44,6 +44,15 @@ public class PageTestElement extends DataFormsTestElement {
 	}
 
 	/**
+	 * 指定されたコンポーネントが表示されるのを待ちます。
+	 * @param id コンポーネントID。
+	 * @throws Exception 例外。
+	 */
+	public void waitVisivility(final String id) throws Exception {
+		this.getBrowser().waitVisibility(By.xpath("//div[@data-id='" + id + "']"));
+	}
+	
+	/**
 	 * ダイアログのテスターを取得します。
 	 * @param id ID。
 	 * @param cls ダイアログクラス。
@@ -72,7 +81,7 @@ public class PageTestElement extends DataFormsTestElement {
 	}
 
 	/**
-	 * AlertDialogを所得します。
+	 * AlertDialogを取得します。
 	 * @return AlertDialog。
 	 */
 	public AlertDialogTestElement getAlertDialog() {

@@ -55,6 +55,7 @@ public class InitializeDatabasePageTester extends PageTester {
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DeveloperEditFormTestItem.class, null, null);
 		this.execTestItemList(browser, list, "disp");
 		this.execTestItemList(browser, list, "validation");
+		this.execTestItemList(browser, list, "save");
 		return list;
 	}
 

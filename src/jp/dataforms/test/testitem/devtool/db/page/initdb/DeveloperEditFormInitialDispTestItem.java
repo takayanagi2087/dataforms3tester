@@ -50,6 +50,7 @@ public class DeveloperEditFormInitialDispTestItem extends DeveloperEditFormTestI
 			ret = ResultType.SYSTEM_OK;
 		}
 		Browser.sleep(2);
+		this.saveScreenShot(browser);
 		return ret;
 	}
 

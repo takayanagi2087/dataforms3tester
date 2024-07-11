@@ -35,6 +35,7 @@ public class PagePcMaxTestItem extends ResponsiveTestItem {
 	@Override
 	protected ResultType  test(final Browser browser) throws Exception {
 		browser.maximize();
+		this.saveScreenShot(browser);
 		return ResultType.USER_CHECK;
 	}
 }

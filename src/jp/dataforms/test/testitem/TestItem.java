@@ -2,7 +2,9 @@ package jp.dataforms.test.testitem;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,6 +105,11 @@ public abstract class TestItem {
 	 * テスト時刻。
 	 */
 	private Date testDate = null;
+	
+	/**
+	 * スクリーンショットリスト。
+	 */
+	private List<String> screenShotList = new ArrayList<String>();
 	
 	
 	/**
@@ -263,18 +270,39 @@ public abstract class TestItem {
 	}
 	
 	/**
-	 * 添付ファイルを作成します。
+	 * スクリーンショットを保存します。
 	 * @param browser ブラウザ。
-	 * @param result テスト要素。
-	 * @return リンク情報。
 	 * @throws Exception 例外。
 	 */
-	protected String saveAttachFile(final Browser browser, final ResultType result) throws Exception {
-		String imageFile =  this.getTestItemPath() + "/img/" + this.getFileName() + ".png";
+	protected void saveScreenShot(final Browser browser) throws Exception {
+		int cnt = this.screenShotList.size();
+		String imageFile =  this.getTestItemPath() + "/img/" + this.getFileName() + "_" + String.format("%03d", cnt) + ".png";
+		String path = browser.saveResizedScreenShot(imageFile);
+		File f = new File(path);
+		this.screenShotList.add(f.getName());
+	}
+	
+	
+	/**
+	 * 添付ファイルのHTMLタグを取得します。
+	 * @param browser ブラウザ。
+	 * @param result テスト要素。
+	 * @return 添付ファイルのHTMLタグ
+	 * @throws Exception 例外。
+	 */
+	protected String getAttachFileTag(final Browser browser, final ResultType result) throws Exception {
+		StringBuilder sb = new StringBuilder();
+		for (String img: this.screenShotList) {
+			String imgtag = "<img src='./img/" + img + "' width='1024'/>\n";
+			sb.append(imgtag);
+		}
+		return sb.toString();
+/*		String imageFile =  this.getTestItemPath() + "/img/" + this.getFileName() + ".png";
 		String path = browser.saveResizedScreenShot(imageFile);
 		File f = new File(path);
 		String ret = "<img src='./img/" + f.getName() + "' width='1024'/>";
-		return ret;
+		return ret;*/
+		
 	}
 	
 	/**
@@ -326,7 +354,7 @@ public abstract class TestItem {
 		templ.replace("expected", this.getExpected());
 		templ.replace("testDate", this.getTestDateText());
 		templ.replace("result", result.name());
-		templ.replace("attachFiles", this.saveAttachFile(browser, result));
+		templ.replace("attachFiles", this.getAttachFileTag(browser, result));
 		logger.debug("html=" + templ.getSource());
 		String resultPath = this.getTestItemHtmlPath();
 		File dir = new File(resultPath).getParentFile();

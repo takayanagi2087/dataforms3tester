@@ -37,6 +37,7 @@ public class PageTabMaxTestItem extends ResponsiveTestItem {
 	@Override
 	protected ResultType test(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(TAB_MAX_WIDTH, ResponsiveTestItem.getHeight()));
+		this.saveScreenShot(browser);
 		return ResultType.USER_CHECK;
 	}
 }
