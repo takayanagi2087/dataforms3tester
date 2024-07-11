@@ -62,4 +62,11 @@
 		// ソースのsnapshot
 		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot"
 	}
+	// Tomcat関連設定。
+	, "tomcat": {
+		// Tomcatの管理者ユーザ
+		"adminUser" : "admin",
+		// Tomcatの管理者ユーザ
+		"adminPassword" : "admin"
+	}
 }

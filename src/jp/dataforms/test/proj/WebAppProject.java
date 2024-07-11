@@ -12,8 +12,10 @@ import com.google.common.io.Files;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.SequentialProperties;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.tester.PageTester.Project;
 import jp.dataforms.test.xml.ServerXml;
+import jp.dataforms.test.xml.TomcatUsersXml;
 import jp.dataforms.test.xml.WebXml;
 import lombok.Getter;
 import lombok.Setter;
@@ -71,6 +73,11 @@ public class WebAppProject {
 	@Getter
 	@Setter
 	private String testSrc = null;
+	
+	/**
+	 * 設定情報。
+	 */
+	private Conf conf = null;
 	
 	/**
 	 * コンストラクタ。
@@ -160,6 +167,22 @@ public class WebAppProject {
 	}
 	
 	/**
+	 * $TOMCAT_HOME/conf/server.xmlの初期化。
+	 * @throws Exception 例外。
+	 */
+	private void initTomcatUsersXml() throws Exception {
+		String user = this.conf.getTomcat().getAdminUser();
+		String password = this.conf.getTomcat().getAdminPassword();
+		TomcatUsersXml tomcatUsersXml = new TomcatUsersXml(new File(this.tomcatConfigPath + "/tomcat-users.xml"));
+		tomcatUsersXml.addRole("admin-script");
+		tomcatUsersXml.addRole("manager-script");
+		tomcatUsersXml.addUser(user, password, "admin-script,manager-script");
+		tomcatUsersXml.save();
+	}
+
+
+	
+	/**
 	 * データベースを初期化します。
 	 * @throws Exception 例外。
 	 */
@@ -179,10 +202,11 @@ public class WebAppProject {
 	 * @throws Exception 例外。
 	 */
 	public void resetProject() throws Exception {
+		this.initDB();
 		this.cleanJavaSrc();
 		this.cleanWebapp();
 		this.initServerXml();
-		this.initDB();
+		this.initTomcatUsersXml();
 	}
 	
 	
@@ -622,6 +646,7 @@ public class WebAppProject {
 	public static WebAppProject newWebAppProject(final jp.dataforms.test.tester.PageTester.Conf conf) {
 		Project projectConf = conf.getProject();
 		WebAppProject prj = new WebAppProject(projectConf.getProjectPath(), conf.getTestApp().getApplicationURL());
+		prj.conf = conf;
 		prj.setTestSrc(projectConf.getTestSrc());
 		prj.setTomcatConfigPath(projectConf.getTomcatConfigPath());
 		prj.setSnapshot(projectConf.getSnapshot());

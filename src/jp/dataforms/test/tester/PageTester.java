@@ -178,6 +178,20 @@ public abstract class PageTester {
 		}
 	}
 	
+	/**
+	 * Tomcat関連情報。
+	 */
+	@Data
+	public static class Tomcat {
+		/**
+		 * 管理者ユーザID。
+		 */
+		private String adminUser = null;
+		/**
+		 * 管理者パスワード。
+		 */
+		private String adminPassword = null;
+	}
 	
 	/**
 	 * テスト設定情報。
@@ -201,7 +215,10 @@ public abstract class PageTester {
 		 * Eclipseプロジェクト情報。
 		 */
 		private Project project = null;
-		
+		/**
+		 * Tomcat関連設定。
+		 */
+		private Tomcat tomcat = null;
 		/**
 		 * コンストラクタ。
 		 */
