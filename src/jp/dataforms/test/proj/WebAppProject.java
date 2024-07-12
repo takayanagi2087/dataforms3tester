@@ -407,6 +407,15 @@ public class WebAppProject {
 	}
 	
 	/**
+	 * テスト用のユーザ初期化データを作成します。
+	 * @throws Exception 例外。
+	 */
+	public void copyUserInitialData() throws Exception {
+		this.copyWebappSrc("/WEB-INF/initialdata/jp/dataforms/fw/app/user/dao/UserAttributeTable.data.json", "/WEB-INF/initialdata/jp/dataforms/fw/app/user/dao/UserAttributeTable.data.json");
+		this.copyWebappSrc("/WEB-INF/initialdata/jp/dataforms/fw/app/user/dao/UserInfoTable.data.json", "/WEB-INF/initialdata/jp/dataforms/fw/app/user/dao/UserInfoTable.data.json");
+	}
+	
+	/**
 	 * Excel templateを削除します。
 	 * @throws Exception 例外。
 	 */

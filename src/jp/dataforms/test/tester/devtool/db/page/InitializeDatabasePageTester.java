@@ -7,6 +7,7 @@ import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.devtool.db.page.DeveloperEditForm;
 import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
+import jp.dataforms.test.proj.WebAppProject;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
@@ -56,6 +57,10 @@ public class InitializeDatabasePageTester extends PageTester {
 		this.execTestItemList(browser, list, "disp");
 		this.execTestItemList(browser, list, "validation");
 		this.execTestItemList(browser, list, "save");
+		this.cleanDB();
+		Browser.sleep(5);
+		browser.open(this.getConf().getTestApp().getApplicationURL());
+		this.execTestItemList(browser, list, "import");
 		return list;
 	}
 
@@ -64,6 +69,9 @@ public class InitializeDatabasePageTester extends PageTester {
 	public void exec() throws Exception {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		this.cleanDB();
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		proj.copyUserInitialData();
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
 		String pageName = browser.getTitle();
