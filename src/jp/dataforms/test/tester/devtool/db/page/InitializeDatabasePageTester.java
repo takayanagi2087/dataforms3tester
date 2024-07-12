@@ -63,6 +63,7 @@ public class InitializeDatabasePageTester extends PageTester {
 	@Override
 	public void exec() throws Exception {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
+		this.cleanDB();
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
 		String pageName = browser.getTitle();

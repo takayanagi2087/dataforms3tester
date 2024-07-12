@@ -33,6 +33,7 @@ public class ResetProject extends PageTester {
 			logger.error(prj.getPath() + " はWebアプリケーションプロジェクトのパスではありません。");
 		}
 		prj.resetProject();
+		
 		logger.info("Tomcatを起動して、他のテストを実行してください。");
 	}
 }

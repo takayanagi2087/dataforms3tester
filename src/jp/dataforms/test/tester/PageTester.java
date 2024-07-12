@@ -3,7 +3,9 @@ package jp.dataforms.test.tester;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -625,6 +627,73 @@ public abstract class PageTester {
 		logger.info("resp=" + resp);
 		return client.getHttpStatus();
 	}
+	
+	/**
+	 * APIを呼び出します。
+	 * @param url URL。
+	 * @param p パラメータ。
+	 * @return 応答情報。
+	 * @throws Exception 例外。
+	 */
+	public Object callApi(final String url, final Map<String, Object> p) throws Exception {
+		WebClient client = new WebClient(url, WebClient.METHOD_POST);
+		Object r =  client.call(p);
+		return r;
+	}
+	
+	/**
+	 * 指定した更新系SQLを実行する。
+	 * @param sqlList SQLのリスト。
+	 * @throws Exception 例外。
+	 */
+	public void executeUpdateSql(final String ... sqlList) throws Exception {
+		List<String> list = new ArrayList<String>();
+		for (String sql: sqlList) {
+			list.add(sql);
+		}
+		Map<String, Object> p = new HashMap<String, Object>();
+		p.put("sqlList", list);
+		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/UpdateTableApi.df";
+		@SuppressWarnings("unchecked")
+		Map<String, Object> response = (Map<String, Object>) this.callApi(url, p);
+		logger.debug("status=" + response.get("status"));
+	}
+	
+	
+	/**
+	 * テーブルを削除します。
+	 * @param tables テーブル一覧。
+	 * @throws Exception 例外。
+	 */
+	public void dropTables(String ...tables) throws Exception {
+		List<String> tlist = new ArrayList<String>();
+		for (String t: tables) {
+			tlist.add(t);
+		}
+		Map<String, Object> p = new HashMap<String, Object>();
+		p.put("tableList", tlist);
+		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/DropTableApi.df";
+		@SuppressWarnings("unchecked")
+		Map<String, Object> response = (Map<String, Object>) this.callApi(url, p);
+		logger.debug("status=" + response.get("status"));
+	}
+	
+	/**
+	 * データベースをクリアします。
+	 * @throws Exception 例外。
+	 */
+	public void cleanDB() throws Exception {
+		this.executeUpdateSql("drop index enum_index");
+		this.executeUpdateSql("drop index login_id_index");
+		this.executeUpdateSql("drop index user_authenticator_name_index");
+		this.executeUpdateSql("alter table enum drop constraint FK_ENUM_TABLE01");
+		this.executeUpdateSql("alter table user_attribute drop constraint FK_USER_ATTRIBUTE_TABLE01");
+		this.executeUpdateSql("alter table web_authn drop constraint FK_WEB_AUTHN_TABLE01");
+		
+		this.dropTables("web_authn", "user_attribute", "user_info", "enum_name", "enum");
+	}
+
+	
 	
 	/**
 	 * テスト実行。

@@ -35,6 +35,7 @@ public class InitalSaveTestItem extends InitTestItem {
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
+		// プロジェクトの初期化画面。
 		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getSaveButton().click();

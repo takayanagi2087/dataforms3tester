@@ -212,6 +212,7 @@ public class WebAppProject {
 		this.cleanWebapp();
 		this.initServerXml();
 		this.initTomcatUsersXml();
+		this.copyTestApi();
 	}
 	
 	

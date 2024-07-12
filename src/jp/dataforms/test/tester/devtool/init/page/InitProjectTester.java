@@ -47,6 +47,8 @@ public class InitProjectTester extends PageTester {
 	@Override
 	public void exec() throws Exception {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
+//		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+//		this.cleanDB();
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
 		String pageName = browser.getTitle();
