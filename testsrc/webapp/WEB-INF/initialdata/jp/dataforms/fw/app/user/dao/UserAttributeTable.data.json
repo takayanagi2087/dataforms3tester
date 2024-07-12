@@ -1,0 +1,38 @@
+[
+	{
+		"userId": "4",
+		"userAttributeType": "userLevel",
+		"userAttributeValue": "developer",
+		"createUserId": "-1",
+		"createTimestamp": "20240712155039217",
+		"updateUserId": "-1",
+		"updateTimestamp": "20240712155039217"
+	},
+	{
+		"userId": "5",
+		"userAttributeType": "userLevel",
+		"userAttributeValue": "admin",
+		"createUserId": "4",
+		"createTimestamp": "20240712155312518",
+		"updateUserId": "4",
+		"updateTimestamp": "20240712155312518"
+	},
+	{
+		"userId": "6",
+		"userAttributeType": "userLevel",
+		"userAttributeValue": "user",
+		"createUserId": "4",
+		"createTimestamp": "20240712155406316",
+		"updateUserId": "4",
+		"updateTimestamp": "20240712155406316"
+	},
+	{
+		"userId": "7",
+		"userAttributeType": "userLevel",
+		"userAttributeValue": "guest",
+		"createUserId": "4",
+		"createTimestamp": "20240712155451902",
+		"updateUserId": "4",
+		"updateTimestamp": "20240712155451902"
+	}
+]

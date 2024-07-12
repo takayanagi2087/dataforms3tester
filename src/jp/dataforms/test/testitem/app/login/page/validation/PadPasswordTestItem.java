@@ -1,5 +1,7 @@
 package jp.dataforms.test.testitem.app.login.page.validation;
 
+import org.openqa.selenium.Dimension;
+
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.controller.AlertDialogTestElement;
@@ -47,6 +49,7 @@ public class PadPasswordTestItem extends LoginFormTestItem {
 	
 	@Override
 	protected ResultType test(final Browser browser) throws Exception {
+		browser.setClientSize(new Dimension(1024, 400));
 		PageTestElement pageTestElement = browser.getPageTestElement();
 		FormTestElement f = pageTestElement.getForm("loginForm");
 		f.getField("loginId").setValue("user");
@@ -55,6 +58,7 @@ public class PadPasswordTestItem extends LoginFormTestItem {
 		Browser.sleep(2);
 		AlertDialogTestElement alertDialog = pageTestElement.getAlertDialog();
 		String msg = alertDialog.getMessage();
+		this.saveScreenShot(browser);
 		ResultType ret = null;
 		if (msg.equals("ユーザIDまたはパスワードが違います。")) {
 			ret = ResultType.SYSTEM_OK;

@@ -50,6 +50,7 @@ public class EnptyValidationTestItem extends LoginFormTestItem {
 		Browser.sleep(2);
 		String message = pageTestElement.getErrorMessage();
 		logger.debug("text=" + message);
+		this.saveScreenShot(browser);
 		if ("ログインID.が入力されていません。".equals(message)) {
 			return ResultType.SYSTEM_OK;
 		} else {

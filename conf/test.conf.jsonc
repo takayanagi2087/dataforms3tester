@@ -48,7 +48,6 @@
 	// テストに使用するユーザ。
 	, "userList": [
 		{ "loginId": "developer", "password": "developer"},
-		{ "loginId": "devuser", "password": "devuser"},
 		{ "loginId": "admin", "password": "admin"},	
 		{ "loginId": "user", "password": "user" },
 		{ "loginId": "guest", "password": "guest"}

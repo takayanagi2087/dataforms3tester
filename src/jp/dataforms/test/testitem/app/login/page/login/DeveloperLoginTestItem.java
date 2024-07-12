@@ -38,7 +38,7 @@ public class DeveloperLoginTestItem extends LoginTestItem {
 	
 	@Override
 	protected String getLoginId() {
-		return "devuser";
+		return "developer";
 	}
 	
 	@Override

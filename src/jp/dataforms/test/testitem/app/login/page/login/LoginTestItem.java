@@ -54,6 +54,7 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 		f.getLoginButton().click();
 		Browser.sleep(2);
 		ResultType ret = this.checkSiteMap(browser);
+		this.saveScreenShot(browser);
 		return ret;
 	}
 

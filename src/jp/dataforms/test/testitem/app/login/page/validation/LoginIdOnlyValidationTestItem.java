@@ -54,6 +54,7 @@ public class LoginIdOnlyValidationTestItem extends LoginFormTestItem {
 	//	String message = pageTestElement.findWebElement(By.id("errorMessages")).getText().trim();
 		List<String> messageList = pageTestElement.getErrorMessageList();
 		logger.debug("text=" + messageList);
+		this.saveScreenShot(browser);
 		if (messageList.indexOf("パスワードが入力されていません。") >= 0 
 			&& messageList.indexOf("パスキーが入力されていません。") >= 0) {
 			return ResultType.SYSTEM_OK;

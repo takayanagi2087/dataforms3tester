@@ -5,6 +5,8 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.db.page.DeveloperEditFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.InitializeDatabasePageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.tester.PageTester.Conf;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -45,8 +47,11 @@ public class DeveloperEditFormConfirmTestItem extends DeveloperEditFormTestItem 
 		browser.reload();
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
-		f.getPassword().setValue("password");
-		f.getPasswordCheck().setValue("password");
+		Conf conf = TestItem.getConf();
+		String loginId = f.getLoginId().getValue();
+		String password = conf.getTestUser(loginId).getPassword();
+		f.getPassword().setValue(password);
+		f.getPasswordCheck().setValue(password);
 		f.getMailAddress().setValue("hoge@hoge.jp");
 		this.saveScreenShot(browser);
 		f.getConfirmButton().click();
