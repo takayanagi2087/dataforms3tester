@@ -8,13 +8,13 @@ import jp.dataforms.test.testitem.TestItem;
 /**
  * プロジェクト初期化ページのテスト。
  */
-public  abstract class InitTestItem extends TestItem {
+public  abstract class InitDevelopmentToolFormTestItem extends TestItem {
 	/**
 	 * コンストラクタ。
 	 * @param condition テスト条件。
 	 * @param expected 期待値。
 	 */
-	public InitTestItem(final String condition, final String expected) {
+	public InitDevelopmentToolFormTestItem(final String condition, final String expected) {
 		super(InitDevelopmentToolPage.class, InitDevelopmentToolForm.class, condition, expected);
 	}
 

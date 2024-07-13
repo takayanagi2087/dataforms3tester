@@ -26,12 +26,12 @@ import jp.dataforms.test.selenium.Browser;
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DatabaseInfoFormInitialDispTestItem extends DatabaseInfoFormTestItem {
+public class DatabaseInfoFormDisp001TestItem extends DatabaseInfoFormTestItem {
 	
 	/**
 	 * Logger.
 	 */
-	private Logger logger = LogManager.getLogger(DatabaseInfoFormInitialDispTestItem.class);
+	private Logger logger = LogManager.getLogger(DatabaseInfoFormDisp001TestItem.class);
 	
 	/**
 	 * テスト条件。
@@ -50,7 +50,7 @@ public class DatabaseInfoFormInitialDispTestItem extends DatabaseInfoFormTestIte
 	/**
 	 * コンストラクタ。
 	 */
-	public DatabaseInfoFormInitialDispTestItem() {
+	public DatabaseInfoFormDisp001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

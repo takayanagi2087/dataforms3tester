@@ -54,7 +54,11 @@ public class DeveloperEditFormImportTestItem extends DeveloperEditFormTestItem {
 		p.getAlertDialog().clickOkButton();
 		p.waitVisibility("loginForm");
 		this.saveScreenShot(browser);
-		ResultType ret = ResultType.SYSTEM_OK;
+		String title = browser.getTitle();
+		ResultType ret = ResultType.SYSTEM_NG;
+		if ("ログイン".equals(title) || "Login".equals(title)) {
+			ret = ResultType.SYSTEM_OK;
+		}
 		return ret;
 	}
 

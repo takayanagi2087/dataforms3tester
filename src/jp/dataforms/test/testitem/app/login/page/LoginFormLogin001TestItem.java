@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.app.login.page.login;
+package jp.dataforms.test.testitem.app.login.page;
 
 import org.openqa.selenium.Dimension;
 
@@ -9,7 +9,7 @@ import jp.dataforms.test.selenium.Browser;
  * 開発者ログインテスト項目。
  */
 @TestItemInfo(group = "login", seq = "001")
-public class DeveloperLoginTestItem extends LoginTestItem {
+public class LoginFormLogin001TestItem extends LoginTestItem {
 	/**
 	 * Logger.
 	 */
@@ -32,7 +32,7 @@ public class DeveloperLoginTestItem extends LoginTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public DeveloperLoginTestItem() {
+	public LoginFormLogin001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

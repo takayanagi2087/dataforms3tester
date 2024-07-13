@@ -19,7 +19,7 @@ import jp.dataforms.test.selenium.Browser;
 	type = Type.ERROR, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DeveloperEditFormMailValidationTestItem extends DeveloperEditFormTestItem {
+public class DeveloperEditFormValidation003TestItem extends DeveloperEditFormTestItem {
 	/**
 	 * テスト条件。
 	 */
@@ -37,7 +37,7 @@ public class DeveloperEditFormMailValidationTestItem extends DeveloperEditFormTe
 	/**
 	 * コンストラクタ。
 	 */
-	public DeveloperEditFormMailValidationTestItem() {
+	public DeveloperEditFormValidation003TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

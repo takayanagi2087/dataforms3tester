@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.app.login.page.login;
+package jp.dataforms.test.testitem.app.login.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.selenium.Browser;
@@ -6,8 +6,8 @@ import jp.dataforms.test.selenium.Browser;
 /**
  * 管理者ログインテスト項目。
  */
-@TestItemInfo(group = "login", seq = "003")
-public class UserLoginTestItem extends LoginTestItem {
+@TestItemInfo(group = "login", seq = "002")
+public class LoginFormLogin002TestItem extends LoginTestItem {
 	/**
 	 * Logger.
 	 */
@@ -17,36 +17,36 @@ public class UserLoginTestItem extends LoginTestItem {
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		一般ユーザでログインする。
+		管理者でログインする。
 		""";
 
 	/**
 	 * 期待値。
 	 */
 	private static final String EXPECTED = """
-		一般ユーザのサイトマップが表示されること。
+		管理者のサイトマップが表示されること。
 		""";
 
 	/**
 	 * コンストラクタ。
 	 */
-	public UserLoginTestItem() {
+	public LoginFormLogin002TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
 	@Override
 	protected String getLoginId() {
-		return "user";
+		return "admin";
 	}
 	
 	@Override
 	protected ResultType checkSiteMap(final Browser browser) {
 		ResultType ret = ResultType.SYSTEM_NG;
-		if (!this.findLink(browser, "/app/user/page/UserManagementPage.df")) {
-			// 管理者ページが表示されていないことを確認。
+		if (!this.findLink(browser, "/devtool/menu/page/MenuEditPage.df")) {
+			// 開発者ページが表示されていないことを確認。
 			ret = ResultType.SYSTEM_OK;
 		}
 		return ret;
 	}
-	
+
 }

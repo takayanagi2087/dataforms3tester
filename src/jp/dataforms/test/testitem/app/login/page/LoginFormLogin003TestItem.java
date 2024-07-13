@@ -1,13 +1,13 @@
-package jp.dataforms.test.testitem.app.login.page.login;
+package jp.dataforms.test.testitem.app.login.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.selenium.Browser;
 
 /**
- * ゲストログインテスト項目。
+ * 管理者ログインテスト項目。
  */
-@TestItemInfo(group = "login", seq = "004")
-public class GuestLoginTestItem extends LoginTestItem {
+@TestItemInfo(group = "login", seq = "003")
+public class LoginFormLogin003TestItem extends LoginTestItem {
 	/**
 	 * Logger.
 	 */
@@ -17,33 +17,33 @@ public class GuestLoginTestItem extends LoginTestItem {
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		ゲストユーザでログインする。
+		一般ユーザでログインする。
 		""";
 
 	/**
 	 * 期待値。
 	 */
 	private static final String EXPECTED = """
-		ゲストユーザのサイトマップが表示されること。
+		一般ユーザのサイトマップが表示されること。
 		""";
 
 	/**
 	 * コンストラクタ。
 	 */
-	public GuestLoginTestItem() {
+	public LoginFormLogin003TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
 	@Override
 	protected String getLoginId() {
-		return "guest";
+		return "user";
 	}
 	
 	@Override
 	protected ResultType checkSiteMap(final Browser browser) {
 		ResultType ret = ResultType.SYSTEM_NG;
-		if (!this.findLink(browser, "/app/user/page/ChangePasswordPage.df")) {
-			// ユーザページが表示されていないことを確認。
+		if (!this.findLink(browser, "/app/user/page/UserManagementPage.df")) {
+			// 管理者ページが表示されていないことを確認。
 			ret = ResultType.SYSTEM_OK;
 		}
 		return ret;

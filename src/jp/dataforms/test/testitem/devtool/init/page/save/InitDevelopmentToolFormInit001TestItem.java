@@ -9,17 +9,17 @@ import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestEl
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.devtool.init.page.InitTestItem;
+import jp.dataforms.test.testitem.devtool.init.page.InitDevelopmentToolFormTestItem;
 
 /**
  * プロジェクト初期化ページの確認ボタンテスト。
  */
 @TestItemInfo(group = "init", seq = "001")
-public class InitalDispTestItem extends InitTestItem {
+public class InitDevelopmentToolFormInit001TestItem extends InitDevelopmentToolFormTestItem {
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(InitalDispTestItem.class);
+	private static Logger logger = LogManager.getLogger(InitDevelopmentToolFormInit001TestItem.class);
 
 	/**
 	 * テスト条件。
@@ -38,7 +38,7 @@ public class InitalDispTestItem extends InitTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public InitalDispTestItem() {
+	public InitDevelopmentToolFormInit001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

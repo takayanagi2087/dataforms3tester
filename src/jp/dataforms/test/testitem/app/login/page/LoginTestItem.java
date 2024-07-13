@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.app.login.page.login;
+package jp.dataforms.test.testitem.app.login.page;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.tester.PageTester.TestUser;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * ログインテストの基本クラス。

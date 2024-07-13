@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.app.login.page.validation;
+package jp.dataforms.test.testitem.app.login.page;
 
 import org.openqa.selenium.Dimension;
 
@@ -8,13 +8,12 @@ import jp.dataforms.test.element.controller.AlertDialogTestElement;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
-import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * LoginFormのバリデーション。
  */
 @TestItemInfo(group = "validation", seq = "003", type = Type.ERROR)
-public class PadPasswordTestItem extends LoginFormTestItem {
+public class LoginFormValidation003TestItem extends LoginFormTestItem {
 	/**
 	 * Logger.
 	 */
@@ -37,7 +36,7 @@ public class PadPasswordTestItem extends LoginFormTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public PadPasswordTestItem() {
+	public LoginFormValidation003TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

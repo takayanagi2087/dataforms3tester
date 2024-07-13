@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.app.login.page.validation;
+package jp.dataforms.test.testitem.app.login.page;
 
 import java.util.List;
 
@@ -10,17 +10,16 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
-import jp.dataforms.test.testitem.app.login.page.LoginFormTestItem;
 
 /**
  * LoginFormのバリデーション。
  */
 @TestItemInfo(group = "validation", seq = "002", type = Type.ERROR)
-public class LoginIdOnlyValidationTestItem extends LoginFormTestItem {
+public class LoginFormValidation002TestItem extends LoginFormTestItem {
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(LoginIdOnlyValidationTestItem.class);
+	private static Logger logger = LogManager.getLogger(LoginFormValidation002TestItem.class);
 
 	/**
 	 * テスト条件。
@@ -39,7 +38,7 @@ public class LoginIdOnlyValidationTestItem extends LoginFormTestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public LoginIdOnlyValidationTestItem() {
+	public LoginFormValidation002TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	

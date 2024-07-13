@@ -10,33 +10,33 @@ import jp.dataforms.test.selenium.Browser;
 /**
  * ページの全面表示テスト。
  */
-@TestItemInfo(group = ResponsiveTestItem.GROUP, seq = "003")
-public class PageTabMaxTestItem extends ResponsiveTestItem {
+@TestItemInfo(group = ResponsiveTestItem.GROUP, seq = "005")
+public class PageResponsive005TestItem extends ResponsiveTestItem {
 	/**
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		タブレットレイアウトの最大幅で表示。
+		スマートフォンの画面幅で表示。
 		""";
 	
 	/**
 	 * テストの期待値。
 	 */
 	private static final String EXPECTED = """
-		タブレットレイアウトとなること。
+		スマートフォンレイアウトとなること。
 		""";
 	/**
 	 * コンストラクタ。
 	 * @param pageClass ページクラス。
 	 * @param compClass ページクラス。
 	 */
-	public PageTabMaxTestItem(final Class<? extends Page> pageClass, final Class<? extends WebComponent> compClass) {
+	public PageResponsive005TestItem(final Class<? extends Page> pageClass, final Class<? extends WebComponent> compClass) {
 		super(pageClass, compClass, CONDITION, EXPECTED);
 	}
 	
 	@Override
-	protected ResultType test(final Browser browser) throws Exception {
-		browser.setClientSize(new Dimension(TAB_MAX_WIDTH, ResponsiveTestItem.getHeight()));
+	protected ResultType  test(final Browser browser) throws Exception {
+		browser.setClientSize(new Dimension(SP_WIDTH, ResponsiveTestItem.getHeight()));
 		this.saveScreenShot(browser);
 		return ResultType.USER_CHECK;
 	}
