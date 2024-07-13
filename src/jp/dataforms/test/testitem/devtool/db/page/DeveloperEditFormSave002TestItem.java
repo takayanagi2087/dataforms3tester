@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page.initdb;
+package jp.dataforms.test.testitem.devtool.db.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;

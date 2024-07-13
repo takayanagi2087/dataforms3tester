@@ -11,8 +11,8 @@ import jp.dataforms.test.proj.WebAppProject;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.test.testitem.devtool.db.page.initdb.DatabaseInfoFormTestItem;
-import jp.dataforms.test.testitem.devtool.db.page.initdb.DeveloperEditFormTestItem;
+import jp.dataforms.test.testitem.devtool.db.page.DatabaseInfoFormTestItem;
+import jp.dataforms.test.testitem.devtool.db.page.DeveloperEditFormTestItem;
 
 /**
  * データベース初期化 ページテスター。

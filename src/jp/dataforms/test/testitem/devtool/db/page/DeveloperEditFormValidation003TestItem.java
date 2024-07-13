@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page.initdb;
+package jp.dataforms.test.testitem.devtool.db.page;
 
 import java.util.List;
 
@@ -15,16 +15,16 @@ import jp.dataforms.test.selenium.Browser;
 @TestItemInfo(
 	// テスト項目の情報を記述します。
 	group = "validation", 	// テスト項目を分類する文字列を指定します。
-	seq = "002",			// テストの実行順を指定します。 
+	seq = "003",			// テストの実行順を指定します。 
 	type = Type.ERROR, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTestItem {
+public class DeveloperEditFormValidation003TestItem extends DeveloperEditFormTestItem {
 	/**
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		パスワードとパスワード(確認)に異なる値を入力し確認ボタンを押下する。
+		メールアドレスにメールアドレス以外の値を入力し確認ボタンを押下する。
 		""";
 
 	/**
@@ -37,7 +37,7 @@ public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTes
 	/**
 	 * コンストラクタ。
 	 */
-	public DeveloperEditFormValidation002TestItem() {
+	public DeveloperEditFormValidation003TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
@@ -45,7 +45,7 @@ public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTes
 	 * メッセージリスト。
 	 */
 	private static final String[] MSG_LIST = {
-		"パスワードが一致しません。"
+		"メールアドレスには正しいメールアドレスを入力してください。"
 	};
 	
 	
@@ -54,8 +54,9 @@ public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTes
 		browser.reload();
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
-		f.getPassword().setValue("abcdef");
-		f.getPasswordCheck().setValue("123456");
+		f.getPassword().setValue("password");
+		f.getPasswordCheck().setValue("password");
+		f.getMailAddress().setValue("aaa");
 		f.getConfirmButton().click();
 		Browser.sleep(2);
 		List<String> list = p.getErrorMessageList();

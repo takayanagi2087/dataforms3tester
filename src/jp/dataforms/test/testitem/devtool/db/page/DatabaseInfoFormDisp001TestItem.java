@@ -1,4 +1,4 @@
-package jp.dataforms.test.testitem.devtool.db.page.initdb;
+package jp.dataforms.test.testitem.devtool.db.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
