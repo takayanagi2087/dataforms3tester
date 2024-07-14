@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -110,6 +111,7 @@ public class Browser {
 	 * ブラウザを最大化します。
 	 */
 	public void maximize() {
+		this.webDriver.manage().window().setPosition(new Point(0, 0));
 		if (Browser.headless) {
 			// headlessモードの場合FullHDに設定する。
 			this.webDriver.manage().window().setSize(new Dimension(1720, 1080));
@@ -130,6 +132,7 @@ public class Browser {
 	 * @param dim サイズ情報。
 	 */
 	public void setSize(final Dimension dim) {
+		this.webDriver.manage().window().setPosition(new Point(0, 0));
 		this.webDriver.manage().window().setSize(dim);
 	}
 

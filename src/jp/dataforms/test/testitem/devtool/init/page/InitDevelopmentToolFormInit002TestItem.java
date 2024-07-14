@@ -45,6 +45,7 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getConfirmButton().click();
 		Browser.sleep(2);
+		this.saveScreenShot(browser);
 		return ResultType.SYSTEM_OK;
 	}
 }

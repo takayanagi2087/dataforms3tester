@@ -90,6 +90,7 @@ public class InitDevelopmentToolFormInit001TestItem extends InitDevelopmentToolF
 		if (!dbpath.equals(dbPath)) {
 			ret = ResultType.SYSTEM_NG;
 		}
+		this.saveScreenShot(browser);
 		return ret;
 	}
 

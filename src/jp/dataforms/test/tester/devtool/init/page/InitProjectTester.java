@@ -37,10 +37,6 @@ public class InitProjectTester extends PageTester {
 	protected List<TestItem> testInit(final Browser browser) throws Exception {
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.init.page", InitDevelopmentToolFormTestItem.class, null, null);
 		this.execTestItemList(browser, list);
-/*		for (TestItem ci: list) {
-			ci.exec(browser);
-			Browser.sleep(1);
-		}*/
 		return list;
 	}
 	
@@ -48,8 +44,6 @@ public class InitProjectTester extends PageTester {
 	@Override
 	public void exec() throws Exception {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
-//		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-//		this.cleanDB();
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
 		String pageName = browser.getTitle();

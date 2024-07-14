@@ -55,7 +55,6 @@ public class LoginFormValidation002TestItem extends LoginFormTestItem {
 		f.getField("loginId").setValue("user");
 		f.getButton("loginButton").click();
 		Browser.sleep(2);
-	//	String message = pageTestElement.findWebElement(By.id("errorMessages")).getText().trim();
 		List<String> messageList = pageTestElement.getErrorMessageList();
 		logger.debug("text=" + messageList);
 		this.saveScreenShot(browser);

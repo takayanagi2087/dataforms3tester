@@ -40,10 +40,6 @@ public class InitializeDatabasePageTester extends PageTester {
 		browser.setClientSize(new Dimension(1024, 540));
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DatabaseInfoFormTestItem.class, null, null);
 		return this.execTestItemList(browser, list);
-/*		for (TestItem ci: list) {
-			ci.exec(browser);
-		}*/
-//		return list;
 	}
 
 	/**
