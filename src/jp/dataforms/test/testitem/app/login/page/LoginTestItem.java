@@ -50,6 +50,7 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 		LoginFormTestElement f = pageTestElement.getLoginForm();
 		f.getLoginIdField().setValue(user.getLoginId());
 		f.getPasswordField().setValue(user.getPassword());
+		this.saveScreenShot(browser);
 		f.getLoginButton().click();
 		Browser.sleep(2);
 		ResultType ret = this.checkSiteMap(browser);

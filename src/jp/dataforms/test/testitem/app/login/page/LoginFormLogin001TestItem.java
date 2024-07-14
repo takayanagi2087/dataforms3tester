@@ -3,12 +3,19 @@ package jp.dataforms.test.testitem.app.login.page;
 import org.openqa.selenium.Dimension;
 
 import jp.dataforms.test.annotation.TestItemInfo;
+import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.selenium.Browser;
 
 /**
  * 開発者ログインテスト項目。
  */
-@TestItemInfo(group = "login", seq = "001")
+@TestItemInfo(
+	// テスト項目の情報を記述します。
+	group = "login",		// テスト項目を分類する文字列を指定します。
+	seq = "001", 			// テストの実行順を指定します。 
+	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
+	regression = true		// 回帰テストで使用する項目の場合trueを指定します。
+)
 public class LoginFormLogin001TestItem extends LoginTestItem {
 	/**
 	 * Logger.

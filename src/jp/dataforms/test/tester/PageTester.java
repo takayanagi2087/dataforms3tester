@@ -44,7 +44,11 @@ public abstract class PageTester {
 	 * 設定ファイルのパス。
 	 */
 //	private String confFile = null;
-	
+
+	/**
+	 * 回帰テスト。
+	 */
+	private boolean regression = false;
 	
 	/**
 	 * Selenium設定情報。
@@ -67,6 +71,7 @@ public abstract class PageTester {
 		 * ブラウザリスト。
 		 */
 		private List<BrowserInfo> driverList = null;
+		
 		
 		/**
 		 * コンストラクタ。
@@ -352,11 +357,22 @@ public abstract class PageTester {
 	}
 	
 
+	/**
+	 * 指定したグループのテスト項目を実行します。
+	 * @param browser ブラウザ。
+	 * @param list テスト項目リスト。
+	 * @param group テストを実行するグループ。
+	 * @return テストを実行したテスト項目。
+	 * @throws Exception 例外。
+	 */
 	protected List<TestItem> execTestItemList(final Browser browser, final List<TestItem> list, final String group) throws Exception {
 		List<TestItem> ret = new ArrayList<TestItem>();
 		for (TestItem ci: list) {
-			logger.info("GROUP:" + ci.getGroup() + ", SEQ:" + ci.getSeq());
-			logger.info("CONDITION:" + ci.getCondition());
+			if (this.regression) {
+				if (!ci.getRegression()) {
+					continue;
+				}
+			}
 			if (group == null) {
 				ci.exec(browser);
 				ret.add(ci);
@@ -369,6 +385,18 @@ public abstract class PageTester {
 		}
 		return ret;
 	}
+
+	/**
+	 * 指定したグループのテスト項目を実行します。
+	 * @param browser ブラウザ。
+	 * @param list テスト項目リスト。
+	 * @return テストを実行したテスト項目。
+	 * @throws Exception 例外。
+	 */
+	protected List<TestItem> execTestItemList(final Browser browser, final List<TestItem> list) throws Exception {
+		return this.execTestItemList(browser, list, null);
+	}
+
 	
 	/**
 	 * レスポンシブデザインテストを実行します。
@@ -702,6 +730,47 @@ public abstract class PageTester {
 	public abstract void exec() throws Exception;
 
 	/**
+	 * 子マントライン引数。
+	 */
+	@Data
+	private static class CmdArg {
+		/**
+		 * 回帰テストフラグ。
+		 */
+		private boolean	regression = false;
+		/**
+		 * 設定ファイル。
+		 */
+		private String conf = null;
+		/**
+		 * テスタークラス。
+		 */
+		private String testerClass = null;
+	}
+	
+	/**
+	 * コマンドライン引数情報を取得します。
+	 * @param args コマンドライン引数。
+	 * @return コマンドライン引数情報。 
+	 */
+	private static CmdArg getCmdArg(final String[] args) {
+		CmdArg cmdArg = new CmdArg();
+		for (String arg: args) {
+			if ("-r".equals(arg)) {
+				cmdArg.setRegression(true);
+			} else {
+				if (cmdArg.getConf() == null) {
+					cmdArg.setConf(arg);
+				} else {
+					cmdArg.setTesterClass(arg);
+				}
+			}
+		}
+		return cmdArg;
+	}
+	
+	
+	/**
 	 * メイン処理。
 	 * @param args コマンドライン。
 	 * <pre>
@@ -711,14 +780,18 @@ public abstract class PageTester {
 	 */
 	public static void main(String[] args) {
 		try {
-			if (args.length == 2) {
+			if (args.length >= 2) {
+				CmdArg cmdArg = PageTester.getCmdArg(args);
 				@SuppressWarnings("unchecked")
-				Class<? extends PageTester> testerClass = (Class<? extends PageTester>) Class.forName(args[1]);
+				Class<? extends PageTester> testerClass = (Class<? extends PageTester>) Class.forName(cmdArg.getTesterClass());
 				PageTester exec = testerClass.getConstructor().newInstance();
-				exec.readConf(args[0]);
+				exec.regression = cmdArg.isRegression();
+				exec.readConf(cmdArg.getConf());
 				exec.exec();
 			} else {
-				System.err.println("使い方:java -jar df3tester.jar <ConfFile> <PageTesterClass>");
+				System.out.println("使い方:java -jar df3tester.jar [option] <ConfFile> <PageTesterClass>\n");
+				System.out.println("[option] \n");
+				System.out.println("-r 回帰テスト(regression = trueと設定されたテスト項目のみを実行する。)\n");
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

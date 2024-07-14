@@ -39,10 +39,11 @@ public class InitializeDatabasePageTester extends PageTester {
 	private List<TestItem> testDatabaseInfoForm(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(1024, 540));
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DatabaseInfoFormTestItem.class, null, null);
-		for (TestItem ci: list) {
+		return this.execTestItemList(browser, list);
+/*		for (TestItem ci: list) {
 			ci.exec(browser);
-		}
-		return list;
+		}*/
+//		return list;
 	}
 
 	/**
@@ -54,14 +55,16 @@ public class InitializeDatabasePageTester extends PageTester {
 	private List<TestItem> testDeveloperEditForm(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(1024, 540));
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.db.page", DeveloperEditFormTestItem.class, null, null);
-		this.execTestItemList(browser, list, "disp");
-		this.execTestItemList(browser, list, "validation");
-		this.execTestItemList(browser, list, "save");
+		List<TestItem> ret = new ArrayList<TestItem>();
+		
+		ret.addAll(this.execTestItemList(browser, list, "disp"));
+		ret.addAll(this.execTestItemList(browser, list, "validation"));
+		ret.addAll(this.execTestItemList(browser, list, "save"));
 		this.cleanDB();
 		Browser.sleep(5);
 		browser.open(this.getConf().getTestApp().getApplicationURL());
-		this.execTestItemList(browser, list, "import");
-		return list;
+		ret.addAll(this.execTestItemList(browser, list, "import"));
+		return ret;
 	}
 
 	

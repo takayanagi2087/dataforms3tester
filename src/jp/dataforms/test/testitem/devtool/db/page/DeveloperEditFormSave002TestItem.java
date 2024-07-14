@@ -15,7 +15,7 @@ import jp.dataforms.test.selenium.Browser;
 	group = "save", 		// テスト項目を分類する文字列を指定します。
 	seq = "002",			// テストの実行順を指定します。 
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
-	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
+	regression = true		// 回帰テストで使用する項目の場合trueを指定します。
 )
 public class DeveloperEditFormSave002TestItem extends DeveloperEditFormTestItem {
 	/**

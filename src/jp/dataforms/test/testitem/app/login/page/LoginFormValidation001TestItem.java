@@ -12,7 +12,12 @@ import jp.dataforms.test.selenium.Browser;
 /**
  * LoginFormのバリデーション。
  */
-@TestItemInfo(group = "validation", seq = "001", type = Type.ERROR)
+@TestItemInfo(
+	group = "validation",	// テスト項目を分類する文字列を指定します。
+	seq = "001",			// テストの実行順を指定します。
+	type = Type.ERROR,		// Type.NORMAL or Type.ERROR or Type.BOUNDARY
+	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
+)
 public class LoginFormValidation001TestItem extends LoginFormTestItem {
 	/**
 	 * Logger.

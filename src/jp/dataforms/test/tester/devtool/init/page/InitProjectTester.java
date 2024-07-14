@@ -36,10 +36,11 @@ public class InitProjectTester extends PageTester {
 	 */
 	protected List<TestItem> testInit(final Browser browser) throws Exception {
 		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.init.page", InitDevelopmentToolFormTestItem.class, null, null);
-		for (TestItem ci: list) {
+		this.execTestItemList(browser, list);
+/*		for (TestItem ci: list) {
 			ci.exec(browser);
 			Browser.sleep(1);
-		}
+		}*/
 		return list;
 	}
 	

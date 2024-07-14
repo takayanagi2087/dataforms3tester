@@ -17,7 +17,7 @@ import jp.dataforms.test.testitem.TestItem;
 	group = "save", 		// テスト項目を分類する文字列を指定します。
 	seq = "001",			// テストの実行順を指定します。 
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
-	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
+	regression = true		// 回帰テストで使用する項目の場合trueを指定します。
 )
 public class DeveloperEditFormSave001TestItem extends DeveloperEditFormTestItem {
 	/**
