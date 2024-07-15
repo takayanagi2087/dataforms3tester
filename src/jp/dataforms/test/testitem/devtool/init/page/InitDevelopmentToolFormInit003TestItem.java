@@ -45,7 +45,12 @@ public class InitDevelopmentToolFormInit003TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getSaveButton().click();
 		Browser.sleep(2);
+		// TODO:チェック条件を追加
+		ResultType ret = ResultType.SYSTEM_NG;
+		if (f.getField("nextMessage").getWebElement().isDisplayed()) {
+			ret = ResultType.SYSTEM_OK;
+		}
 		this.saveScreenShot(browser);
-		return ResultType.SYSTEM_OK;
+		return ret;
 	}
 }

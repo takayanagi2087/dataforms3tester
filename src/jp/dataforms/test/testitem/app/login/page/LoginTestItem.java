@@ -44,7 +44,7 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 	
 	@Override
 	protected ResultType test(final Browser browser) throws Exception {
-		LoginPageTestElement pageTestElement = browser.getPageTestElement(LoginPageTestElement.class); //this.getLoginPageTestElement(browser);
+		LoginPageTestElement pageTestElement = browser.getPageTestElement(LoginPageTestElement.class);
 		Conf conf = TestItem.getConf();
 		TestUser user = conf.getTestUser(this.getLoginId());
 		LoginFormTestElement f = pageTestElement.getLoginForm();

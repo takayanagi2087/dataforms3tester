@@ -1,5 +1,10 @@
 package jp.dataforms.test.testitem.devtool.init.page;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolFormTestElement;
@@ -45,7 +50,17 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getConfirmButton().click();
 		Browser.sleep(2);
+		// TODO:チェック条件を追加
+		List<WebElement> list = f.getWebElement().findElements(By.cssSelector("input[type='text']"));
+		ResultType ret = ResultType.SYSTEM_OK;
+		for (WebElement we: list) {
+			String readonly = we.getAttribute("readonly");
+			if (!"true".equals(readonly)) {
+				ret = ResultType.SYSTEM_NG;
+				break;
+			}
+		}
 		this.saveScreenShot(browser);
-		return ResultType.SYSTEM_OK;
+		return ret;
 	}
 }
