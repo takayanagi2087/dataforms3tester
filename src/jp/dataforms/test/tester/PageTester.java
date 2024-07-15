@@ -21,6 +21,8 @@ import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.JsonUtil;
 import jp.dataforms.fw.util.WebClient;
 import jp.dataforms.test.annotation.TestItemInfo;
+import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
+import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.selenium.BrowserInfo;
@@ -722,6 +724,23 @@ public abstract class PageTester {
 	}
 
 	
+	/**
+	 * ログインを行います。
+	 * @param browser ブラウザ。
+	 * @param loginId ログインID。
+	 */
+	protected void login(final Browser browser, final String loginId) {
+		String password = this.getConf().getTestUser(loginId).getPassword();
+		String appUrl = this.getConf().getTestApp().getApplicationURL() + "dataforms/app/login/page/LoginPage.df";
+		LoginPageTestElement page = browser.open(appUrl, LoginPageTestElement.class);
+		LoginFormTestElement form = page.getLoginForm();
+		form.getLoginIdField().setValue(loginId);
+		form.getPasswordField().setValue(password);
+		form.getLoginButton().click();
+		Browser.sleep(2);
+	}
+
+	
 	
 	/**
 	 * テスト実行。
@@ -768,6 +787,7 @@ public abstract class PageTester {
 		}
 		return cmdArg;
 	}
+	
 	
 	
 	/**

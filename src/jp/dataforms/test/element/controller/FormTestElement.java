@@ -66,4 +66,59 @@ public class FormTestElement extends TestElement {
 		return null;
 	}
 
+	
+	/**
+	 * フォームがロックされているかどうかを確認します。
+	 * @return ロックされている場合true。
+	 */
+	public boolean isLocked() {
+		boolean ret = true;
+		{
+			List<WebElement> list = this.findWebElements(By.cssSelector("input[type='text']"));
+			for (WebElement we: list) {
+				String readonly = we.getAttribute("readonly");
+				if (!"true".equals(readonly)) {
+					ret = false;
+					break;
+				}
+			}
+		}
+		{
+			List<WebElement> list = this.findWebElements(By.cssSelector("input[type='checkbox']"));
+			for (WebElement we: list) {
+				if (we.isDisplayed()) {
+					ret = false;
+					break;
+				}
+			}
+		}
+		{
+			List<WebElement> list = this.findWebElements(By.cssSelector("input[type='radio']"));
+			for (WebElement we: list) {
+				if (we.isDisplayed()) {
+					ret = false;
+					break;
+				}
+			}
+		}
+		{
+			List<WebElement> list = this.findWebElements(By.cssSelector("select"));
+			for (WebElement we: list) {
+				if (we.isDisplayed()) {
+					ret = false;
+					break;
+				}
+			}
+		}
+		{
+			List<WebElement> list = this.findWebElements(By.cssSelector(".fileFieldButton"));
+			for (WebElement we: list) {
+				if (we.isDisplayed()) {
+					ret = false;
+					break;
+				}
+			}
+		}
+		return ret;
+	}
 }
