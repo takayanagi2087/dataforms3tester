@@ -441,8 +441,7 @@ public class WebAppProject {
 		this.initWebXml();
 		this.setDevelopMode();
 		this.initServerXml();
-		this.setSystemName("dataforms2.jar", "dataforms2.jar");
-*/
+		this.setSystemName("dataforms2.jar", "dataforms2.jar");*/
 	}
 	
 	/**
@@ -483,6 +482,7 @@ public class WebAppProject {
 	public void cleanPackage(final String path) throws Exception {
 		{
 			File javaPath = new File(this.getJavaSrcPath() + path);
+			logger.debug("javaPath=" + javaPath.getAbsolutePath());
 			if (javaPath.exists()) {
 				FileUtils.cleanDirectory(javaPath);
 				javaPath.delete();
@@ -490,6 +490,7 @@ public class WebAppProject {
 		}
 		{
 			File webPath = new File(this.getWebSrcPath() + path);
+			logger.debug("webPath=" + webPath.getAbsolutePath());
 			if (webPath.exists()) {
 				FileUtils.cleanDirectory(webPath);
 				webPath.delete();

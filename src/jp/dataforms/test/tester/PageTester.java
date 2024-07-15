@@ -376,10 +376,12 @@ public abstract class PageTester {
 				}
 			}
 			if (group == null) {
+				logger.info("Exec:" + ci.getClass().getName());
 				ci.exec(browser);
 				ret.add(ci);
 			} else {
 				if (group.equals(ci.getGroup())) {
+					logger.info("Exec:" + ci.getClass().getName());
 					ci.exec(browser);
 					ret.add(ci);
 				}
