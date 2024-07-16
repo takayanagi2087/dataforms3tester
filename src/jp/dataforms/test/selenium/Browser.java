@@ -23,6 +23,7 @@ import com.google.common.io.Files;
 
 import jp.dataforms.test.element.TestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
+import jp.dataforms.test.tester.PageTester.Conf;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,13 @@ public class Browser {
 	 */
 	private static Logger logger = LogManager.getLogger(Browser.class);
 
+	/**
+	 * 設定情報。
+	 */
+	@Setter
+	@Getter
+	private static Conf conf = null;
+	
 	/**
 	 * ヘッドレスフラグ。
 	 */
@@ -66,6 +74,8 @@ public class Browser {
 	 */
 	public static final Duration TIMEOUT = Duration.ofSeconds(DEFAULT_TIMEOUT_SEC);
 
+	
+	
 
 	/**
 	 * コンストラクタ。
@@ -77,6 +87,7 @@ public class Browser {
 		this.webDriver = this.newWebDriver();
 	}
 
+	
 	/**
 	 * WebDriverのインスタンス作成します。
 	 * @return WebDriverのインスタンス。
@@ -212,7 +223,8 @@ public class Browser {
 		this.webDriver.get(url);
 		WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		Browser.sleep(5);
+//		Browser.sleep(5);
+		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
 		PageTestElement page = new PageTestElement(this, null, element);
 		return page;
@@ -230,7 +242,8 @@ public class Browser {
 		this.webDriver.get(url);
 		WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		Browser.sleep(5);
+//		Browser.sleep(5);
+		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
 		T ret = newPageTestElement(cls, element);
 		return ret;
@@ -405,7 +418,8 @@ public class Browser {
 	 *
 	 */
 	public String saveScreenShot(final String filename) throws IOException {
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(Browser.conf.getTestApp().getShortWait());
 	    File sfile = ((TakesScreenshot) this.webDriver).getScreenshotAs(OutputType.FILE);
 	    
 		logger.debug("screenShot=" + filename);
@@ -415,7 +429,7 @@ public class Browser {
 			file.getParentFile().mkdirs();
 		}
 		Files.move(sfile, file);
-		Browser.sleep(2);
+		Browser.sleep(Browser.conf.getTestApp().getShortWait());
 		return file.getAbsolutePath();
 	}
 
@@ -434,7 +448,8 @@ public class Browser {
 	 */
 	public PageTestElement reload() {
 		this.webDriver.navigate().refresh();
-		Browser.sleep(5);
+//		Browser.sleep(5);
+		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		By locator = By.xpath("//body");
 		this.waitVisibility(locator);
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
@@ -449,7 +464,8 @@ public class Browser {
 	 */
 	public <T extends PageTestElement> T reload(final Class<T> cls) {
 		this.webDriver.navigate().refresh();
-		Browser.sleep(5);
+//		Browser.sleep(5);
+		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		By locator = By.xpath("//body");
 		this.waitVisibility(locator);
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));

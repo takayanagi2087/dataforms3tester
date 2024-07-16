@@ -6,6 +6,7 @@ import jp.dataforms.test.element.devtool.menu.page.MenuEditFormTestElement;
 import jp.dataforms.test.element.devtool.menu.page.MenuEditPageTestElement;
 import jp.dataforms.test.element.htmltable.TableTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -19,6 +20,11 @@ import jp.dataforms.test.selenium.Browser;
 	regression = true		// 回帰テストで使用する項目の場合trueを指定します。
 )
 public class MenuEditFormSave001TestItem extends MenuEditFormTestItem {
+	/**
+	 * Logger.
+	 */
+	// private static Logger logger = LogManager.getLogger(MenuEditFormSave001TestItem.class);
+	
 	/**
 	 * テスト条件。
 	 */
@@ -55,14 +61,43 @@ public class MenuEditFormSave001TestItem extends MenuEditFormTestItem {
 		table.setValue(0, "jaName", "サンプル");
 		this.saveScreenShot(browser);
 		f.getConfirmButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		f.getSaveButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		p.getAlertDialog().clickOkButton();
+//		Browser.sleep(20);
+		Browser.sleep(TestItem.getConf().getTestApp().getBuildWait());
 		this.saveScreenShot(browser);
+		browser.open(TestItem.getConf().getTestApp().getApplicationURL() + "dataforms/devtool/menu/page/MenuEditPage.df");
+		this.saveScreenShot(browser);
+		p = browser.getPageTestElement(MenuEditPageTestElement.class);
+		f = p.getMenuEditForm();
+		String basePackage = f.getAppBasePackage().getValue();
 		ResultType ret = ResultType.SYSTEM_OK;
+		if (!"jp.dataforms".equals(basePackage)) {
+			ret = ResultType.SYSTEM_NG;
+		}
+		table = f.getMenuList();
+		String path = table.getField(0, "path").getValue();
+		if (!"/sample".equals(path)) {
+			ret = ResultType.SYSTEM_NG;
+		}
+		String pkg = table.getField(0, "packageName").getValue();
+		if (!"jp.dataforms.sample".equals(pkg)) {
+			ret = ResultType.SYSTEM_NG;
+		}
+		String defaultName = table.getField(0, "defaultName").getValue();
+		if (!"Sample".equals(defaultName)) {
+			ret = ResultType.SYSTEM_NG;
+		}
+		String jaName = table.getField(0, "jaName").getValue();
+		if (!"サンプル".equals(jaName)) {
+			ret = ResultType.SYSTEM_NG;
+		}
 		return ret;
 	}
 

@@ -131,6 +131,22 @@ public abstract class PageTester {
 		 * テスト結果の保存パス。
 		 */
 		private String testResult = null;
+		/**
+		 * ページ繊維などの短い待ち時間。
+		 */
+		private int shortWait = 2;
+		/**
+		 * DB更新等を含むサーバ処理の待ち時間。
+		 */
+		private int middleWait = 5;
+		/**
+		 * 重いDB更新等を含むサーバ処理の待ち時間。
+		 */
+		private int longWait = 10;
+		/**
+		 * プロジェクトのソースを更新→Eclipseの自動ビルド→Tomcatのリロードの待ち時間。
+		 */
+		private int buildWait = 30;
 		
 		/**
 		 * コンストラクタ。
@@ -619,6 +635,7 @@ public abstract class PageTester {
 		logger.debug("path=" + confFile);
 		this.conf = Conf.read(confFile);
 		logger.debug("conf=" + JsonUtil.encode(this.conf, true));
+		Browser.setConf(this.conf);
 		TestItem.setConf(this.conf);
 	}
 	
@@ -739,7 +756,8 @@ public abstract class PageTester {
 		form.getLoginIdField().setValue(loginId);
 		form.getPasswordField().setValue(password);
 		form.getLoginButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 	}
 
 	

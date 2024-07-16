@@ -8,6 +8,7 @@ import jp.dataforms.test.element.controller.AlertDialogTestElement;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 /**
  * LoginFormのバリデーション。
@@ -59,7 +60,8 @@ public class LoginFormValidation003TestItem extends LoginFormTestItem {
 		f.getField("loginId").setValue("user");
 		f.getField("password").setValue("PadPassword");
 		f.getButton("loginButton").click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		AlertDialogTestElement alertDialog = pageTestElement.getAlertDialog();
 		String msg = alertDialog.getMessage();
 		this.saveScreenShot(browser);

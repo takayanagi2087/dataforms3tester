@@ -5,6 +5,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolFormTestElement;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 /**
  * プロジェクト初期化ページの初期表示テスト。
@@ -44,7 +45,8 @@ public class InitDevelopmentToolFormInit003TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getSaveButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		// TODO:チェック条件を追加
 		ResultType ret = ResultType.SYSTEM_NG;
 		if (f.getField("nextMessage").getWebElement().isDisplayed()) {

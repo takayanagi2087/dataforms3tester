@@ -49,7 +49,8 @@ public class MenuEditPageTester extends PageTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.cleanPackage("/jp");
 		proj.initProject(false);
-		Browser.sleep(20);
+//		Browser.sleep(20);
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");

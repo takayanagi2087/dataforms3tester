@@ -5,6 +5,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolFormTestElement;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 /**
  * プロジェクト初期化ページの初期表示テスト。
@@ -44,7 +45,8 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getConfirmButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		ResultType ret = ResultType.SYSTEM_OK;
 		if (!f.isLocked()) {
 			ret = ResultType.SYSTEM_NG;

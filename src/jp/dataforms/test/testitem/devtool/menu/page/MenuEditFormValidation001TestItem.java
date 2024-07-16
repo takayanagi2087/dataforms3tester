@@ -8,6 +8,7 @@ import jp.dataforms.test.element.devtool.menu.page.MenuEditFormTestElement;
 import jp.dataforms.test.element.devtool.menu.page.MenuEditPageTestElement;
 import jp.dataforms.test.element.htmltable.TableTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -62,7 +63,8 @@ public class MenuEditFormValidation001TestItem extends MenuEditFormTestItem {
 		TableTestElement table = f.getMenuList();
 		table.addRow(0);
 		f.getConfirmButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		List<String> list = p.getErrorMessageList();
 		ResultType ret = ResultType.SYSTEM_OK;

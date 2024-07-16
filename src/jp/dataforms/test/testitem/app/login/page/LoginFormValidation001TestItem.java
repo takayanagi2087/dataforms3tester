@@ -8,6 +8,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 /**
  * LoginFormのバリデーション。
@@ -51,7 +52,8 @@ public class LoginFormValidation001TestItem extends LoginFormTestItem {
 		PageTestElement pageTestElement = browser.getPageTestElement();
 		FormTestElement f = pageTestElement.getForm("loginForm");
 		f.getButton("loginButton").click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		String message = pageTestElement.getErrorMessage();
 		logger.debug("text=" + message);
 		this.saveScreenShot(browser);

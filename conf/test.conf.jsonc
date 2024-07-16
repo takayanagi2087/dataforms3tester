@@ -44,6 +44,15 @@
 		, "applicationURL":   "http://localhost:8080/sample/"
 		// テスト結果の保存パス。
 		, "testResult": "C:/eclipse/workspaceDataforms3/dataforms3tester/result"
+		// ページ繊維などの短い待ち時間
+		, "shortWait": 2
+		// DB更新等を含むサーバ処理の待ち時間
+		, "middleWait": 5
+		// 重いDB更新等を含むサーバ処理の待ち時間
+		, "longWait": 10
+		// プロジェクトのソースを更新->Eclipseの自動ビルド->Tomcatのリロードの待ち時間
+		, "buildWait": 30
+		
 	}
 	// テストに使用するユーザ。
 	, "userList": [

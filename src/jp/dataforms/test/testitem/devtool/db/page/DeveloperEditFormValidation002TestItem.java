@@ -7,6 +7,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.db.page.DeveloperEditFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.InitializeDatabasePageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -57,7 +58,8 @@ public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTes
 		f.getPassword().setValue("abcdef");
 		f.getPasswordCheck().setValue("123456");
 		f.getConfirmButton().click();
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		List<String> list = p.getErrorMessageList();
 		ResultType ret = ResultType.SYSTEM_OK;
 		for (String msg: MSG_LIST) {

@@ -5,6 +5,7 @@ import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.element.devtool.db.page.DeveloperEditFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.InitializeDatabasePageTestElement;
 import jp.dataforms.test.selenium.Browser;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -49,7 +50,8 @@ public class DeveloperEditFormDisp001TestItem extends DeveloperEditFormTestItem 
 		if ("developer".equals(loginId) || "admin".equals(userName)) {
 			ret = ResultType.SYSTEM_OK;
 		}
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		return ret;
 	}

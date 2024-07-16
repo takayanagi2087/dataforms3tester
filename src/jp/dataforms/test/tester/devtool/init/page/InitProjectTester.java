@@ -50,7 +50,8 @@ public class InitProjectTester extends PageTester {
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitDevelopmentToolPage.class, InitDevelopmentToolForm.class));
 		browser.setClientSize(new Dimension(1024, 768));
-		Browser.sleep(2);
+//		Browser.sleep(2);
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		list.addAll(this.testInit(browser));
 		this.saveIndexHtml(pageName, list);
 		browser.close();
