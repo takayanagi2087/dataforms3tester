@@ -34,7 +34,7 @@ public class MenuEditFormTestElement extends EditFormTestElement {
 	public static final String ID_GEN_ADD_PAGE_CODE = "genAddPageCode";
 
 	/**
-	 * メニューリストのテーブルID・
+	 * メニューリストのテーブルID。
 	 */
 	public static final String ID_MENU_LIST = "menuList";
 	
