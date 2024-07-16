@@ -58,7 +58,7 @@ public class LoginFormValidation002TestItem extends LoginFormTestItem {
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		List<String> messageList = pageTestElement.getErrorMessageList();
 		logger.debug("text=" + messageList);
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "バリデーションメッセージの表示");
 		if (messageList.indexOf("パスワードが入力されていません。") >= 0 
 			&& messageList.indexOf("パスキーが入力されていません。") >= 0) {
 			return ResultType.SYSTEM_OK;

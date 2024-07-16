@@ -90,7 +90,7 @@ public class InitDevelopmentToolFormInit001TestItem extends InitDevelopmentToolF
 		if (!dbpath.equals(dbPath)) {
 			ret = ResultType.SYSTEM_NG;
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "プロジェクト初期化ページの初期表示");
 		return ret;
 	}
 

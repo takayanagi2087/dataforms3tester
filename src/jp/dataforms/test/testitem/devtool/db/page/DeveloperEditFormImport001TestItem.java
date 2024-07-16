@@ -45,15 +45,15 @@ public class DeveloperEditFormImport001TestItem extends DeveloperEditFormTestIte
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
 		f.getUserImportFlag().click();
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "「アプリケーションが用意したユーザをインポートする。」をチェックした状態");
 		f.getConfirmButton().click();
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "「確認」ボタンを押下した状態");
 		f.getSaveButton().click();
 		p.waitVisibility("alertDialog");
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "「登録」ボタンを押下した状態");
 		p.getAlertDialog().clickOkButton();
 		p.waitVisibility("loginForm");
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "ログイン画面に遷移した状態。");
 		String title = browser.getTitle();
 		ResultType ret = ResultType.SYSTEM_NG;
 		if ("ログイン".equals(title) || "Login".equals(title)) {

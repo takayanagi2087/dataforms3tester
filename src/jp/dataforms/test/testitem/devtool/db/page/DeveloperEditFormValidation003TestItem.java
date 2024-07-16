@@ -68,7 +68,7 @@ public class DeveloperEditFormValidation003TestItem extends DeveloperEditFormTes
 				break;
 			}
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "メールアドレス不正");
 		return ret;
 	}
 

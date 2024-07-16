@@ -44,13 +44,13 @@ public class DeveloperEditFormSave002TestItem extends DeveloperEditFormTestItem 
 	protected ResultType test(Browser browser) throws Exception {
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "「確認」ボタンの押下前の状態");
 		f.getSaveButton().click();
 		p.waitVisibility("alertDialog");
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "データベース初期化後の状態");
 		p.getAlertDialog().clickOkButton();
 		p.waitVisibility("loginForm");
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "データベース作成後のログイン画面");
 		String title = browser.getTitle();
 		ResultType ret = ResultType.SYSTEM_NG;
 		if ("ログイン".equals(title) || "Login".equals(title)) {

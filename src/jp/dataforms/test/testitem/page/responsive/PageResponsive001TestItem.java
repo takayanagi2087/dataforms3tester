@@ -42,7 +42,7 @@ public class PageResponsive001TestItem extends ResponsiveTestItem {
 	@Override
 	protected ResultType  test(final Browser browser) throws Exception {
 		browser.maximize();
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "PCレイアウトのページ");
 		return ResultType.USER_CHECK;
 	}
 }

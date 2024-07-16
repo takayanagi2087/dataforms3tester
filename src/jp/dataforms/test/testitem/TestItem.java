@@ -107,9 +107,35 @@ public abstract class TestItem {
 	private Date testDate = null;
 	
 	/**
+	 * スクリーンショット情報。
+	 */
+	@Data
+	private static class ScreenShot {
+		/**
+		 * スクリーンショットの説明。
+		 */
+		private String description = null;
+		/**
+		 * スクリーンショットファイル名。
+		 */
+		private String imageFileName = null;
+		
+		
+		/**
+		 * コンストラクタ。
+		 * @param img 画像ファイル名。
+		 * @param desc 説明。
+		 */
+		public ScreenShot(final String img, final String desc) {
+			this.imageFileName = img;
+			this.description = desc;
+		}
+	}
+	
+	/**
 	 * スクリーンショットリスト。
 	 */
-	private List<String> screenShotList = new ArrayList<String>();
+	private List<ScreenShot> screenShotList = new ArrayList<ScreenShot>();
 	
 	
 	/**
@@ -272,14 +298,16 @@ public abstract class TestItem {
 	/**
 	 * スクリーンショットを保存します。
 	 * @param browser ブラウザ。
+	 * @param desc 設計。
 	 * @throws Exception 例外。
 	 */
-	protected void saveScreenShot(final Browser browser) throws Exception {
+	protected void saveScreenShot(final Browser browser, final String desc) throws Exception {
 		int cnt = this.screenShotList.size();
 		String imageFile =  this.getTestItemPath() + "/img/" + this.getFileName() + "_" + String.format("%03d", cnt) + ".png";
 		String path = browser.saveResizedScreenShot(imageFile);
 		File f = new File(path);
-		this.screenShotList.add(f.getName());
+		ScreenShot ss = new ScreenShot(f.getName(), desc);
+		this.screenShotList.add(ss);
 	}
 	
 	
@@ -292,8 +320,9 @@ public abstract class TestItem {
 	 */
 	protected String getAttachFileTag(final Browser browser, final ResultType result) throws Exception {
 		StringBuilder sb = new StringBuilder();
-		for (String img: this.screenShotList) {
-			String imgtag = "<img src='./img/" + img + "' width='1024'/>\n";
+		for (ScreenShot ss: this.screenShotList) {
+			sb.append("<div>" + ss.getDescription() + "</div>");
+			String imgtag = "<img src='./img/" + ss.getImageFileName() + "' width='1024'/>\n";
 			sb.append(imgtag);
 		}
 		return sb.toString();

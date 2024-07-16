@@ -71,7 +71,7 @@ public class DeveloperEditFormValidation001TestItem extends DeveloperEditFormTes
 				break;
 			}
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "必須チェック結果");
 		return ret;
 	}
 

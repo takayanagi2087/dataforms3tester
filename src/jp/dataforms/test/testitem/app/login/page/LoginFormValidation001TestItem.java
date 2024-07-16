@@ -55,7 +55,7 @@ public class LoginFormValidation001TestItem extends LoginFormTestItem {
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		String message = pageTestElement.getErrorMessage();
 		logger.debug("text=" + message);
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "バリデーションメッセージの表示");
 		if ("ログインID.が入力されていません。".equals(message)) {
 			return ResultType.SYSTEM_OK;
 		} else {

@@ -43,7 +43,7 @@ public class PageResponsive005TestItem extends ResponsiveTestItem {
 	@Override
 	protected ResultType  test(final Browser browser) throws Exception {
 		browser.setClientSize(new Dimension(SP_WIDTH, ResponsiveTestItem.getHeight()));
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "スマートフォンレイアウト");
 		return ResultType.USER_CHECK;
 	}
 }

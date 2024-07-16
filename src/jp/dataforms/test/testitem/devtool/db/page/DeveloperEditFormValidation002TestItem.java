@@ -67,7 +67,7 @@ public class DeveloperEditFormValidation002TestItem extends DeveloperEditFormTes
 				break;
 			}
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "パスワードの不一致の状態");
 		return ret;
 	}
 

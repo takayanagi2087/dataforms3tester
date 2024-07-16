@@ -89,7 +89,7 @@ public class DatabaseInfoFormDisp001TestItem extends DatabaseInfoFormTestItem {
 			}
 		}
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "データベース情報フォームの初期表示");
 		return ret;
 	}
 

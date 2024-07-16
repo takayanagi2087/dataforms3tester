@@ -51,7 +51,7 @@ public class InitDevelopmentToolFormInit003TestItem extends InitDevelopmentToolF
 		if (f.getField("nextMessage").getWebElement().isDisplayed()) {
 			ret = ResultType.SYSTEM_OK;
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "プロジェクト初期化完了時の表示");
 		return ret;
 	}
 }

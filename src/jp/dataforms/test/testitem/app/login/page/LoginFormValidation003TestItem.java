@@ -63,7 +63,7 @@ public class LoginFormValidation003TestItem extends LoginFormTestItem {
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		AlertDialogTestElement alertDialog = pageTestElement.getAlertDialog();
 		String msg = alertDialog.getMessage();
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "認証エラーメッセージ");
 		ResultType ret = null;
 		if (msg.equals("ユーザIDまたはパスワードが違います。")) {
 			ret = ResultType.SYSTEM_OK;

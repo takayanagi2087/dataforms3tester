@@ -53,10 +53,10 @@ public class DeveloperEditFormSave001TestItem extends DeveloperEditFormTestItem 
 		f.getPassword().setValue(password);
 		f.getPasswordCheck().setValue(password);
 		f.getMailAddress().setValue("hoge@hoge.jp");
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "パスワードとメールアドレスを入力した状態");
 		f.getConfirmButton().click();
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "「登録」ボタンが表示された状態");
 		ResultType ret = ResultType.SYSTEM_NG;
 		if (f.getSaveButton().getWebElement().isDisplayed()) {
 			ret = ResultType.SYSTEM_OK;

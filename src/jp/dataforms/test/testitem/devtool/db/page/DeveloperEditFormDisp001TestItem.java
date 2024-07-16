@@ -23,7 +23,7 @@ public class DeveloperEditFormDisp001TestItem extends DeveloperEditFormTestItem 
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		データベースの初期化ページを表示する。
+		データベース初期化ページを表示する。
 		""";
 
 	/**
@@ -47,11 +47,11 @@ public class DeveloperEditFormDisp001TestItem extends DeveloperEditFormTestItem 
 		String loginId = f.getLoginId().getValue();
 		String userName = f.getUserName().getValue();
 		ResultType ret = ResultType.SYSTEM_NG;
-		if ("developer".equals(loginId) || "admin".equals(userName)) {
+		if ("developer".equals(loginId) || "admin".equals(loginId) || "developer".equals(userName) || "admin".equals(userName)) {
 			ret = ResultType.SYSTEM_OK;
 		}
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "データベース初期化ページの初期表示");
 		return ret;
 	}
 

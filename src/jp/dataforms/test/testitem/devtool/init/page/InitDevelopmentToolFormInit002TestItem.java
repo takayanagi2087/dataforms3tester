@@ -22,7 +22,7 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 	 * テスト条件。
 	 */
 	private static final String CONDITION = """
-		プロジェクト初期化画面で確認ボタンを押下する。
+		プロジェクト初期化ページで確認ボタンを押下する。
 		""";
 
 	/**
@@ -50,7 +50,7 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 		if (!f.isLocked()) {
 			ret = ResultType.SYSTEM_NG;
 		}
-		this.saveScreenShot(browser);
+		this.saveScreenShot(browser, "プロジェクト初期化ページのロック状態");
 		return ret;
 	}
 }
