@@ -451,7 +451,6 @@ public class WebAppProject {
 	public void update() throws Exception {
 		this.copyTestApi();
 		// Tomcatの自動リロードが終わるのを待つ。
-//		Browser.sleep(30);
 		Browser.sleep(this.conf.getTestApp().getBuildWait());
 	}
 	
@@ -608,7 +607,6 @@ public class WebAppProject {
 		File webDst = getSnapshotWebSrcDirectory(name, pkg);
 		logger.debug(webSrc + " <- " + webDst);
 		FileUtils.copyDirectory(webDst, webSrc);
-//		Browser.sleep(30);
 		Browser.sleep(this.conf.getTestApp().getBuildWait());
 	}
 

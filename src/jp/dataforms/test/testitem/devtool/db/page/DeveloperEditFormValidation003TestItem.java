@@ -59,7 +59,6 @@ public class DeveloperEditFormValidation003TestItem extends DeveloperEditFormTes
 		f.getPasswordCheck().setValue("password");
 		f.getMailAddress().setValue("aaa");
 		f.getConfirmButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		List<String> list = p.getErrorMessageList();
 		ResultType ret = ResultType.SYSTEM_OK;

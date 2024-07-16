@@ -52,7 +52,6 @@ public class LoginFormValidation001TestItem extends LoginFormTestItem {
 		PageTestElement pageTestElement = browser.getPageTestElement();
 		FormTestElement f = pageTestElement.getForm("loginForm");
 		f.getButton("loginButton").click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		String message = pageTestElement.getErrorMessage();
 		logger.debug("text=" + message);

@@ -88,7 +88,6 @@ public class DatabaseInfoFormDisp001TestItem extends DatabaseInfoFormTestItem {
 				ret = ResultType.SYSTEM_OK;
 			}
 		}
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		return ret;

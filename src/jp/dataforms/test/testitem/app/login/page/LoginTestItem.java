@@ -52,7 +52,6 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 		f.getPasswordField().setValue(user.getPassword());
 		this.saveScreenShot(browser);
 		f.getLoginButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		ResultType ret = this.checkSiteMap(browser);
 		this.saveScreenShot(browser);
@@ -62,7 +61,6 @@ public abstract class LoginTestItem extends LoginFormTestItem {
 
 	@Override
 	protected void finish(final Browser browser) throws Exception {
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		PageTestElement pageTestElement = browser.getPageTestElement();
 		ButtonTestElement btn = pageTestElement.getLogoutButton();

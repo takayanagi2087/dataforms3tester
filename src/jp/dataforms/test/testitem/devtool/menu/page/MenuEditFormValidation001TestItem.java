@@ -63,7 +63,6 @@ public class MenuEditFormValidation001TestItem extends MenuEditFormTestItem {
 		TableTestElement table = f.getMenuList();
 		table.addRow(0);
 		f.getConfirmButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		List<String> list = p.getErrorMessageList();

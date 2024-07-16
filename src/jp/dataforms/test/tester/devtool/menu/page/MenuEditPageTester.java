@@ -49,7 +49,6 @@ public class MenuEditPageTester extends PageTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.cleanPackage("/jp");
 		proj.initProject(false);
-//		Browser.sleep(20);
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
@@ -60,7 +59,7 @@ public class MenuEditPageTester extends PageTester {
 		//list.addAll(this.testResponsive(browser, MenuEditPage.class, MenuEditForm.class));
 		list.addAll(this.testMenuEditForm(browser));
 		this.saveIndexHtml(pageName, list);
-//		browser.close();
+		browser.close();
 	}
 	
 }

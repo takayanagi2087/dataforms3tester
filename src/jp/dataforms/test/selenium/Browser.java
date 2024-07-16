@@ -223,7 +223,6 @@ public class Browser {
 		this.webDriver.get(url);
 		WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-//		Browser.sleep(5);
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
 		PageTestElement page = new PageTestElement(this, null, element);
@@ -242,7 +241,6 @@ public class Browser {
 		this.webDriver.get(url);
 		WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-//		Browser.sleep(5);
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
 		T ret = newPageTestElement(cls, element);
@@ -418,7 +416,6 @@ public class Browser {
 	 *
 	 */
 	public String saveScreenShot(final String filename) throws IOException {
-//		Browser.sleep(2);
 		Browser.sleep(Browser.conf.getTestApp().getShortWait());
 	    File sfile = ((TakesScreenshot) this.webDriver).getScreenshotAs(OutputType.FILE);
 	    
@@ -448,7 +445,6 @@ public class Browser {
 	 */
 	public PageTestElement reload() {
 		this.webDriver.navigate().refresh();
-//		Browser.sleep(5);
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		By locator = By.xpath("//body");
 		this.waitVisibility(locator);
@@ -464,7 +460,6 @@ public class Browser {
 	 */
 	public <T extends PageTestElement> T reload(final Class<T> cls) {
 		this.webDriver.navigate().refresh();
-//		Browser.sleep(5);
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		By locator = By.xpath("//body");
 		this.waitVisibility(locator);

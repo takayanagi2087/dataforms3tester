@@ -50,7 +50,6 @@ public class DeveloperEditFormDisp001TestItem extends DeveloperEditFormTestItem 
 		if ("developer".equals(loginId) || "admin".equals(userName)) {
 			ret = ResultType.SYSTEM_OK;
 		}
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		return ret;

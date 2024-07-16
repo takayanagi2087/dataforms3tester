@@ -57,7 +57,6 @@ public class InitializeDatabasePageTester extends PageTester {
 		ret.addAll(this.execTestItemList(browser, list, "validation"));
 		ret.addAll(this.execTestItemList(browser, list, "save"));
 		this.cleanDB();
-//		Browser.sleep(5);
 		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		browser.open(this.getConf().getTestApp().getApplicationURL());
 		ret.addAll(this.execTestItemList(browser, list, "import"));

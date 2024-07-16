@@ -61,15 +61,12 @@ public class MenuEditFormSave001TestItem extends MenuEditFormTestItem {
 		table.setValue(0, "jaName", "サンプル");
 		this.saveScreenShot(browser);
 		f.getConfirmButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		f.getSaveButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		p.getAlertDialog().clickOkButton();
-//		Browser.sleep(20);
 		Browser.sleep(TestItem.getConf().getTestApp().getBuildWait());
 		this.saveScreenShot(browser);
 		browser.open(TestItem.getConf().getTestApp().getApplicationURL() + "dataforms/devtool/menu/page/MenuEditPage.df");

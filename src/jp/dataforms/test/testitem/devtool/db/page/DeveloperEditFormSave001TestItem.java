@@ -55,7 +55,6 @@ public class DeveloperEditFormSave001TestItem extends DeveloperEditFormTestItem 
 		f.getMailAddress().setValue("hoge@hoge.jp");
 		this.saveScreenShot(browser);
 		f.getConfirmButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser);
 		ResultType ret = ResultType.SYSTEM_NG;

@@ -45,7 +45,6 @@ public class InitDevelopmentToolFormInit002TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getConfirmButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		ResultType ret = ResultType.SYSTEM_OK;
 		if (!f.isLocked()) {

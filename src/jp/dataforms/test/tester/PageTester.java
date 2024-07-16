@@ -756,7 +756,6 @@ public abstract class PageTester {
 		form.getLoginIdField().setValue(loginId);
 		form.getPasswordField().setValue(password);
 		form.getLoginButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 	}
 

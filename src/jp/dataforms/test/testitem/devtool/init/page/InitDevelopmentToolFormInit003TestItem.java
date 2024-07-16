@@ -45,7 +45,6 @@ public class InitDevelopmentToolFormInit003TestItem extends InitDevelopmentToolF
 		InitDevelopmentToolPageTestElement p = browser.getPageTestElement(InitDevelopmentToolPageTestElement.class);
 		InitDevelopmentToolFormTestElement f = p.getInitDevelopmentToolForm();
 		f.getSaveButton().click();
-//		Browser.sleep(2);
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		// TODO:チェック条件を追加
 		ResultType ret = ResultType.SYSTEM_NG;
