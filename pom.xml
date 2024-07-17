@@ -114,7 +114,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.4.2</version>
 				<configuration>
-					<finalName>df3tester</finalName>
+					<finalName>dataforms3tester</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
