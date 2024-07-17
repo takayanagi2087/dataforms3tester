@@ -98,7 +98,6 @@
 				</configuration>
 			</plugin>
 			<!-- df2tester.jarの作成 -->
-			<!-- 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.4.2</version>
@@ -123,7 +122,19 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.4.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
