@@ -5,6 +5,14 @@
 	<groupId>jp.dataforms</groupId>
 	<artifactId>dataforms3tester</artifactId>
 	<version>3.0.1-SNAPSHOT</version>
+	<!-- デプロイ先の設定 -->
+	<distributionManagement>
+		<repository>
+			<id>deploy-repository</id>
+			<name>deployRepository</name>
+			<url>${env.RREP}</url>
+		</repository>
+	</distributionManagement>	
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
