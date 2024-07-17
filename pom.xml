@@ -98,13 +98,14 @@
 				</configuration>
 			</plugin>
 			<!-- df2tester.jarの作成 -->
-			<!-- 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.4.2</version>
 				<configuration>
-					<finalName>dataforms3tester</finalName>
+					<!--
+					<finalName>df3tester</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
+					-->
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
@@ -123,8 +124,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			-->
 
 		</plugins>
 	</build>
