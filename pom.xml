@@ -97,7 +97,8 @@
 					<target>21</target>
 				</configuration>
 			</plugin>
-			<!-- CompareMap.jarの設定 -->
+			<!-- df2tester.jarの作成 -->
+			<!-- 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.4.2</version>
@@ -122,6 +123,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 </project>
