@@ -1,10 +1,12 @@
-package ${package};
+package jp.dataforms.test.testitem.devtool.table.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.selenium.Browser;
 
-${importList}
+import jp.dataforms.test.element.devtool.table.page.TableGeneratorPageTestElement;
+import jp.dataforms.test.element.devtool.table.page.TableGeneratorQueryResultFormTestElement;
+
 
 /**
  * DatabaseInfoFormのテスト項目。
@@ -16,7 +18,7 @@ ${importList}
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class ${formClass}Sample001TestItem extends ${formClass}TestItem {
+public class TableGeneratorQueryResultFormSample001TestItem extends TableGeneratorQueryResultFormTestItem {
 	/**
 	 * テスト条件。
 	 */
@@ -34,14 +36,14 @@ public class ${formClass}Sample001TestItem extends ${formClass}TestItem {
 	/**
 	 * コンストラクタ。
 	 */
-	public ${formClass}Sample001TestItem() {
+	public TableGeneratorQueryResultFormSample001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-		${pageClass}TestElement p = browser.getPageTestElement(${pageClass}TestElement.class);
-		${formClass}TestElement f = p.get${formClass}();
+		TableGeneratorPageTestElement p = browser.getPageTestElement(TableGeneratorPageTestElement.class);
+		TableGeneratorQueryResultFormTestElement f = p.getTableGeneratorQueryResultForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);
 		return ResultType.SYSTEM_OK;

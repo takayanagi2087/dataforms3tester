@@ -25,6 +25,7 @@ import jp.dataforms.fw.servlet.DataFormsServlet;
 import jp.dataforms.fw.util.JsonUtil;
 import jp.dataforms.test.devtool.pageform.gentest.FormTestElementGenerator;
 import jp.dataforms.test.devtool.pageform.gentest.FormTestItemGenerator;
+import jp.dataforms.test.devtool.pageform.gentest.FormTestItemGenerator.TestItemClassInfo;
 import jp.dataforms.test.devtool.pageform.gentest.PageTestElementGenerator;
 import jp.dataforms.test.devtool.pageform.gentest.PageTesterGenerator;
 import jp.dataforms.test.devtool.pageform.gentest.SampleFormTestItemGenerator;
@@ -239,11 +240,9 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		String pkg = (String) data.get(ID_PACKAGE_NAME);
 		String cls = (String) data.get(ID_PAGE_CLASS_NAME);
 		String classname = pkg + "." + cls;
-		// PageTesterクラスの生成。
 		Page page = this.newPageInstance(classname);
-		PageTesterGenerator gen = new PageTesterGenerator(page);
-		gen.generage(this, data);
 		List<Form> flist = this.getFormList(page);
+		List<TestItemClassInfo> testItemList = new ArrayList<TestItemClassInfo>();
 		for (Form f: flist) {
 			String formClassName = f.getClass().getSimpleName();
 			String formSuperClassName = f.getClass().getSuperclass().getSimpleName();
@@ -257,6 +256,7 @@ public class TestSrcGeneratorEditForm extends EditForm {
 			{
 				FormTestItemGenerator fgen = new FormTestItemGenerator(f);
 				fgen.generage(this, data);
+				testItemList.add(fgen.getTestItemInfo());
 			}
 			// SampleFormTestItemクラスの生成。
 			{
@@ -267,6 +267,9 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		// PageTestElementクラス
 		PageTestElementGenerator ptgen = new PageTestElementGenerator(page, flist);
 		ptgen.generage(this, data);
+		// PageTesterクラスの生成。
+		PageTesterGenerator gen = new PageTesterGenerator(page, testItemList);
+		gen.generage(this, data);
 	}
 
 	@Override

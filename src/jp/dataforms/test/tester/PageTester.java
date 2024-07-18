@@ -374,7 +374,32 @@ public abstract class PageTester {
 		return ret;
 	}
 	
+	/**
+	 * 指定された条件のチェック項目を取得します。
+	 * @param baseCheckItem チェック項目の基本クラス。
+	 * @param pageClass ページクラス。
+	 * @param compClass ターゲットクラス。
+	 * @return チェック項目リスト。
+	 * @throws Exception 例外。
+	 */
+	public List<TestItem> queryCheckItem(
+			final Class<? extends TestItem> baseCheckItem, 
+			final Class<? extends Page> pageClass, 
+			final Class<? extends WebComponent> compClass) throws Exception  {
+		List<TestItem> ret = this.queryCheckItem(baseCheckItem.getPackageName(), baseCheckItem, pageClass, compClass);
+		return ret;
+	}
 
+	/**
+	 * 指定された条件のチェック項目を取得します。
+	 * @param baseCheckItem チェック項目の基本クラス。
+	 * @return チェック項目リスト。
+	 * @throws Exception 例外。
+	 */
+	public List<TestItem> queryCheckItem(final Class<? extends TestItem> baseCheckItem) throws Exception  {
+		List<TestItem> ret = this.queryCheckItem(baseCheckItem, null, null);
+		return ret;
+	}
 	/**
 	 * 指定したグループのテスト項目を実行します。
 	 * @param browser ブラウザ。

@@ -44,12 +44,10 @@ public class SampleFormTestItemGenerator extends JavaSrcGenerator {
 	public void generage(final Form form, final Map<String, Object> data) throws Exception {
 		// String packageName = (String) data.get(TestSrcGeneratorEditForm.ID_PACKAGE_NAME);
 		String pageClassName = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_CLASS_NAME);
-
-		
 		
 		String basePath = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_TOOL_SRC_PATH);
 		String testItemPackageName = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_ITEM_PACKAGE_NAME);
-		String testItemClassName = this.form.getClass().getSimpleName() + "SampleTestItem";
+		String testItemClassName = this.form.getClass().getSimpleName() + "Sample001TestItem";
 		
 		String srcFile = basePath + testItemPackageName.replaceAll("\\.", "/") + "/" + testItemClassName + ".java";
 
@@ -57,8 +55,6 @@ public class SampleFormTestItemGenerator extends JavaSrcGenerator {
 		String testElementClassName = this.form.getClass().getSimpleName() + "TestElement";
 		String pageTestElementClassName = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_TEST_ELEMENT_CLASS_NAME);
 		
-//		String importList = "import " + packageName + "." + pageClassName + ";\n";
-//		importList += "import " + this.form.getClass().getName() + ";\n";
 		String importList = "import " + testElementPackageName + "." + pageTestElementClassName + ";\n";
 		importList += "import " + testElementPackageName + "." + testElementClassName + ";\n";
 		

@@ -11,6 +11,7 @@ import jp.dataforms.fw.devtool.javasrc.JavaSrcGenerator;
 import jp.dataforms.fw.servlet.DataFormsServlet;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.test.devtool.pageform.page.TestSrcGeneratorEditForm;
+import lombok.Getter;
 
 /**
  * ページテスタージェネレータ。
@@ -39,12 +40,53 @@ public class FormTestItemGenerator extends JavaSrcGenerator {
 		Template tmp = new Template(this.getClass(), "template/FormTestItem.java.template");
 		return tmp;
 	}
+	
 
+	/**
+	 * テスト項目情報。
+	 */
+	public static class TestItemClassInfo {
+		/**
+		 * テスト項目のパッケージ名。
+		 */
+		@Getter
+		private String testItemPackageName = null;
+
+		/**
+		 * テスト項目クラス名。
+		 */
+		@Getter
+		private String testItemClassName = null;
+		
+		/**
+		 * フォームクラス名。
+		 */
+		@Getter
+		private String formClassName = null;
+		
+		/**
+		 * コンストラクタ。
+		 * @param pkgname テスト項目のパッケージ名。
+		 * @param itemClass テスト項目クラス名。
+		 * @param formClass フォームクラス名。
+		 */
+		public TestItemClassInfo(final String pkgname, final String itemClass, final String formClass) {
+			this.testItemPackageName = pkgname;
+			this.testItemClassName = itemClass;
+			this.formClassName = formClass;
+		}
+	}
+	
+	/**
+	 * テスト項目情報。
+	 */
+	@Getter
+	private TestItemClassInfo testItemInfo = null;
+	
 	@Override
 	public void generage(final Form form, final Map<String, Object> data) throws Exception {
 		String packageName = (String) data.get(TestSrcGeneratorEditForm.ID_PACKAGE_NAME);
 		String pageClassName = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_CLASS_NAME);
-
 		
 		String basePath = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_TOOL_SRC_PATH);
 		String testItemPackageName = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_ITEM_PACKAGE_NAME);
@@ -68,5 +110,6 @@ public class FormTestItemGenerator extends JavaSrcGenerator {
 			pf.mkdirs();
 		}
 		FileUtil.writeTextFileWithBackup(sf.getAbsolutePath(), tmp.getSource(), DataFormsServlet.getEncoding());
+		this.testItemInfo = new TestItemClassInfo(testItemPackageName, testItemClassName, this.form.getClass().getSimpleName());
 	}
 }
