@@ -35,7 +35,7 @@ public class InitProjectTester extends PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected List<TestItem> testInit(final Browser browser) throws Exception {
-		List<TestItem> list = this.queryCheckItem("jp.dataforms.test.testitem.devtool.init.page", InitDevelopmentToolFormTestItem.class, null, null);
+		List<TestItem> list = this.queryCheckItem(InitDevelopmentToolFormTestItem.class);
 		this.execTestItemList(browser, list);
 		return list;
 	}

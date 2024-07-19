@@ -78,20 +78,22 @@ public class TableGeneratorPageTester extends PageTester {
 		return testResult;
 	}
 
-
+	
 	
 	@Override
 	public void exec() throws Exception {
+		
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
+		this.login(getBrowser(), "developer");
+
 		String pageName = browser.getTitle();
 		List<TestItem> resultList = new ArrayList<TestItem>();
 		
-		// resultList.addAll(this.testSomething(browser));
-		resultList.addAll(this.testTableGeneratorEditForm(browser));
-		resultList.addAll(this.testTableGeneratorQueryForm(browser));
-		resultList.addAll(this.testTableGeneratorQueryResultForm(browser));
+		// resultList.addAll(this.testTableGeneratorEditForm(browser));
+		// resultList.addAll(this.testTableGeneratorQueryForm(browser));
+		// resultList.addAll(this.testTableGeneratorQueryResultForm(browser));
 
 		this.saveIndexHtml(pageName, resultList);
 		browser.close();

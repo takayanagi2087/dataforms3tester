@@ -11,7 +11,7 @@ import jp.dataforms.test.testitem.TestItem;
  * プロジェクト初期化ページの初期表示テスト。
  */
 @TestItemInfo(
-	group = "init",			// テスト項目を分類する文字列を指定します。
+	group = "initproj",			// テスト項目を分類する文字列を指定します。
 	seq = "003",			// テストの実行順を指定します。
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = true		// 回帰テストで使用する項目の場合trueを指定します。
