@@ -3,16 +3,12 @@ package jp.dataforms.test.tester.devtool.table.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorEditFormTestItem;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorQueryFormTestItem;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorQueryResultFormTestItem;
@@ -82,20 +78,22 @@ public class TableGeneratorPageTester extends PageTester {
 		return testResult;
 	}
 
-
+	
 	
 	@Override
 	public void exec() throws Exception {
+		
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.openPage(browser);
+		this.login(getBrowser(), "developer");
+
 		String pageName = browser.getTitle();
 		List<TestItem> resultList = new ArrayList<TestItem>();
 		
-		// resultList.addAll(this.testSomething(browser));
-		resultList.addAll(this.testTableGeneratorEditForm(browser));
-		resultList.addAll(this.testTableGeneratorQueryForm(browser));
-		resultList.addAll(this.testTableGeneratorQueryResultForm(browser));
+		// resultList.addAll(this.testTableGeneratorEditForm(browser));
+		// resultList.addAll(this.testTableGeneratorQueryForm(browser));
+		// resultList.addAll(this.testTableGeneratorQueryResultForm(browser));
 
 		this.saveIndexHtml(pageName, resultList);
 		browser.close();

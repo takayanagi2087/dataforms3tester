@@ -40,7 +40,31 @@ public class QueryFormTestElement extends FormTestElement{
 		super(browser, parent, element);
 	}
 
+	/**
+	 * QueryButtonを取得します。
+	 * @return QueryButton。
+	 */
+	public ButtonTestElement getQueryButton() {
+		return this.getButton(ID_QUERY_BUTTON);
+	}
+	
+	/**
+	 * ExportButtonを取得します。
+	 * @return ExportButton。
+	 */
+	public ButtonTestElement getExportButton() {
+		return this.getButton(ID_EXPORT_BUTTON);
+	}
+	
+	/**
+	 * NewButtonを取得します。
+	 * @return NewButton。
+	 */
+	public ButtonTestElement getNewButton() {
+		return this.getButton(ID_NEW_BUTTON);
+	}
 
+	
 	/**
 	 * 検索を実行します。
 	 */
@@ -60,5 +84,4 @@ public class QueryFormTestElement extends FormTestElement{
 		DataFormsTestElement parent = (DataFormsTestElement) this.getParent();
 		parent.waitVisibility(EditFormTestElement.ID);
 	}
-
 }

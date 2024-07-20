@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.fw.controller.WebComponent;
@@ -302,6 +303,23 @@ public abstract class PageTester {
 	private Class<? extends Page> pageClass = null;
 	
 	/**
+	 * ページクラスを設定します。
+	 * @param pageClass ページクラス。
+	 */
+	protected void setPageClass(final Class<? extends Page> pageClass) {
+		this.pageClass = pageClass;
+	}
+	
+	/**
+	 * コンストラクタ。
+	 * 
+	 */
+	public PageTester() {
+	}
+	
+	
+	
+	/**
 	 * コンストラクタ。
 	 * @param pageClass ページクラス。
 	 * 
@@ -580,7 +598,6 @@ public abstract class PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected PageTestResult readOldTestResult() throws Exception {
-		// Page page = this.pageClass.getConstructor().newInstance();
 		String fn = TestItem.getTestResult() + "/" + this.pageClass.getName() + "/index.html";
 		File f = new File(fn);
 		PageTestResult ret = null;
@@ -608,7 +625,6 @@ public abstract class PageTester {
 	 * @throws Exception 例外。
 	 */
 	protected PageTestResult getPageTestResult(final String pageName, final List<TestItem> list) throws Exception {
-		// Page page = this.pageClass.getConstructor().newInstance();
 		List<TestItemResult> testItemList = new ArrayList<TestItemResult>();
 		for (TestItem ti: list) {
 			testItemList.add(ti.getTestItemResult());
@@ -638,7 +654,6 @@ public abstract class PageTester {
 		String json = JsonUtil.encode(result, true);
 		
 		Template indexTemplate = this.getTemplate();
-//		Page page = this.pageClass.getConstructor().newInstance();
 		String source = indexTemplate.getSource();
 		Pattern p = Pattern.compile("\\$\\{resultList\\}");
 		Matcher m = p.matcher(indexTemplate.getSource());
@@ -664,6 +679,20 @@ public abstract class PageTester {
 		TestItem.setConf(this.conf);
 	}
 	
+	/**
+	 * ページをオープンします。
+	 * @param browser ブラウザ。
+	 * @param pageClass ページクラス。
+	 * @return オープンしたページ要素。
+	 * @throws Exception 例外。
+	 */
+	protected PageTestElement openPage(final Browser browser, final Class<? extends Page> pageClass) throws Exception {
+		FunctionMap map = FunctionMap.getAppFunctionMap();
+		String uri = map.getWebPath(pageClass.getName());
+		logger.info("uri = " + uri);
+		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".df");
+		return pt;
+	}
 
 	/**
 	 * ページをオープンします。
@@ -671,12 +700,13 @@ public abstract class PageTester {
 	 * @return オープンしたページ要素。
 	 * @throws Exception 例外。
 	 */
-	protected PageTestElement openPage(Browser browser) throws Exception {
-		FunctionMap map = FunctionMap.getAppFunctionMap();
+	protected PageTestElement openPage(final Browser browser) throws Exception {
+		return this.openPage(browser, this.pageClass);
+/*		FunctionMap map = FunctionMap.getAppFunctionMap();
 		String uri = map.getWebPath(this.pageClass.getName());
 		logger.info("uri = " + uri);
 		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".df");
-		return pt;
+		return pt;*/
 	}
 
 	
@@ -760,10 +790,9 @@ public abstract class PageTester {
 		this.executeUpdateSql("drop index enum_index");
 		this.executeUpdateSql("drop index login_id_index");
 		this.executeUpdateSql("drop index user_authenticator_name_index");
-		this.executeUpdateSql("alter table enum drop constraint FK_ENUM_TABLE01");
-		this.executeUpdateSql("alter table user_attribute drop constraint FK_USER_ATTRIBUTE_TABLE01");
-		this.executeUpdateSql("alter table web_authn drop constraint FK_WEB_AUTHN_TABLE01");
-		
+		this.executeUpdateSql("alter table enum drop constraint fk_enum_table01");
+		this.executeUpdateSql("alter table user_attribute drop constraint fk_user_attribute_table01");
+		this.executeUpdateSql("alter table web_authn drop constraint fk_web_authn_table01");
 		this.dropTables("web_authn", "user_attribute", "user_info", "enum_name", "enum");
 	}
 
@@ -784,7 +813,15 @@ public abstract class PageTester {
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 	}
 
-	
+	/**
+	 * ログアウトを行います。
+	 * @param browser ブラウザ。
+	 */
+	protected void logout(final Browser browser) {
+		String id = "mainDiv.loginInfoForm.logoutButton";
+		browser.findElement(By.id(id)).click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+	}
 	
 	/**
 	 * テスト実行。

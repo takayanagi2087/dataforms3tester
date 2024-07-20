@@ -1,4 +1,4 @@
-package jp.dataforms.test.element.devtool.table.page;
+package jp.dataforms.test.element.devtool.pageform.page;
 
 
 import org.openqa.selenium.WebElement;
@@ -13,9 +13,9 @@ import jp.dataforms.test.element.htmltable.TableTestElement;
 
 
 /**
- * TableGeneratorQueryForm フォームテスト要素。 
+ * PageGeneratorQueryForm フォームテスト要素。 
  */
-public class TableGeneratorQueryFormTestElement extends QueryFormTestElement {
+public class PageGeneratorQueryFormTestElement extends QueryFormTestElement {
 	/**
 	 * フォームID。
 	 */
@@ -44,7 +44,7 @@ public class TableGeneratorQueryFormTestElement extends QueryFormTestElement {
 	 * @param parent 親コンポーネント。
 	 * @param webElement FormのWebElement。
 	 */
-	public TableGeneratorQueryFormTestElement(final Browser browser, final TestElement parent, final WebElement webElement) {
+	public PageGeneratorQueryFormTestElement(final Browser browser, final TestElement parent, final WebElement webElement) {
 		super(browser, parent, webElement);
 	}
 	

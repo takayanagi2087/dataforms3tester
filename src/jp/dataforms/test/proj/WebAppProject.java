@@ -215,6 +215,34 @@ public class WebAppProject {
 		this.copyTestApi();
 	}
 	
+
+	/**
+	 * DB初期化直後のプロジェクトに戻す。
+	 * @throws Exception 例外。
+	 */
+	public void initSrc() throws Exception {
+//		this.setSystemName("dataforms3.jar", "dataforms3.jar");
+		jp.dataforms.fw.util.ConfUtil util = new jp.dataforms.fw.util.ConfUtil();
+		String webSrcPath = this.path + "/src/main/webapp";
+		File p = new File(webSrcPath + "/frame/messages");
+		{
+			String prop = util.getConfFile("./conf/AppClientMessages_ja.properties");
+			FileUtil.writeTextFile(p + "/AppClientMessages_ja.properties", prop, "utf-8");
+		}
+		{
+			String prop = util.getConfFile("./conf/AppClientMessages.properties");
+			FileUtil.writeTextFile(p + "/AppClientMessages.properties", prop, "utf-8");
+		}
+		{
+			String prop = util.getConfFile("./conf/AppMessages_ja.properties");
+			FileUtil.writeTextFile(p + "/AppMessages_ja.properties", prop, "utf-8");
+		}
+		{
+			String prop = util.getConfFile("./conf/AppMessages.properties");
+			FileUtil.writeTextFile(p + "/AppMessages.properties", prop, "utf-8");
+		}
+		this.cleanPackage("jp");
+	}
 	
 	/**
 	 * プロジェクト中のweb.xmlを取得します。
@@ -481,7 +509,7 @@ public class WebAppProject {
 	 */
 	public void cleanPackage(final String path) throws Exception {
 		{
-			File javaPath = new File(this.getJavaSrcPath() + path);
+			File javaPath = new File(this.getJavaSrcPath() + "/" + path);
 			logger.debug("javaPath=" + javaPath.getAbsolutePath());
 			if (javaPath.exists()) {
 				FileUtils.cleanDirectory(javaPath);
@@ -489,7 +517,7 @@ public class WebAppProject {
 			}
 		}
 		{
-			File webPath = new File(this.getWebSrcPath() + path);
+			File webPath = new File(this.getWebSrcPath()  + "/" +  path);
 			logger.debug("webPath=" + webPath.getAbsolutePath());
 			if (webPath.exists()) {
 				FileUtils.cleanDirectory(webPath);

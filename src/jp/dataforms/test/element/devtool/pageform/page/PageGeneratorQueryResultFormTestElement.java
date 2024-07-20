@@ -1,4 +1,4 @@
-package jp.dataforms.test.element.devtool.table.page;
+package jp.dataforms.test.element.devtool.pageform.page;
 
 
 import org.openqa.selenium.WebElement;
@@ -13,9 +13,9 @@ import jp.dataforms.test.element.htmltable.TableTestElement;
 
 
 /**
- * TableGeneratorQueryResultForm フォームテスト要素。 
+ * PageGeneratorQueryResultForm フォームテスト要素。 
  */
-public class TableGeneratorQueryResultFormTestElement extends QueryResultFormTestElement {
+public class PageGeneratorQueryResultFormTestElement extends QueryResultFormTestElement {
 	/**
 	 * フォームID。
 	 */
@@ -47,9 +47,9 @@ public class TableGeneratorQueryResultFormTestElement extends QueryResultFormTes
 	public static final String ID_PACKAGE_NAME = "packageName";
 
 	/**
-	 * テーブルクラス名。
+	 * ページクラス名。
 	 */
-	public static final String ID_TABLE_CLASS_NAME = "tableClassName";
+	public static final String ID_PAGE_CLASS_NAME = "pageClassName";
 
 	// ----- テーブル関連定数 -----
 	/**
@@ -68,44 +68,14 @@ public class TableGeneratorQueryResultFormTestElement extends QueryResultFormTes
 	public static final String ID_FULL_CLASS_NAME = "fullClassName";
 
 	/**
-	 * テーブル名。
+	 * クラス名。
 	 */
-	public static final String ID_TABLE_NAME = "tableName";
+	public static final String ID_DAO_CLASS_NAME = "daoClassName";
 
 	/**
 	 * 。
 	 */
-	public static final String ID_TABLE_COMMENT = "tableComment";
-
-	/**
-	 * テーブル有無。
-	 */
-	public static final String ID_STATUS = "status";
-
-	/**
-	 * 。
-	 */
-	public static final String ID_STATUS_VAL = "statusVal";
-
-	/**
-	 * シーケンス有無。
-	 */
-	public static final String ID_SEQUENCE_GENERATION = "sequenceGeneration";
-
-	/**
-	 * 構造の差分。
-	 */
-	public static final String ID_DIFFERENCE = "difference";
-
-	/**
-	 * 。
-	 */
-	public static final String ID_DIFFERENCE_VAL = "differenceVal";
-
-	/**
-	 * レコード件数。
-	 */
-	public static final String ID_RECORD_COUNT = "recordCount";
+	public static final String ID_PAGE_PATTERN = "pagePattern";
 
 
 	
@@ -115,7 +85,7 @@ public class TableGeneratorQueryResultFormTestElement extends QueryResultFormTes
 	 * @param parent 親コンポーネント。
 	 * @param webElement FormのWebElement。
 	 */
-	public TableGeneratorQueryResultFormTestElement(final Browser browser, final TestElement parent, final WebElement webElement) {
+	public PageGeneratorQueryResultFormTestElement(final Browser browser, final TestElement parent, final WebElement webElement) {
 		super(browser, parent, webElement);
 	}
 	
@@ -155,11 +125,11 @@ public class TableGeneratorQueryResultFormTestElement extends QueryResultFormTes
 		return this.getField(ID_PACKAGE_NAME);
 	}
 	/**
-	 * テーブルクラス名のテスト要素を取得します。
-	 * @return テーブルクラス名のテスト要素。
+	 * ページクラス名のテスト要素を取得します。
+	 * @return ページクラス名のテスト要素。
 	 */
-	public FieldTestElement getTableClassName() {
-		return this.getField(ID_TABLE_CLASS_NAME);
+	public FieldTestElement getPageClassName() {
+		return this.getField(ID_PAGE_CLASS_NAME);
 	}
 	/**
 	 * テーブルのテスト要素を取得します。
