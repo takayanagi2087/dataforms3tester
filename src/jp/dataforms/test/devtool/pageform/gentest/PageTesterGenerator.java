@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import jp.dataforms.fw.controller.Form;
 import jp.dataforms.fw.controller.Page;
-import jp.dataforms.fw.devtool.javasrc.JavaSrcGenerator;
 import jp.dataforms.fw.servlet.DataFormsServlet;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.test.devtool.pageform.gentest.FormTestItemGenerator.TestItemClassInfo;
@@ -18,17 +17,12 @@ import jp.dataforms.test.devtool.pageform.page.TestSrcGeneratorEditForm;
 /**
  * ページテスタージェネレータ。
  */
-public class PageTesterGenerator extends JavaSrcGenerator {
+public class PageTesterGenerator extends DataFormsTestElementGenerator<Page> {
 	/**
 	 * Logger.
 	 */
 	private Logger logger = LogManager.getLogger(PageTesterGenerator.class);
 	
-	/**
-	 * ページ。
-	 * 
-	 */
-	private Page page = null;
 	
 	/**
 	 * テスト項目クラス情報。
@@ -41,7 +35,7 @@ public class PageTesterGenerator extends JavaSrcGenerator {
 	 * @param testItemList テスト項目リスト。
 	 */
 	public PageTesterGenerator(final Page page,final List<TestItemClassInfo> testItemList) {
-		this.page = page;
+		super(page);
 		this.testItemList = testItemList;
 	}
 
@@ -132,7 +126,7 @@ public class PageTesterGenerator extends JavaSrcGenerator {
 		String testerPackageName = (String) data.get(TestSrcGeneratorEditForm.ID_TESTER_PACKAGE_NAME);
 		String pageClass = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_CLASS_NAME);
 		String pageTesterClass = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_TESTER_CLASS_NAME);
-		String pageName = this.page.getPageName();
+		String pageName = this.getDataForms().getPageName();
 		String srcFile = basePath + testerPackageName.replaceAll("\\.", "/") + "/" + pageTesterClass + ".java";
 		String importList = "import " + packageName  + "." + pageClass + ";\n";
 		importList += this.getImportList(this.testItemList);

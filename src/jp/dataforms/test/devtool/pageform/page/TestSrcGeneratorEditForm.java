@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import jp.dataforms.fw.app.login.page.LoginInfoForm;
-import jp.dataforms.fw.app.menu.page.SideMenuForm;
 import jp.dataforms.fw.controller.EditForm;
 import jp.dataforms.fw.controller.Form;
 import jp.dataforms.fw.controller.Page;
-import jp.dataforms.fw.controller.WebComponent;
 import jp.dataforms.fw.devtool.field.OverwriteModeField;
 import jp.dataforms.fw.field.base.FieldList;
 import jp.dataforms.fw.field.base.TextField;
@@ -161,7 +157,7 @@ public class TestSrcGeneratorEditForm extends EditForm {
 	 * @param page ページ・
 	 * @return フォームクラスの一覧。
 	 */
-	private List<Form> getFormList(final Page page) {
+/*	private List<Form> getFormList(final Page page) {
 		List<Form> list = new ArrayList<Form>();
 		Set<String> set = page.getFormMap().keySet();
 		for (String key: set) {
@@ -179,7 +175,7 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		}
 		return list;
 	}
-	
+*/	
 	@Override
 	protected Map<String, Object> queryData(Map<String, Object> data) throws Exception {
 		String basePackage = FunctionMap.getAppFunctionMap().getAppBasePackage();
@@ -213,7 +209,8 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		ret.put(ID_PAGE_TEST_ELEMENT_OVERWRITE_MODE, OverwriteModeField.ERROR);
 		ret.put(ID_TEST_ITEM_PACKAGE_NAME, basePackage + ".testitem" + spkg);
 		
-		List<Form> flist = this.getFormList(p);
+		PageTestElementGenerator pgen = new PageTestElementGenerator(p);
+		List<Form> flist = pgen.getFormList();
 		int no = 1;
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (Form f: flist) {
@@ -241,7 +238,9 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		String cls = (String) data.get(ID_PAGE_CLASS_NAME);
 		String classname = pkg + "." + cls;
 		Page page = this.newPageInstance(classname);
-		List<Form> flist = this.getFormList(page);
+		// PageTestElementクラス
+		PageTestElementGenerator ptgen = new PageTestElementGenerator(page);
+		List<Form> flist = ptgen.getFormList();
 		List<TestItemClassInfo> testItemList = new ArrayList<TestItemClassInfo>();
 		for (Form f: flist) {
 			String formClassName = f.getClass().getSimpleName();
@@ -264,8 +263,6 @@ public class TestSrcGeneratorEditForm extends EditForm {
 				fgen.generage(this, data);
 			}
 		}
-		// PageTestElementクラス
-		PageTestElementGenerator ptgen = new PageTestElementGenerator(page, flist);
 		ptgen.generage(this, data);
 		// PageTesterクラスの生成。
 		PageTesterGenerator gen = new PageTesterGenerator(page, testItemList);

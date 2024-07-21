@@ -1,0 +1,24 @@
+package ${package};
+
+import org.openqa.selenium.WebElement;
+
+import jp.dataforms.test.element.controller.DialogTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
+import jp.dataforms.test.selenium.Browser;
+
+/**
+ * ${dialogClass} のテスト要素。
+ */
+public class ${dialogClass}TestElement extends DialogTestElement {
+	/**
+	 * コンストラクタ。
+	 * @param browser ブラウザ。
+	 * @param parent 親テスト要素。
+	 * @param element WebElement。
+	 */
+	public ${dialogClass}TestElement(final Browser browser, final PageTestElement parent, final WebElement element) {
+		super(browser, parent, element);
+	}
+	
+${methodList}
+}

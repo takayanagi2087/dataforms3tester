@@ -6,6 +6,7 @@ import jp.dataforms.fw.devtool.db.page.TableManagementPage;
 import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
+import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
 import jp.dataforms.test.element.devtool.db.page.TableManagementPageTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementQueryFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementQueryResultFormTestElement;
@@ -171,6 +172,11 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.saveScreenShot(browser, "table5.png");
 	}
 	
+	/**
+	 * DAO&ページの作成。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
 	private void createDaoAndPage(final Browser browser) throws Exception {
 		this.openPage(browser, DaoAndPageGeneratorPage.class);
 		browser.setClientSize(new Dimension(1600, 600));
@@ -196,6 +202,20 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 	}
 	
+	/**
+	 * Webリソースの作成。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void createHtmlPage(final Browser browser) throws Exception {
+		this.openPage(browser, WebResourcePage.class);
+		browser.setClientSize(new Dimension(1600, 600));
+//		DaoAndPageGeneratorPageTestElement p = browser.getPageTestElement(DaoAndPageGeneratorPageTestElement.class);
+//		PageGeneratorQueryFormTestElement qf = p.getPageGeneratorQueryForm();
+		
+	}
+	
+	
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
@@ -209,6 +229,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.editTable(browser);
 		this.createTable(browser);
 		this.createDaoAndPage(browser);
+		this.createHtmlPage(browser);
 //		browser.close();
 	}
 }
