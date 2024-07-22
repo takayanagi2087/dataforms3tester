@@ -152,30 +152,6 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		return p;
 	}
 	
-	/**
-	 * ページ中のフォームクラスの一覧を取得します。
-	 * @param page ページ・
-	 * @return フォームクラスの一覧。
-	 */
-/*	private List<Form> getFormList(final Page page) {
-		List<Form> list = new ArrayList<Form>();
-		Set<String> set = page.getFormMap().keySet();
-		for (String key: set) {
-			WebComponent cmp = page.getFormMap().get(key);
-			if (cmp instanceof Form) {
-				if (cmp instanceof SideMenuForm) {
-					continue;
-				}
-				if (cmp instanceof LoginInfoForm) {
-					continue;
-				}
-				Form f = (Form) page.getFormMap().get(key);
-				list.add(f);
-			}
-		}
-		return list;
-	}
-*/	
 	@Override
 	protected Map<String, Object> queryData(Map<String, Object> data) throws Exception {
 		String basePackage = FunctionMap.getAppFunctionMap().getAppBasePackage();

@@ -2,8 +2,8 @@ package jp.dataforms.test.element.devtool.webres.page;
 
 import org.openqa.selenium.WebElement;
 
+import jp.dataforms.test.element.TestElement;
 import jp.dataforms.test.element.controller.DialogTestElement;
-import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
 
 /**
@@ -21,7 +21,7 @@ public class WebResourceDialogTestElement extends DialogTestElement {
 	 * @param parent 親テスト要素。
 	 * @param element WebElement。
 	 */
-	public WebResourceDialogTestElement(final Browser browser, final PageTestElement parent, final WebElement element) {
+	public WebResourceDialogTestElement(final Browser browser, final TestElement parent, final WebElement element) {
 		super(browser, parent, element);
 	}
 	

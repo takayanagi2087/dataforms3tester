@@ -4,12 +4,10 @@ package jp.dataforms.test.element.devtool.webres.page;
 import org.openqa.selenium.WebElement;
 
 import jp.dataforms.test.element.TestElement;
+import jp.dataforms.test.element.controller.FormTestElement;
 import jp.dataforms.test.element.field.ButtonTestElement;
 import jp.dataforms.test.element.field.FieldTestElement;
 import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.controller.FormTestElement;
-import jp.dataforms.test.element.htmltable.TableTestElement;
 
 
 /**
@@ -76,7 +74,21 @@ public class WebResourceFormTestElement extends FormTestElement {
 	 */
 	public static final String ID_FORCE_OVERWRITE = "forceOverwrite";
 
-
+	/**
+	 * HTMLの作成ボタンのID。
+	 */
+	public static final String ID_GENERATE_HTML = "generateHtml";
+	
+	/**
+	 * Javasciptの作成ボタンのID。
+	 */
+	public static final String ID_GENERATE_JAVASCRIPT = "generateJavascript";
+	
+	/**
+	 * closeButtonの作成ボタンのID。
+	 */
+	public static final String ID_CLOSE_BUTTON = "closeButton";
+	
 	
 	/**
 	 * コンストラクタ。
@@ -165,5 +177,29 @@ public class WebResourceFormTestElement extends FormTestElement {
 	public FieldTestElement getForceOverwrite() {
 		return this.getField(ID_FORCE_OVERWRITE);
 	}
+
 	
+	/**
+	 * HTML作成ボタンのテスト要素を取得します。
+	 * @return HTML作成ボタンのテスト要素。
+	 */
+	public ButtonTestElement getGenerateHtmlButton() {
+		return this.getButton(ID_GENERATE_HTML);
+	}
+
+	/**
+	 * Javascript作成ボタンのテスト要素を取得します。
+	 * @return Javascript作成ボタンのテスト要素。
+	 */
+	public ButtonTestElement getGenerateJavascriptButton() {
+		return this.getButton(ID_GENERATE_JAVASCRIPT);
+	}
+	
+	/**
+	 * 「閉じる」ボタンのテスト要素を取得します。
+	 * @return 「閉じる」ボタンのテスト要素。
+	 */
+	public ButtonTestElement getCloseButton() {
+		return this.getButton(ID_CLOSE_BUTTON);
+	}
 }

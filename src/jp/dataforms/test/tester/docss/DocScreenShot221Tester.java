@@ -18,6 +18,11 @@ import jp.dataforms.test.element.devtool.pageform.page.PageGeneratorQueryFormTes
 import jp.dataforms.test.element.devtool.table.page.TableGeneratorEditFormTestElement;
 import jp.dataforms.test.element.devtool.table.page.TableGeneratorPageTestElement;
 import jp.dataforms.test.element.devtool.table.page.TableGeneratorQueryFormTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceDialogTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceFormTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceQueryFormTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceQueryResultFormTestElement;
 import jp.dataforms.test.element.htmltable.TableTestElement;
 import jp.dataforms.test.proj.WebAppProject;
 import jp.dataforms.test.selenium.Browser;
@@ -210,9 +215,25 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	private void createHtmlPage(final Browser browser) throws Exception {
 		this.openPage(browser, WebResourcePage.class);
 		browser.setClientSize(new Dimension(1600, 600));
-//		DaoAndPageGeneratorPageTestElement p = browser.getPageTestElement(DaoAndPageGeneratorPageTestElement.class);
-//		PageGeneratorQueryFormTestElement qf = p.getPageGeneratorQueryForm();
-		
+		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
+		WebResourceQueryFormTestElement qf = p.getWebResourceQueryForm();
+		qf.getFunctionSelect().setValue("/sample");
+		qf.getPageClassName().setValue("SamplePage");
+		qf.getClassName().setValue("SamplePage");
+		qf.query();
+		this.saveScreenShot(browser, "page3.png");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		WebResourceQueryResultFormTestElement qrf = p.getWebResourceQueryResultForm();
+		TableTestElement t = qrf.getQueryResultTable();
+		t.getField(0, "className").click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		String img = this.saveScreenShot(browser, "page4.png");
+		ImageEditor.addMarkRect(img, 1149, 286, 1195, 321);
+		WebResourceDialogTestElement dlg = p.getWebResourceDialog();
+		WebResourceFormTestElement frm = dlg.getWebResourceForm();
+		frm.getGenerateHtmlButton().click();
+		p.getAlertDialog().clickOkButton();
+		frm.getCloseButton().click();
 	}
 	
 	
