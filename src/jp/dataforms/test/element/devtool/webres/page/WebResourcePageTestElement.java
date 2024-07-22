@@ -34,5 +34,13 @@ public class WebResourcePageTestElement extends PageTestElement {
 		return this.getForm(WebResourceQueryResultFormTestElement.ID, WebResourceQueryResultFormTestElement.class);
 	}
 
+	/**
+	 * WebResourceDialogのテスト要素を取得します。
+	 * @return WebResourceDialogのテスト要素。
+	 */
+	public WebResourceDialogTestElement getWebResourceDialog() {
+		return this.getDialog(WebResourceDialogTestElement.ID, WebResourceDialogTestElement.class);
+	}
+
 
 }

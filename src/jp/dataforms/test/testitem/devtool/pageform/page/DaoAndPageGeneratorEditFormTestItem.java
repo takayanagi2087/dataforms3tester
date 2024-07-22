@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.pageform.page;
 
-import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorEditForm;
+import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**

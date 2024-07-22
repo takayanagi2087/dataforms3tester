@@ -426,6 +426,8 @@ public class Browser {
 			file.getParentFile().mkdirs();
 		}
 		Files.move(sfile, file);
+		java.util.Date now = new java.util.Date();
+		file.setLastModified(now.getTime());
 		Browser.sleep(Browser.conf.getTestApp().getShortWait());
 		return file.getAbsolutePath();
 	}

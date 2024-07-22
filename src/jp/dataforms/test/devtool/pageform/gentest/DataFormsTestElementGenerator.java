@@ -58,11 +58,11 @@ public abstract class DataFormsTestElementGenerator<T extends DataForms> extends
 	
 	
 	/**
-	 * 定数定義リストを作成します。
+	 * フォーム取得メソッドリストを作成します。
 	 * @param formList フォームクラス。
 	 * @return 定数定義リスト。
 	 */
-	protected String getMethodList(final List<Form> formList) {
+	protected String getFormMethodList(final List<Form> formList) {
 		StringBuilder sb = new StringBuilder();
 		for (Form f: formList) {
 			String testElementClass = f.getClass().getSimpleName() + "TestElement";

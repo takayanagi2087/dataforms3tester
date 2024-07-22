@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.devtool.pageform.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.devtool.pageform.page.DaoAndPageGeneratorPageTestElement;
 import jp.dataforms.test.element.devtool.pageform.page.PageGeneratorQueryResultFormTestElement;
+import jp.dataforms.test.element.devtool.pageform.page.TestSrcGeneratorPageTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
@@ -42,7 +41,7 @@ public class PageGeneratorQueryResultFormSample001TestItem extends PageGenerator
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-		DaoAndPageGeneratorPageTestElement p = browser.getPageTestElement(DaoAndPageGeneratorPageTestElement.class);
+		TestSrcGeneratorPageTestElement p = browser.getPageTestElement(TestSrcGeneratorPageTestElement.class);
 		PageGeneratorQueryResultFormTestElement f = p.getPageGeneratorQueryResultForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

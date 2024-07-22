@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.table.page;
 
-import jp.dataforms.test.testitem.TestItem;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorQueryForm;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**

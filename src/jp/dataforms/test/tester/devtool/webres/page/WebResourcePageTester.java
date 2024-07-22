@@ -3,16 +3,13 @@ package jp.dataforms.test.tester.devtool.webres.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
+import jp.dataforms.test.testitem.devtool.webres.page.WebResourceFormTestItem;
 import jp.dataforms.test.testitem.devtool.webres.page.WebResourceQueryFormTestItem;
 import jp.dataforms.test.testitem.devtool.webres.page.WebResourceQueryResultFormTestItem;
 
@@ -65,6 +62,22 @@ public class WebResourcePageTester extends PageTester {
 		return testResult;
 	}
 
+	/**
+	 * WebResourceFormのテストを行います。
+	 * @param browser ブラウザ。
+	 * @return テスト結果リスト。
+	 * @throws Exception 例外。
+	 */
+	private List<TestItem> testWebResourceForm(final Browser browser) throws Exception {
+		browser.setClientSize(new Dimension(1024, 540));
+		// WebResourceFormのテスト項目のリストを取得する。
+		List<TestItem> list = this.queryCheckItem(WebResourceFormTestItem.class);
+		List<TestItem> testResult = new ArrayList<TestItem>();
+		// WebResourceFormのテスト項目を実行し、その結果をtestResultに保存
+		testResult.addAll(this.execTestItemList(browser, list));
+		return testResult;
+	}
+
 
 	
 	@Override
@@ -78,6 +91,7 @@ public class WebResourcePageTester extends PageTester {
 		// resultList.addAll(this.testSomething(browser));
 		resultList.addAll(this.testWebResourceQueryForm(browser));
 		resultList.addAll(this.testWebResourceQueryResultForm(browser));
+		resultList.addAll(this.testWebResourceForm(browser));
 
 		this.saveIndexHtml(pageName, resultList);
 		browser.close();

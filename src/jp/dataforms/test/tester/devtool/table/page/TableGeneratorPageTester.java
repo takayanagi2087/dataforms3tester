@@ -3,16 +3,12 @@ package jp.dataforms.test.tester.devtool.table.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorEditFormTestItem;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorQueryFormTestItem;
 import jp.dataforms.test.testitem.devtool.table.page.TableGeneratorQueryResultFormTestItem;

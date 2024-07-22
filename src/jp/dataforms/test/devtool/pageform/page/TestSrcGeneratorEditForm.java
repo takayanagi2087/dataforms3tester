@@ -249,24 +249,25 @@ public class TestSrcGeneratorEditForm extends EditForm {
 			// FormTestElementクラスの生成。
 			{
 				FormTestElementGenerator fgen = new FormTestElementGenerator(f);
-				fgen.generage(this, data);
+				fgen.generage(data);
 			}
 			// FormTestItemクラスの生成。
 			{
 				FormTestItemGenerator fgen = new FormTestItemGenerator(f);
-				fgen.generage(this, data);
+				fgen.generage(data);
 				testItemList.add(fgen.getTestItemInfo());
 			}
 			// SampleFormTestItemクラスの生成。
 			{
 				SampleFormTestItemGenerator fgen = new SampleFormTestItemGenerator(f);
-				fgen.generage(this, data);
+				fgen.generage(data);
 			}
 		}
-		ptgen.generage(this, data);
+		ptgen.generage(data);
+		testItemList.addAll(ptgen.getTestItemList());
 		// PageTesterクラスの生成。
 		PageTesterGenerator gen = new PageTesterGenerator(page, testItemList);
-		gen.generage(this, data);
+		gen.generage(data);
 	}
 
 	@Override

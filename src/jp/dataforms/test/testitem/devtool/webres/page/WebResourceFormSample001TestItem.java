@@ -1,8 +1,12 @@
-package jp.dataforms.test.testitem.devtool.db.page;
+package jp.dataforms.test.testitem.devtool.webres.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.selenium.Browser;
+
+import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceFormTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceDialogTestElement;
 
 
 /**
@@ -15,7 +19,7 @@ import jp.dataforms.test.selenium.Browser;
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class TableManagementQueryResultFormSample001TestItem extends TableManagementQueryResultFormTestItem {
+public class WebResourceFormSample001TestItem extends WebResourceFormTestItem {
 	/**
 	 * テスト条件。
 	 */
@@ -33,14 +37,15 @@ public class TableManagementQueryResultFormSample001TestItem extends TableManage
 	/**
 	 * コンストラクタ。
 	 */
-	public TableManagementQueryResultFormSample001TestItem() {
+	public WebResourceFormSample001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-//		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
-//		TableManagementQueryResultFormTestElement f = p.getTableManagementQueryResultForm();
+		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
+		WebResourceDialogTestElement d = p.getWebResourceDialog();
+		WebResourceFormTestElement f = d.getWebResourceForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);
 		return ResultType.SYSTEM_OK;

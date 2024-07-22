@@ -54,14 +54,15 @@ public class PageTestElement extends DataFormsTestElement {
 	
 	/**
 	 * ダイアログのテスターを取得します。
+	 * @param <T> ダイアログテストツール。
 	 * @param id ID。
 	 * @param cls ダイアログクラス。
 	 * @return ダイアログ。
 	 */
-	public DialogTestElement getDialog(final String id, final Class<? extends DialogTestElement> cls) {
+	public <T extends DialogTestElement> T getDialog(final String id, final Class<T> cls) {
 		try {
 			WebElement element = this.getWebElement().findElement(By.xpath("//div[@data-id='" + id + "']"));
-			DialogTestElement dialog = cls
+			T dialog = cls
 					.getConstructor(Browser.class, TestElement.class, WebElement.class)
 					.newInstance(this.getBrowser(), this, element);
 			return dialog;
@@ -76,7 +77,7 @@ public class PageTestElement extends DataFormsTestElement {
 	 * @param id ID。
 	 * @return ダイアログ。
 	 */
-	public DialogTestElement  getDialog(final String id) {
+	public DialogTestElement getDialog(final String id) {
 		return this.getDialog(id, DialogTestElement.class);
 	}
 
@@ -85,7 +86,7 @@ public class PageTestElement extends DataFormsTestElement {
 	 * @return AlertDialog。
 	 */
 	public AlertDialogTestElement getAlertDialog() {
-		return (AlertDialogTestElement) this.getDialog(AlertDialogTestElement.ID, AlertDialogTestElement.class);
+		return this.getDialog(AlertDialogTestElement.ID, AlertDialogTestElement.class);
 	}
 	
 	/**
@@ -93,7 +94,7 @@ public class PageTestElement extends DataFormsTestElement {
 	 * @return ConfirmDialog。
 	 */
 	public ConfirmDialogTestElement getConfirmDialog() {
-		return (ConfirmDialogTestElement) this.getDialog(ConfirmDialogTestElement.ID, ConfirmDialogTestElement.class);
+		return this.getDialog(ConfirmDialogTestElement.ID, ConfirmDialogTestElement.class);
 	}
 	
 	/**

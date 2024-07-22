@@ -4,9 +4,6 @@ import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
 import jp.dataforms.test.selenium.Browser;
 
-import jp.dataforms.test.element.devtool.db.page.TableManagementPageTestElement;
-import jp.dataforms.test.element.devtool.db.page.TableManagementQueryFormTestElement;
-
 
 /**
  * DatabaseInfoFormのテスト項目。
@@ -42,8 +39,8 @@ public class TableManagementQueryFormSample001TestItem extends TableManagementQu
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
-		TableManagementQueryFormTestElement f = p.getTableManagementQueryForm();
+//		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
+//		TableManagementQueryFormTestElement f = p.getTableManagementQueryForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);
 		return ResultType.SYSTEM_OK;

@@ -202,6 +202,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 	
 	/**
 	 * 更新ボタンを取得します。
+	 * @return 更新ボタン。
 	 */
 	public ButtonTestElement getUpdateTableButton() {
 		return this.getButton(ID_UPDATE_TABLE_BUTTON);
@@ -209,6 +210,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 
 	/**
 	 * 初期化ボタンを取得します。
+	 * @return 初期化ボタン。
 	 */
 	public ButtonTestElement getInitTableButton() {
 		return this.getButton(ID_INIT_TABLE_BUTTON);
@@ -216,6 +218,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 	}
 	/**
 	 * 削除ボタンを取得します。
+	 * @return 削除ボタン。
 	 */
 	public ButtonTestElement getDropTableButton() {
 		return this.getButton(ID_DROP_TABLE_BUTTON);
@@ -223,6 +226,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 
 	/**
 	 * 初期化データとしてエクスポートボタンを取得します。
+	 * @return 初期化データとしてエクスポートボタン。
 	 */
 	public ButtonTestElement getExportAsInitialDataButton() {
 		return this.getButton(ID_EXPORT_AS_INITIAL_DATA_BUTTON);
@@ -230,6 +234,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 	
 	/**
 	 * エクスポートボタンを所得します。
+	 * @return エクスポートボタン。
 	 */
 	public ButtonTestElement getExportTableButton() {
 		return this.getButton(ID_EXPORT_TABLE_BUTTON);
@@ -237,6 +242,7 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 
 	/**
 	 * インポートボタンを取得します。
+	 * @return インポートポートボタン。
 	 */
 	public ButtonTestElement getImportTableButton() {
 		return this.getButton(ID_IMPORT_TABLE_BUTTON);

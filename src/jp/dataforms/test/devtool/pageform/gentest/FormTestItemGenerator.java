@@ -84,7 +84,7 @@ public class FormTestItemGenerator extends JavaSrcGenerator {
 	private TestItemClassInfo testItemInfo = null;
 	
 	@Override
-	public void generage(final Form form, final Map<String, Object> data) throws Exception {
+	public void generage(final Map<String, Object> data) throws Exception {
 		String packageName = (String) data.get(TestSrcGeneratorEditForm.ID_PACKAGE_NAME);
 		String pageClassName = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_CLASS_NAME);
 		

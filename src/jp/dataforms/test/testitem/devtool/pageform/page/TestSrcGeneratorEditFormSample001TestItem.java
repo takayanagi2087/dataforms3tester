@@ -1,11 +1,10 @@
-package jp.dataforms.test.testitem.devtool.webres.page;
+package jp.dataforms.test.testitem.devtool.pageform.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
+import jp.dataforms.test.element.devtool.pageform.page.TestSrcGeneratorEditFormTestElement;
+import jp.dataforms.test.element.devtool.pageform.page.TestSrcGeneratorPageTestElement;
 import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
-import jp.dataforms.test.element.devtool.webres.page.WebResourceQueryResultFormTestElement;
 
 
 /**
@@ -18,7 +17,7 @@ import jp.dataforms.test.element.devtool.webres.page.WebResourceQueryResultFormT
 	type = Type.NORMAL, 	// Type.NORMAL or Type.ERROR or Type.BOUNDARY
 	regression = false		// 回帰テストで使用する項目の場合trueを指定します。
 )
-public class WebResourceQueryResultFormSample001TestItem extends WebResourceQueryResultFormTestItem {
+public class TestSrcGeneratorEditFormSample001TestItem extends TestSrcGeneratorEditFormTestItem {
 	/**
 	 * テスト条件。
 	 */
@@ -36,14 +35,14 @@ public class WebResourceQueryResultFormSample001TestItem extends WebResourceQuer
 	/**
 	 * コンストラクタ。
 	 */
-	public WebResourceQueryResultFormSample001TestItem() {
+	public TestSrcGeneratorEditFormSample001TestItem() {
 		super(CONDITION, EXPECTED);
 	}
 	
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
-		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
-		WebResourceQueryResultFormTestElement f = p.getWebResourceQueryResultForm();
+		TestSrcGeneratorPageTestElement p = browser.getPageTestElement(TestSrcGeneratorPageTestElement.class);
+		TestSrcGeneratorEditFormTestElement f = p.getTestSrcGeneratorEditForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);
 		return ResultType.SYSTEM_OK;

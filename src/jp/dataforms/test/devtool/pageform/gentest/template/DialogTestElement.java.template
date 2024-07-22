@@ -11,6 +11,11 @@ import jp.dataforms.test.selenium.Browser;
  */
 public class ${dialogClass}TestElement extends DialogTestElement {
 	/**
+	 * ダイアログID。
+	 */
+	public static final String ID = "${dialogId}";
+	
+	/**
 	 * コンストラクタ。
 	 * @param browser ブラウザ。
 	 * @param parent 親テスト要素。

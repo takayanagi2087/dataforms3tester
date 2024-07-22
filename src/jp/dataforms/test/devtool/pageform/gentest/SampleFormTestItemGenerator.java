@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import jp.dataforms.fw.controller.Dialog;
 import jp.dataforms.fw.controller.Form;
 import jp.dataforms.fw.devtool.javasrc.JavaSrcGenerator;
 import jp.dataforms.fw.servlet.DataFormsServlet;
@@ -27,21 +28,41 @@ public class SampleFormTestItemGenerator extends JavaSrcGenerator {
 	private Form form = null;
 	
 	/**
+	 * ダイアログ。
+	 */
+	private Dialog dialog = null;
+	
+	/**
+	 * コンストラクタ。
+	 * @param form フォーム。
+	 * @param dialog ダイアログ。
+	 */
+	public SampleFormTestItemGenerator(final Form form, final Dialog dialog) {
+		this.form = form;
+		this.dialog = dialog;
+	}
+
+	/**
 	 * コンストラクタ。
 	 * @param form フォーム。
 	 */
 	public SampleFormTestItemGenerator(final Form form) {
-		this.form = form;
+		this(form, null);
 	}
 
 	@Override
 	protected Template getTemplate() throws Exception {
-		Template tmp = new Template(this.getClass(), "template/SampleFormTestItem.java.template");
-		return tmp;
+		if (this.dialog != null) {
+			Template tmp = new Template(this.getClass(), "template/DialogSampleFormTestItem.java.template");
+			return tmp;
+		} else {
+			Template tmp = new Template(this.getClass(), "template/SampleFormTestItem.java.template");
+			return tmp;
+		}
 	}
 
 	@Override
-	public void generage(final Form form, final Map<String, Object> data) throws Exception {
+	public void generage(final Map<String, Object> data) throws Exception {
 		// String packageName = (String) data.get(TestSrcGeneratorEditForm.ID_PACKAGE_NAME);
 		String pageClassName = (String) data.get(TestSrcGeneratorEditForm.ID_PAGE_CLASS_NAME);
 		
@@ -57,11 +78,16 @@ public class SampleFormTestItemGenerator extends JavaSrcGenerator {
 		
 		String importList = "import " + testElementPackageName + "." + pageTestElementClassName + ";\n";
 		importList += "import " + testElementPackageName + "." + testElementClassName + ";\n";
-		
+		if (this.dialog != null) {
+			importList += "import " + testElementPackageName + "." + this.dialog.getClass().getSimpleName() + "TestElement" + ";\n";
+		}
 		Template tmp = this.getTemplate();
 		tmp.replace("package", testItemPackageName);
 		tmp.replace("importList", importList);
 		tmp.replace("pageClass", pageClassName);
+		if (this.dialog != null) {
+			tmp.replace("dialogClass", this.dialog.getClass().getSimpleName());
+		}
 		tmp.replace("formClass", this.form.getClass().getSimpleName());
 		logger.debug("srcFile=" + srcFile);
 		logger.debug("src=" + tmp.getSource());

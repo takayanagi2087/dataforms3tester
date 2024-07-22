@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.db.page;
 
-import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
 import jp.dataforms.fw.devtool.db.page.DeveloperEditForm;
+import jp.dataforms.fw.devtool.db.page.InitializeDatabasePage;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**

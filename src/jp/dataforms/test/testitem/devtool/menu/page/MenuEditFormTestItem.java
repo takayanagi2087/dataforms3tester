@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.menu.page;
 
-import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
 import jp.dataforms.fw.devtool.menu.page.MenuEditForm;
+import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**

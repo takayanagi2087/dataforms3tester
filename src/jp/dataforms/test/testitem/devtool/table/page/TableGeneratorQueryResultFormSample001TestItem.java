@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.devtool.table.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
 import jp.dataforms.test.element.devtool.table.page.TableGeneratorPageTestElement;
 import jp.dataforms.test.element.devtool.table.page.TableGeneratorQueryResultFormTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**

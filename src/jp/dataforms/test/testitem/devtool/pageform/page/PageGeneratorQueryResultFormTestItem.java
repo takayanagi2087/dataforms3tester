@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.pageform.page;
 
-import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.pageform.page.PageGeneratorQueryResultForm;
+import jp.dataforms.test.devtool.pageform.page.TestSrcGeneratorPage;
+import jp.dataforms.test.testitem.TestItem;
 
 
 /**
@@ -15,7 +15,7 @@ public abstract class PageGeneratorQueryResultFormTestItem extends TestItem {
 	 * @param expected 期待値。
 	 */
 	public PageGeneratorQueryResultFormTestItem(final String condition, final String expected) {
-		super(DaoAndPageGeneratorPage.class, PageGeneratorQueryResultForm.class, condition, expected);
+		super(TestSrcGeneratorPage.class, PageGeneratorQueryResultForm.class, condition, expected);
 	}
 }
 

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import jp.dataforms.fw.controller.Dialog;
-import jp.dataforms.fw.controller.Form;
 import jp.dataforms.fw.servlet.DataFormsServlet;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.test.devtool.pageform.page.TestSrcGeneratorEditForm;
@@ -38,7 +37,7 @@ public class DialogTestElementGenerator extends DataFormsTestElementGenerator<Di
 
 	
 	@Override
-	public void generage(final Form form, final Map<String, Object> data) throws Exception {
+	public void generage(final Map<String, Object> data) throws Exception {
 		String basePath = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_TOOL_SRC_PATH);
 		String testElementPackageName = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_ELEMENT_PACKAGE_NAME);
 		String testElementClassName = this.getDataForms().getClass().getSimpleName() + "TestElement";
@@ -46,10 +45,11 @@ public class DialogTestElementGenerator extends DataFormsTestElementGenerator<Di
 		String dialogClass = this.getDataForms().getClass().getSimpleName();
 		String srcFile = basePath + testElementPackageName.replaceAll("\\.", "/") + "/" + testElementClassName + ".java";
 		Template tmp = this.getTemplate();
+		tmp.replace("dialogId", this.getDataForms().getId());
 		tmp.replace("package", testElementPackageName);
 		tmp.replace("dialogClass", dialogClass);
-		tmp.replace("methodList", this.getMethodList(this.getFormList()));
-		logger.debug("srcFile=" + srcFile);
+		tmp.replace("methodList", this.getFormMethodList(this.getFormList()));
+		logger.debug("dialog srcFile=" + srcFile);
 		logger.debug("src=" + tmp.getSource());
 		File sf = new File(srcFile);
 		File pf = sf.getParentFile();

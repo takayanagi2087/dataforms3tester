@@ -11,6 +11,11 @@ import jp.dataforms.test.selenium.Browser;
  */
 public class WebResourceDialogTestElement extends DialogTestElement {
 	/**
+	 * ダイアログID。
+	 */
+	public static final String ID = "webResourceDialog";
+	
+	/**
 	 * コンストラクタ。
 	 * @param browser ブラウザ。
 	 * @param parent 親テスト要素。
@@ -20,5 +25,13 @@ public class WebResourceDialogTestElement extends DialogTestElement {
 		super(browser, parent, element);
 	}
 	
+	/**
+	 * WebResourceFormのテスト要素を取得します。
+	 * @return WebResourceFormのテスト要素。
+	 */
+	public WebResourceFormTestElement getWebResourceForm() {
+		return this.getForm(WebResourceFormTestElement.ID, WebResourceFormTestElement.class);
+	}
+
 
 }

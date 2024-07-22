@@ -153,7 +153,7 @@ public class FormTestElementGenerator extends JavaSrcGenerator {
 
 	
 	@Override
-	public void generage(final Form form, final Map<String, Object> data) throws Exception {
+	public void generage(final Map<String, Object> data) throws Exception {
 		String basePath = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_TOOL_SRC_PATH);
 		String testElementPackageName = (String) data.get(TestSrcGeneratorEditForm.ID_TEST_ELEMENT_PACKAGE_NAME);
 		String testElementClassName = this.form.getClass().getSimpleName() + "TestElement";
