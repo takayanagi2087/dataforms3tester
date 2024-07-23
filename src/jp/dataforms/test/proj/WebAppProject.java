@@ -242,6 +242,7 @@ public class WebAppProject {
 			FileUtil.writeTextFile(p + "/AppMessages.properties", prop, "utf-8");
 		}
 		this.cleanPackage("jp");
+		this.cleanWebSrc("/sample");
 	}
 	
 	/**
@@ -516,6 +517,15 @@ public class WebAppProject {
 				javaPath.delete();
 			}
 		}
+		logger.info(path + "パッケージをクリアしました。");
+	}
+	
+	/**
+	 * Webソースを削除します。
+	 * @param path 削除するPath。
+	 * @throws Exception 例外。
+	 */
+	public void cleanWebSrc(final String path) throws Exception {
 		{
 			File webPath = new File(this.getWebSrcPath()  + "/" +  path);
 			logger.debug("webPath=" + webPath.getAbsolutePath());
@@ -526,6 +536,7 @@ public class WebAppProject {
 		}
 		logger.info(path + "パッケージをクリアしました。");
 	}
+	
 
 	/**
 	 * 現在のソースを*.orgファイルにコピーします。

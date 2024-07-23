@@ -2,11 +2,10 @@ package jp.dataforms.test.testitem.devtool.webres.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
-import jp.dataforms.test.element.devtool.webres.page.WebResourceFormTestElement;
 import jp.dataforms.test.element.devtool.webres.page.WebResourceDialogTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourceFormTestElement;
+import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
