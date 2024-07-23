@@ -2,6 +2,7 @@ package jp.dataforms.test.tester.docss;
 
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.app.menu.page.SiteMapPage;
 import jp.dataforms.fw.devtool.db.page.TableManagementPage;
 import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
@@ -234,7 +235,12 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		frm.getGenerateHtmlButton().click();
 		p.getAlertDialog().clickOkButton();
 		frm.getCloseButton().click();
-	}
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.openPage(browser, SiteMapPage.class);
+		img = this.saveScreenShot(browser, "samplepage1.png");
+		ImageEditor.addMarkRect(img, 240, 94, 346, 114);
+}
 	
 	
 	@Override
@@ -251,6 +257,6 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.createTable(browser);
 		this.createDaoAndPage(browser);
 		this.createHtmlPage(browser);
-//		browser.close();
+		browser.close();
 	}
 }

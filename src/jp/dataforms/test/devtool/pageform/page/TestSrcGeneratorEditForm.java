@@ -87,6 +87,11 @@ public class TestSrcGeneratorEditForm extends EditForm {
 	public static final String ID_PAGE_TEST_ELEMENT_OVERWRITE_MODE = "pageTestElementOverwriteMode";
 
 	/**
+	 * 親クラス名。
+	 */
+	public static final String ID_PARENT_CLASS_NAME = "parentClassName";
+
+	/**
 	 * フォームクラス名。
 	 */
 	public static final String ID_FORM_CLASS_NAME = "formClassName";
@@ -130,6 +135,7 @@ public class TestSrcGeneratorEditForm extends EditForm {
 
 		FieldList flist = new FieldList();
 		flist.addField(new RowNoField()).setReadonly(true);
+		flist.addField(new TextField(ID_PARENT_CLASS_NAME)).setReadonly(true).setComment("親クラス名");
 		flist.addField(new TextField(ID_FORM_CLASS_NAME)).setReadonly(true).setComment("フォームクラス名");
 		flist.addField(new TextField(ID_FORM_TEST_ELEMENT_CLASS_NAME)).setReadonly(true).setComment("フォームテスト要素クラス名");
 		flist.addField(new TextField(ID_FORM_TEST_ITEM_CLASS_NAME)).setReadonly(true).setComment("テスト項目基本クラス名");
@@ -192,6 +198,7 @@ public class TestSrcGeneratorEditForm extends EditForm {
 		for (Form f: flist) {
 			Map<String, Object> m = new HashMap<String, Object>();
 			m.put("rowNo",  no++);
+			m.put(ID_PARENT_CLASS_NAME, f.getParent().getClass().getSimpleName());
 			m.put(ID_FORM_CLASS_NAME, f.getClass().getSimpleName());
 			m.put(ID_FORM_TEST_ELEMENT_CLASS_NAME, f.getClass().getSimpleName() + "TestElement");
 			m.put(ID_FORM_TEST_ITEM_CLASS_NAME, f.getClass().getSimpleName() + "TestItem");

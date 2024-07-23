@@ -67,6 +67,18 @@ public class PageTestElementGenerator extends DataFormsTestElementGenerator<Page
 		return list;
 	}
 	
+	@Override
+	public List<Form> getFormList() {
+		List<Form> list = super.getFormList();
+		// ダイアログ内のフォームを追加。
+		List<Dialog> dlist = this.getDialogList();
+		for (Dialog dlg: dlist) {
+			DialogTestElementGenerator dgen = new DialogTestElementGenerator(dlg);
+			list.addAll(dgen.getFormList());
+		}
+		return list;
+	}
+	
 	/**
 	 * ダイアログのテスト要素生成します。
 	 * @param data POSTされたデータ。
