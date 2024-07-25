@@ -48,7 +48,7 @@ public class LoginFormLogin004TestItem extends LoginTestItem {
 	@Override
 	protected ResultType checkSiteMap(final Browser browser) {
 		ResultType ret = ResultType.SYSTEM_NG;
-		if (!this.findLink(browser, "/app/user/page/ChangePasswordPage.df")) {
+		if (!this.findLink(browser, "/app/user/page/ChangePasswordPage.html")) {
 			// ユーザページが表示されていないことを確認。
 			ret = ResultType.SYSTEM_OK;
 		}

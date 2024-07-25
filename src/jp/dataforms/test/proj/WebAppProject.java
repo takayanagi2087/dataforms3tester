@@ -242,7 +242,7 @@ public class WebAppProject {
 			FileUtil.writeTextFile(p + "/AppMessages.properties", prop, "utf-8");
 		}
 		this.cleanPackage("jp");
-		this.cleanWebSrc("/sample");
+		this.cleanWebSrc("/edittable");
 	}
 	
 	/**

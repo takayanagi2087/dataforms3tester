@@ -8,6 +8,10 @@ import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
+import jp.dataforms.test.element.controller.EditFormTestElement;
+import jp.dataforms.test.element.controller.PageTestElement;
+import jp.dataforms.test.element.controller.QueryFormTestElement;
+import jp.dataforms.test.element.controller.QueryResultFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementPageTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementQueryFormTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementQueryResultFormTestElement;
@@ -76,12 +80,12 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		MenuEditPageTestElement p = browser.getPageTestElement(MenuEditPageTestElement.class);
 		MenuEditFormTestElement f = p.getMenuEditForm();
 		this.saveScreenShot(browser, "menuedit001.png");
-		f.getAppBasePackage().setValue("jp.dataforms");
+		f.getAppBasePackage().setValue("jp.dataforms.sample");
 		TableTestElement table = f.getMenuList();
 		table.addRow(0);
-		table.setValue(0, "path", "/sample");
-		table.setValue(0, "defaultName", "Sample");
-		table.setValue(0, "jaName", "サンプル");
+		table.setValue(0, "path", "/edittable");
+		table.setValue(0, "defaultName", "Edit table");
+		table.setValue(0, "jaName", "テーブル編集");
 		String img = this.saveScreenShot(browser, "menuedit002.png");
 		ImageEditor.addMarkRect(img, 220, 100, 940, 138);
 		ImageEditor.addMarkRect(img, 100, 250, 869, 286);
@@ -136,7 +140,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		TableGeneratorQueryFormTestElement qf = p.getQueryForm(TableGeneratorQueryFormTestElement.class);
 		qf.newData();
 		TableGeneratorEditFormTestElement ef = p.getTableGeneratorEditForm();
-		ef.getFunctionSelect().setValue("/sample");
+		ef.getFunctionSelect().setValue("/edittable");
 		ef.getTableClassName().setValue("SampleTable");
 		ef.getTableComment().setValue("サンプルテーブル");
 		this.setFieldList(ef);
@@ -149,7 +153,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
-		qf.getFunctionSelect().setValue("/sample");
+		qf.getFunctionSelect().setValue("/edittable");
 		qf.query();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		browser.setClientSize(new Dimension(1200, 600));
@@ -166,7 +170,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		browser.setClientSize(new Dimension(1600, 600));
 		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
 		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
-		qf.getFunctionSelect().setValue("/sample");
+		qf.getFunctionSelect().setValue("/edittable");
 		qf.query();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser, "table4.png");
@@ -191,13 +195,13 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		qf.newData();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		DaoAndPageGeneratorEditFormTestElement ef = p.getDaoAndPageGeneratorEditForm();
-		ef.getFunctionSelect().setValue("/sample");
-		ef.getPageName().setValue("サンプルページ");
+		ef.getFunctionSelect().setValue("/edittable");
+		ef.getPageName().setValue("サンプルテーブル編集");
 		ef.getPageClassName().setValue("SamplePage");
 		ef.getDescription().setValue("テーブルsampleを編集するページ");
-		ef.getListQueryFunctionSelect().setValue("/sample");
+		ef.getListQueryFunctionSelect().setValue("/edittable");
 		ef.getListQueryClassName().setValue("SampleTable");
-		ef.getEditQueryFunctionSelect().setValue("/sample");
+		ef.getEditQueryFunctionSelect().setValue("/edittable");
 		ef.getEditQueryClassName().setValue("SampleTable");
 		this.saveScreenShot(browser, "page1.png");
 		ef.getConfirmButton().click();
@@ -218,7 +222,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		browser.setClientSize(new Dimension(1600, 600));
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
 		WebResourceQueryFormTestElement qf = p.getWebResourceQueryForm();
-		qf.getFunctionSelect().setValue("/sample");
+		qf.getFunctionSelect().setValue("/edittable");
 		qf.getPageClassName().setValue("SamplePage");
 		qf.getClassName().setValue("SamplePage");
 		qf.query();
@@ -240,8 +244,41 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.openPage(browser, SiteMapPage.class);
 		img = this.saveScreenShot(browser, "samplepage1.png");
 		ImageEditor.addMarkRect(img, 240, 94, 346, 114);
-}
+	}
 	
+	/**
+	 * サンプルページのテスト。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void testSamplePage(final Browser browser) throws Exception {
+		String pageUrl = this.getConf().getTestApp().getApplicationURL() + "edittable/page/SamplePage.html";
+		browser.open(pageUrl);
+		this.saveScreenShot(browser, "samplepage2.png");
+		PageTestElement p = browser.getPageTestElement();
+		QueryFormTestElement qf = p.getQueryForm();
+		qf.newData();
+		EditFormTestElement ef = p.getEditForm();
+		ef.getField("sampleText").setValue("aaa");
+		ef.getField("sampleNumeric").setValue("1234.56");
+		ef.getField("sampleDate").setValue("2024/07/23");
+		this.saveScreenShot(browser, "samplepage3.png");
+		ef.confirm();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.saveScreenShot(browser, "samplepage4.png");
+		ef.save();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		p.getAlertDialog().clickOkButton();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		qf.query();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
+		this.saveScreenShot(browser, "samplepage5.png");
+		QueryResultFormTestElement qrf = p.getQueryResultForm();
+		qrf.getQueryResultTable().getField(0, "sampleText").click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.saveScreenShot(browser, "samplepage6.png");
+		
+	}
 	
 	@Override
 	public void exec() throws Exception {
@@ -257,6 +294,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.createTable(browser);
 		this.createDaoAndPage(browser);
 		this.createHtmlPage(browser);
+		this.testSamplePage(browser);
 		browser.close();
 	}
 }

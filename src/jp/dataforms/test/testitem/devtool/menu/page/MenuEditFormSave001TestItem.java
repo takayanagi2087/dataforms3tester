@@ -69,7 +69,7 @@ public class MenuEditFormSave001TestItem extends MenuEditFormTestItem {
 		p.getAlertDialog().clickOkButton();
 		Browser.sleep(TestItem.getConf().getTestApp().getBuildWait());
 		this.saveScreenShot(browser, "保存後のサイトマップ");
-		browser.open(TestItem.getConf().getTestApp().getApplicationURL() + "dataforms/devtool/menu/page/MenuEditPage.df");
+		browser.open(TestItem.getConf().getTestApp().getApplicationURL() + "dataforms/devtool/menu/page/MenuEditPage.html");
 		this.saveScreenShot(browser, "メニュー作成画面の再表示");
 		p = browser.getPageTestElement(MenuEditPageTestElement.class);
 		f = p.getMenuEditForm();

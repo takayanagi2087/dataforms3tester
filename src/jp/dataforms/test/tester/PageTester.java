@@ -690,7 +690,7 @@ public abstract class PageTester {
 		FunctionMap map = FunctionMap.getAppFunctionMap();
 		String uri = map.getWebPath(pageClass.getName());
 		logger.info("uri = " + uri);
-		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".df");
+		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".html");
 		return pt;
 	}
 
@@ -702,11 +702,6 @@ public abstract class PageTester {
 	 */
 	protected PageTestElement openPage(final Browser browser) throws Exception {
 		return this.openPage(browser, this.pageClass);
-/*		FunctionMap map = FunctionMap.getAppFunctionMap();
-		String uri = map.getWebPath(this.pageClass.getName());
-		logger.info("uri = " + uri);
-		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".df");
-		return pt;*/
 	}
 
 	
@@ -757,7 +752,7 @@ public abstract class PageTester {
 		}
 		Map<String, Object> p = new HashMap<String, Object>();
 		p.put("sqlList", list);
-		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/UpdateTableApi.df";
+		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/UpdateTableApi.html";
 		@SuppressWarnings("unchecked")
 		Map<String, Object> response = (Map<String, Object>) this.callApi(url, p);
 		logger.debug("status=" + response.get("status"));
@@ -776,7 +771,7 @@ public abstract class PageTester {
 		}
 		Map<String, Object> p = new HashMap<String, Object>();
 		p.put("tableList", tlist);
-		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/DropTableApi.df";
+		String url = this.getConf().getTestApp().getApplicationURL() + "test/api/DropTableApi.html";
 		@SuppressWarnings("unchecked")
 		Map<String, Object> response = (Map<String, Object>) this.callApi(url, p);
 		logger.debug("status=" + response.get("status"));
@@ -804,7 +799,7 @@ public abstract class PageTester {
 	 */
 	protected void login(final Browser browser, final String loginId) {
 		String password = this.getConf().getTestUser(loginId).getPassword();
-		String appUrl = this.getConf().getTestApp().getApplicationURL() + "dataforms/app/login/page/LoginPage.df";
+		String appUrl = this.getConf().getTestApp().getApplicationURL() + "dataforms/app/login/page/LoginPage.html";
 		LoginPageTestElement page = browser.open(appUrl, LoginPageTestElement.class);
 		LoginFormTestElement form = page.getLoginForm();
 		form.getLoginIdField().setValue(loginId);

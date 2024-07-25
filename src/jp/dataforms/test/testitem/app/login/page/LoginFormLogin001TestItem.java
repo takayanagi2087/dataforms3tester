@@ -57,7 +57,7 @@ public class LoginFormLogin001TestItem extends LoginTestItem {
 	@Override
 	protected ResultType checkSiteMap(final Browser browser) {
 		ResultType ret = ResultType.SYSTEM_NG;
-		if (this.findLink(browser, "/devtool/menu/page/MenuEditPage.df")) {
+		if (this.findLink(browser, "/devtool/menu/page/MenuEditPage.html")) {
 			ret = ResultType.SYSTEM_OK;
 		}
 		return ret;

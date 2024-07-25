@@ -83,6 +83,19 @@ public class EditFormTestElement extends FormTestElement {
 	public ButtonTestElement getBackButton() {
 		return this.getButton(ID_BACK_BUTTON);
 	}
+
+	/**
+	 * 確認ボタンの処理を行ないます。
+	 */
+	public void confirm() {
+		this.getConfirmButton().click();
+	}
 	
-	
+	/**
+	 * 保存ボタンの処理を行ないます。
+	 */
+	public void save() {
+		this.getSaveButton().click();
+	}
+
 }
