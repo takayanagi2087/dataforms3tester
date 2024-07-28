@@ -201,7 +201,10 @@ public abstract class PageTester {
 		 * ソースのsnapshot。
 		 */
 		private String snapshot = null;
-		
+		/**
+		 * DBのバックアップ領域。
+		 */
+		private String dbstore = null;
 		/**
 		 * コンストラクタ。
 		 */

@@ -3,16 +3,12 @@ package jp.dataforms.test.tester.app.user.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.app.user.page.UserManagementPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.app.user.page.UserManagementPage;
 import jp.dataforms.test.testitem.app.user.page.UserEditFormTestItem;
 import jp.dataforms.test.testitem.app.user.page.UserQueryFormTestItem;
 import jp.dataforms.test.testitem.app.user.page.UserQueryResultFormTestItem;
@@ -34,7 +30,7 @@ public class UserManagementPageTester extends PageTester {
 		super(UserManagementPage.class);
 	}
 	
-		/**
+	/**
 	 * UserEditFormのテストを行います。
 	 * @param browser ブラウザ。
 	 * @return テスト結果リスト。
