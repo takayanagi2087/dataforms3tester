@@ -422,6 +422,7 @@ public class Browser {
 		logger.debug("screenShot=" + filename);
 
 		File file = new File(filename);
+		logger.debug("file=" + file.getAbsolutePath());
 		if (!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}

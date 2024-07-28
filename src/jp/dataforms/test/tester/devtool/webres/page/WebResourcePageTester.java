@@ -3,19 +3,15 @@ package jp.dataforms.test.tester.devtool.webres.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.Dimension;
 
+import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
-
-import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
+import jp.dataforms.test.testitem.devtool.webres.page.WebResourceFormTestItem;
 import jp.dataforms.test.testitem.devtool.webres.page.WebResourceQueryFormTestItem;
 import jp.dataforms.test.testitem.devtool.webres.page.WebResourceQueryResultFormTestItem;
-import jp.dataforms.test.testitem.devtool.webres.page.WebResourceFormTestItem;
 
 
 /**

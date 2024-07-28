@@ -295,6 +295,8 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.createDaoAndPage(browser);
 		this.createHtmlPage(browser);
 		this.testSamplePage(browser);
+		proj.saveSnapshot("step01");
+		proj.loadSnapshot("step01");
 		browser.close();
 	}
 }

@@ -602,33 +602,43 @@ public class WebAppProject {
 	/**
 	 * スナップショットを保存します。
 	 * @param name スナップショット名。
-	 * @param pkg 保存するパッケージ。
+	 * @param javaPath 保存するパッケージ。
+	 * @param path 保存するパス。
 	 * @throws Exception 例外。
 	 */
-	public void saveSnapshot(final String name, final String pkg) throws Exception {
+	private void saveSnapshot(final String name, final String javaPath, final String path) throws Exception {
 		logger.debug("shapshot=" + this.snapshot);
-		File javaSrc = getProjectJavaSrcDirectory(pkg);
-		File javaDst = getSnapshotJavaSrcDirectory(name, pkg);
+		File webSrc = this.getProjectWebSrcDirectory(path);
+		File webDst = this.getSnapshotWebSrcDirectory(name, path);
+		logger.debug(webSrc + " -> " + webDst);
+		FileUtils.copyDirectory(webSrc, webDst);
+		
+		File javaSrc = this.getProjectJavaSrcDirectory(javaPath);
+		File javaDst = this.getSnapshotJavaSrcDirectory(name, javaPath);
 		logger.debug(javaSrc + " -> " + javaDst);
 		if (!javaDst.exists()) {
 			javaDst.mkdirs();
 		}
 		FileUtils.copyDirectory(javaSrc, javaDst);
-
-		File webSrc = getProjectWebSrcDirectory(pkg);
-		File webDst = getSnapshotWebSrcDirectory(name, pkg);
-		logger.debug(webSrc + " -> " + webDst);
-		FileUtils.copyDirectory(webSrc, webDst);
 	}
 
 	/**
-	 * スナップショットをロードします。
+	 * スナップショットを保存します。
 	 * @param name スナップショット名。
-	 * @param pkg 保存するパッケージ。
 	 * @throws Exception 例外。
 	 */
-	public void loadSnapshot(final String name, final String pkg) throws Exception {
+	public void saveSnapshot(final String name) throws Exception {
+		this.saveSnapshot(name, "/", "/");
+	}
+	
+	/**
+	 * スナップショットをロードします。
+	 * @param name スナップショット名。
+	 * @throws Exception 例外。
+	 */
+	public void loadSnapshot(final String name) throws Exception {
 		logger.debug("shapshot=" + this.snapshot);
+		String pkg = "/";
 		File javaSrc = getProjectJavaSrcDirectory(pkg);
 		if (javaSrc.exists()) {
 			FileUtil.deleteDirectory(javaSrc.getAbsolutePath());
@@ -656,7 +666,7 @@ public class WebAppProject {
 	 * @return プロジェクトのJavaのソースディレクトリ。
 	 */
 	public File getProjectJavaSrcDirectory(final String pkg) {
-		File javaSrc = new File(this.path.replaceAll("\\\\", "/") + WebAppProject.JAVA_SRC + "/" + pkg);
+		File javaSrc = new File(this.path.replaceAll("\\\\", "/") + WebAppProject.JAVA_SRC + pkg);
 		return javaSrc;
 	}
 
@@ -667,7 +677,7 @@ public class WebAppProject {
 	 * @return スナップショットのJavaソースディレクトリ。
 	 */
 	public File getSnapshotJavaSrcDirectory(final String name, final String pkg) {
-		File javaDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/" + name + WebAppProject.JAVA_SRC + "/" + pkg);
+		File javaDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/" + name + WebAppProject.JAVA_SRC + pkg);
 		return javaDst;
 	}
 
