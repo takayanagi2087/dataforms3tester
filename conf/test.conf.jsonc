@@ -70,9 +70,7 @@
 		// テストソース。
 		"testSrc": "C:/eclipse/workspaceDataforms3/dataforms3tester/testsrc",
 		// ソースのsnapshot
-		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot",
-		// DBのバックアップ領域。
-		"dbstore": "C:/eclipse/workspaceDataforms3/dataforms3tester/dbstore"
+		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot"
 	}
 	// Tomcat関連設定。
 	, "tomcat": {

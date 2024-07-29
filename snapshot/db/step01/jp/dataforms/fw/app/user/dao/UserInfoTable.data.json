@@ -1,0 +1,18 @@
+[
+	{
+		"userId": "1",
+		"loginId": "developer",
+		"password": "mSIf4n+lO/Mc/jSevAaRgw==",
+		"userName": "developer",
+		"mailAddress": "",
+		"externalUserFlag": "0",
+		"enabledFlag": "1",
+		"passwordRequiredFlag": "0",
+		"passkeyRequiredFlag": "0",
+		"deleteFlag": "0",
+		"createUserId": "-1",
+		"createTimestamp": "20240729085910601",
+		"updateUserId": "-1",
+		"updateTimestamp": "20240729085910601"
+	}
+]

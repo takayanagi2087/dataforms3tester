@@ -15,12 +15,11 @@ import jp.dataforms.fw.response.Response;
  * バックアップAPI。
  *
  */
-public class BackupTableApi extends TestWebApi {
+public class RestoreTableApi extends TestWebApi {
 	/**
 	 * Logger.
 	 */
 	private static Logger logger = LogManager.getLogger(BackupTableApi.class);
-
 
 	@WebMethod
 	@Override
@@ -29,13 +28,13 @@ public class BackupTableApi extends TestWebApi {
 		@SuppressWarnings("unchecked")
 		List<String> pkglist = (List<String>) p.get("packageList");
 		String snapshot = (String) p.get("snapshot");
-		logger.debug("p=" + JsonUtil.encode(p, true));
+		logger.debug("snapshot=" + snapshot);
 		try {
 			TableManagerDao dao = new TableManagerDao(this);
 			List<String> list = this.getTableList(dao, pkglist);
 			for (String className: list) {
 				logger.debug("classname=" + className);
-				dao.exportData(className, snapshot);
+				dao.importData(className, snapshot);
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

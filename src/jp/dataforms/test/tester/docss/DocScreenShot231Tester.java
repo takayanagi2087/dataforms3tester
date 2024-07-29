@@ -77,6 +77,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.loadSnapshot("step01");
+		proj.importDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");

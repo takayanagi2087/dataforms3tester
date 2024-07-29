@@ -1,6 +1,8 @@
 package jp.dataforms.test.proj;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
@@ -10,7 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.io.Files;
 
 import jp.dataforms.fw.util.FileUtil;
+import jp.dataforms.fw.util.JsonUtil;
 import jp.dataforms.fw.util.SequentialProperties;
+import jp.dataforms.fw.util.WebClient;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.tester.PageTester.Project;
@@ -82,7 +86,7 @@ public class WebAppProject {
 	/**
 	 * コンストラクタ。
 	 * @param path Webアプリケーションプロジェクトのパス。
-	 * @param url   WebアプリケーションのURL。
+	 * @param url WebアプリケーションのURL。
 	 */
 	public WebAppProject(final String path, final String url) {
 		this.path = path;
@@ -432,6 +436,8 @@ public class WebAppProject {
 		this.copyJavaSrc("/test/api/TestWebApi.java", "/test/api/TestWebApi.java");
 		this.copyJavaSrc("/test/api/DropTableApi.java", "/test/api/DropTableApi.java");
 		this.copyJavaSrc("/test/api/UpdateTableApi.java", "/test/api/UpdateTableApi.java");
+		this.copyJavaSrc("/test/api/BackupTableApi.java", "/test/api/BackupTableApi.java");
+		this.copyJavaSrc("/test/api/RestoreTableApi.java", "/test/api/RestoreTableApi.java");
 		logger.info("テストに必要なAPIを作成しました。");
 	}
 	
@@ -659,6 +665,48 @@ public class WebAppProject {
 		Browser.sleep(this.conf.getTestApp().getBuildWait());
 	}
 
+	/**
+	 * DBのエクスポートを行う。
+	 * @param name スナップショット名。
+	 * @param pkg パッケージリスト。
+	 * @return HTTPステータス。
+	 * @throws Exception 例外。
+	 */
+	public int exportDb(final String name, final String... pkg) throws Exception {
+		String url = this.conf.getTestApp().getApplicationURL() + "test/api/BackupTableApi.api";
+		String dbstore = this.conf.getProject().getSnapshot() + "/db/" + name;
+		Map<String, Object> p = new HashMap<String, Object>();
+		p.put("packageList", pkg);
+		p.put("snapshot", dbstore);
+		logger.debug("conf=" + JsonUtil.encode(p, true));
+		WebClient client = new WebClient(url, WebClient.METHOD_POST);
+		@SuppressWarnings("unchecked")
+		Map<String, Object> resp = (Map<String, Object>) client.call(p);
+		logger.info("status=" + client.getHttpStatus());
+		logger.info("resp=" + resp);
+		return client.getHttpStatus();
+	}
+	
+	/**
+	 * DBのインポートを行う。
+	 * @param name スナップショット名。
+	 * @param pkg パッケージリスト。
+	 * @return HTTPステータス。
+	 * @throws Exception 例外。
+	 */
+	public int importDb(final String name, final String... pkg) throws Exception {
+		String url = this.conf.getTestApp().getApplicationURL() + "test/api/RestoreTableApi.api";
+		String dbstore = this.conf.getProject().getSnapshot() + "/db/" + name;
+		Map<String, Object> p = new HashMap<String, Object>();
+		p.put("packageList", pkg);
+		p.put("snapshot", dbstore);
+		logger.debug("conf=" + JsonUtil.encode(p, true));
+		WebClient client = new WebClient(url, WebClient.METHOD_POST);
+		String resp = (String) client.call(p);
+		logger.info("status=" + client.getHttpStatus());
+		logger.info("resp=" + resp);
+		return client.getHttpStatus();
+	}
 	
 	/**
 	 * プロジェクトのJavaのソースディレクトリを取得します。
@@ -677,7 +725,7 @@ public class WebAppProject {
 	 * @return スナップショットのJavaソースディレクトリ。
 	 */
 	public File getSnapshotJavaSrcDirectory(final String name, final String pkg) {
-		File javaDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/" + name + WebAppProject.JAVA_SRC + pkg);
+		File javaDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/src/" + name + WebAppProject.JAVA_SRC + pkg);
 		return javaDst;
 	}
 
@@ -698,7 +746,7 @@ public class WebAppProject {
 	 * @return スナップショットのWebソースディレクトリ。
 	 */
 	public File getSnapshotWebSrcDirectory(final String name, final String pkg) {
-		File webDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/" + name + WebAppProject.WEB_SRC + "/" + pkg);
+		File webDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/src/" + name + WebAppProject.WEB_SRC + "/" + pkg);
 		return webDst;
 	}
 
