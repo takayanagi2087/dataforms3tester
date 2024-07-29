@@ -702,7 +702,8 @@ public class WebAppProject {
 		p.put("snapshot", dbstore);
 		logger.debug("conf=" + JsonUtil.encode(p, true));
 		WebClient client = new WebClient(url, WebClient.METHOD_POST);
-		String resp = (String) client.call(p);
+		@SuppressWarnings("unchecked")
+		Map<String, Object> resp = (Map<String, Object>) client.call(p);
 		logger.info("status=" + client.getHttpStatus());
 		logger.info("resp=" + resp);
 		return client.getHttpStatus();

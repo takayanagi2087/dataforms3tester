@@ -29,7 +29,6 @@ public class BackupTableApi extends TestWebApi {
 		@SuppressWarnings("unchecked")
 		List<String> pkglist = (List<String>) p.get("packageList");
 		String snapshot = (String) p.get("snapshot");
-		logger.debug("p=" + JsonUtil.encode(p, true));
 		try {
 			TableManagerDao dao = new TableManagerDao(this);
 			List<String> list = this.getTableList(dao, pkglist);

@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.fw.controller.WebComponent;
@@ -504,6 +505,7 @@ public abstract class PageTester {
 	protected Browser getBrowser() throws Exception {
 		BrowserInfo bi = this.conf.getSelenium().getBrowserInfo();
 		Browser browser = new Browser(bi);
+		browser.setClientSize(new Dimension(1280, 1024));
 		return browser;
 	}
 

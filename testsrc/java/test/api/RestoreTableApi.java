@@ -31,11 +31,14 @@ public class RestoreTableApi extends TestWebApi {
 		logger.debug("snapshot=" + snapshot);
 		try {
 			TableManagerDao dao = new TableManagerDao(this);
+			dao.dropAllForeignKeys();
 			List<String> list = this.getTableList(dao, pkglist);
 			for (String className: list) {
 				logger.debug("classname=" + className);
+				dao.deleteTableData(className);
 				dao.importData(className, snapshot);
 			}
+			dao.createAllForeignKeys();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}

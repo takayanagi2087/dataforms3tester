@@ -76,12 +76,13 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-		proj.loadSnapshot("step01");
 		proj.importDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		proj.loadSnapshot("step01");
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.userMaint(browser);
+		
 /*		this.changeSystemName(browser, proj);
 		this.editMenu(browser);
 		this.editTable(browser);
@@ -92,5 +93,6 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 */
 		proj.saveSnapshot("step02");
 		browser.close();
+
 	}
 }
