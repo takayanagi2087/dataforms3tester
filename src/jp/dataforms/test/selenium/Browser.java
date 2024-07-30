@@ -113,7 +113,7 @@ public class Browser {
 			argList.add("--headless");
 			m.invoke(opt, argList); // opt.addArguments("--headless");
 			WebDriver webDriver = driverClass.getConstructor(optionClass).newInstance(opt);
-			webDriver.manage().window().setSize(new Dimension(1280, 800));
+			webDriver.manage().window().setSize(new Dimension(1400, 800));
 			return webDriver;
 		}
 	}

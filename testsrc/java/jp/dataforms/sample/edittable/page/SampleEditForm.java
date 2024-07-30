@@ -1,14 +1,15 @@
-package sample.page;
+package jp.dataforms.sample.edittable.page;
 
 import java.util.Map;
 
-import dataforms.controller.EditForm;
-import dataforms.dao.Table;
-import dataforms.validator.RequiredValidator;
-import sample.dao.SampleDao;
+import jp.dataforms.fw.controller.EditForm;
+import jp.dataforms.fw.dao.Table;
+import jp.dataforms.fw.field.base.Field.Display;
+import jp.dataforms.fw.validator.RequiredValidator;
+import jp.dataforms.sample.edittable.dao.SampleDao;
 
 /**
- * 編集フォームクラス。
+ * サンプルテーブル編集用編集フォームクラス。
  */
 public class SampleEditForm extends EditForm {
 	/**
@@ -16,7 +17,17 @@ public class SampleEditForm extends EditForm {
 	 */
 	public SampleEditForm() {
 		SampleDao dao = new SampleDao();
-		dao.getSampleTable().getSampleTextField().addValidator(new RequiredValidator());
+		// 各フィールドの設定処理。
+		dao.getSampleTable().getSampleIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getSampleTable().getSampleTextField().setEditFormDisplay(Display.INPUT).addValidator(new RequiredValidator());
+		dao.getSampleTable().getSampleNumericField().setEditFormDisplay(Display.INPUT);
+		dao.getSampleTable().getSampleDateField().setEditFormDisplay(Display.INPUT);
+		dao.getSampleTable().getCreateUserIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getSampleTable().getCreateTimestampField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getSampleTable().getUpdateUserIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getSampleTable().getUpdateTimestampField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		// このメソッドでdaoに設定された編集対象取得問合せのフィールドをフォームに展開します。
+		// 複数レコード問合せを指定した場合、そのフィールドを持つHtmlTableフォームに配置します。
 		this.addFields(dao);
 	}
 

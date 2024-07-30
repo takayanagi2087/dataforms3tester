@@ -1,13 +1,13 @@
-package sample.field;
+package jp.dataforms.sample.edittable.field;
 
 import java.util.List;
 import java.util.Map;
 
-import dataforms.dao.SingleTableQuery;
-import dataforms.field.sqltype.VarcharField;
-import dataforms.validator.AsciiValidator;
-import dataforms.validator.MaxLengthValidator;
-import sample.dao.SampleTable;
+import jp.dataforms.fw.dao.SingleTableQuery;
+import jp.dataforms.fw.field.sqltype.VarcharField;
+import jp.dataforms.fw.validator.AsciiValidator;
+import jp.dataforms.fw.validator.MaxLengthValidator;
+import jp.dataforms.sample.edittable.dao.SampleTable;
 
 
 /**
@@ -44,6 +44,7 @@ public class SampleTextField extends VarcharField {
 		super.onBind();
 		this.addValidator(new MaxLengthValidator(this.getLength()));
 		this.addValidator(new AsciiValidator());
+
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +98,6 @@ public class SampleTextField extends VarcharField {
 		);
 		return ret;
 	}
-
 
 	// 独自のWebメソッドを作成する場合は、以下のコードを参考にしてください。
 	/**

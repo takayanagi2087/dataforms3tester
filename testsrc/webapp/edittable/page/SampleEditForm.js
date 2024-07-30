@@ -4,12 +4,17 @@
 
 'use strict';
 
+import { MessagesUtil } from '../../dataforms/util/MessagesUtil.js';
+import { ValidationError } from '../../dataforms/validator/ValidationError.js';
+import { FieldValidator } from '../../dataforms/validator/FieldValidator.js';
+import { EditForm } from '../../dataforms/controller/EditForm.js';
+
 /**
  * @class SampleEditForm
  *
  * @extends EditForm
  */
-class SampleEditForm extends EditForm {
+export class SampleEditForm extends EditForm {
 	/**
 	 * コンストラクタ。
 	 */

@@ -505,7 +505,7 @@ public abstract class PageTester {
 	protected Browser getBrowser() throws Exception {
 		BrowserInfo bi = this.conf.getSelenium().getBrowserInfo();
 		Browser browser = new Browser(bi);
-		browser.setClientSize(new Dimension(1280, 1024));
+		browser.setClientSize(new Dimension(1400, 1024));
 		return browser;
 	}
 

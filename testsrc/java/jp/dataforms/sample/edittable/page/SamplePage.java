@@ -1,9 +1,8 @@
-package sample.page;
+package jp.dataforms.sample.edittable.page;
 
-import dataforms.app.base.page.GuestPage;
-import dataforms.dao.Dao;
-import sample.dao.SampleDao;
-
+import jp.dataforms.fw.app.base.page.GuestPage;
+import jp.dataforms.fw.dao.Dao;
+import jp.dataforms.sample.edittable.dao.SampleDao;
 
 /**
  * ページクラス。

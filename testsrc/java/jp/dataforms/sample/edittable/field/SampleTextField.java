@@ -1,8 +1,8 @@
-package sample.field;
+package jp.dataforms.sample.edittable.field;
 
-import dataforms.field.sqltype.VarcharField;
-import dataforms.validator.AsciiValidator;
-import dataforms.validator.MaxLengthValidator;
+import jp.dataforms.fw.field.sqltype.VarcharField;
+import jp.dataforms.fw.validator.AsciiValidator;
+import jp.dataforms.fw.validator.MaxLengthValidator;
 
 
 /**
@@ -39,6 +39,7 @@ public class SampleTextField extends VarcharField {
 		super.onBind();
 		this.addValidator(new MaxLengthValidator(this.getLength()));
 		this.addValidator(new AsciiValidator());
+
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////

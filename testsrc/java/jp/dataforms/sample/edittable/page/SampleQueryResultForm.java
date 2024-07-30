@@ -1,19 +1,20 @@
-package sample.page;
+package jp.dataforms.sample.edittable.page;
 
 import java.util.Map;
 
-import dataforms.controller.Page;
-import dataforms.controller.QueryResultForm;
-import dataforms.field.base.Field.SortOrder;
-import dataforms.field.base.FieldList;
-import dataforms.htmltable.PageScrollHtmlTable;
-import sample.dao.SampleDao;
-import sample.dao.SampleTable;
+import jp.dataforms.fw.controller.Page;
+import jp.dataforms.fw.controller.QueryResultForm;
+import jp.dataforms.fw.field.base.Field.Display;
+import jp.dataforms.fw.field.base.Field.SortOrder;
+import jp.dataforms.fw.field.base.FieldList;
+import jp.dataforms.fw.htmltable.PageScrollHtmlTable;
+import jp.dataforms.sample.edittable.dao.SampleDao;
+import jp.dataforms.sample.edittable.dao.SampleTable;
 
 
 
 /**
- * 問い合わせ結果フォームクラス。
+ * サンプルテーブル編集用問合せ結果フォームクラス。
  */
 public class SampleQueryResultForm extends QueryResultForm {
 	/**
@@ -23,9 +24,14 @@ public class SampleQueryResultForm extends QueryResultForm {
 		SampleDao dao = new SampleDao();
 		this.addPkFieldList(dao.getEditFormKeyList());
 		PageScrollHtmlTable htmltable = new PageScrollHtmlTable(Page.ID_QUERY_RESULT, dao.getListFieldList());
-		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_TEXT).setSortable(true);
-		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_NUMERIC).setSortable(true);
-		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_DATE).setSortable(true, SortOrder.DESC);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_ID).setQueryResultFormDisplay(Display.INPUT_HIDDEN);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_TEXT).setQueryResultFormDisplay(Display.SPAN).setSortable(true);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_NUMERIC).setQueryResultFormDisplay(Display.SPAN).setSortable(true);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_SAMPLE_DATE).setQueryResultFormDisplay(Display.SPAN).setSortable(true, SortOrder.DESC);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_CREATE_USER_ID).setQueryResultFormDisplay(Display.INPUT_HIDDEN);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_CREATE_TIMESTAMP).setQueryResultFormDisplay(Display.INPUT_HIDDEN);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_UPDATE_USER_ID).setQueryResultFormDisplay(Display.INPUT_HIDDEN);
+		htmltable.getFieldList().get(SampleTable.Entity.ID_UPDATE_TIMESTAMP).setQueryResultFormDisplay(Display.INPUT_HIDDEN);
 
 		this.addHtmlTable(htmltable);
 	}
