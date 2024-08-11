@@ -1,6 +1,6 @@
-package sample.field;
+package jp.dataforms.sample.edittable.field;
 
-import dataforms.field.common.EnumOptionSingleSelectField;
+import jp.dataforms.fw.field.common.EnumOptionSingleSelectField;
 
 
 /**

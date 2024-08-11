@@ -98,4 +98,11 @@ public class EditFormTestElement extends FormTestElement {
 		this.getSaveButton().click();
 	}
 
+	/**
+	 * 戻るボタンの処理を行ないます。
+	 */
+	public void back() {
+		this.getBackButton().click();
+	}
+
 }

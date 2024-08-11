@@ -4,12 +4,18 @@
 
 'use strict';
 
+import { JsonResponse } from '../../dataforms/response/JsonResponse.js';
+import { MessagesUtil } from '../../dataforms/util/MessagesUtil.js';
+import { ValidationError } from '../../dataforms/validator/ValidationError.js';
+import { FieldValidator } from '../../dataforms/validator/FieldValidator.js';
+import { EditForm } from '../../dataforms/controller/EditForm.js';
+
 /**
  * @class SampleEditForm
  *
  * @extends EditForm
  */
-class SampleEditForm extends EditForm {
+export class SampleEditForm extends EditForm {
 	/**
 	 * コンストラクタ。
 	 */
@@ -44,8 +50,8 @@ class SampleEditForm extends EditForm {
 			}
 		}
 	}
-
-
+	
+	
 	// 独自のWebメソッドを呼び出す場合は、以下のコードを参考にしてください。
 	/**
 	 * Webメソッドの呼び出しサンプル。

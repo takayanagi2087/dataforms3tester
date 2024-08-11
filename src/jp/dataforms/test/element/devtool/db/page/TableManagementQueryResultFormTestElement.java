@@ -136,6 +136,10 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 	 */
 	public static final String ID_IMPORT_TABLE_BUTTON = "importTableButton";
 
+	/**
+	 * 構造が異なる物を選択ID。
+	 */
+	public static final String ID_SELECT_DIFF_BUTTON = "selectDiffButton";
 	
 	
 	
@@ -248,4 +252,12 @@ public class TableManagementQueryResultFormTestElement extends QueryResultFormTe
 		return this.getButton(ID_IMPORT_TABLE_BUTTON);
 	}
 	
+	/**
+	 * 構造が異なる物を選択ボタンを取得します。
+	 * @return 構造が異なる物を選択ボタン。
+	 */
+	public ButtonTestElement getSelectDiffButton() {
+		return this.getButton(ID_SELECT_DIFF_BUTTON);
+	}
+
 }
