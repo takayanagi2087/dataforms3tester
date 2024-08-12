@@ -376,7 +376,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 		}
 		String imgfile = this.saveScreenShot(browser, "function4.png");
-		ImageEditor.addMarkRect(imgfile, 432, 190, 480, 232);
+		ImageEditor.addMarkRect(imgfile, 368, 200, 414, 236);
 
 		
 	}
