@@ -5,6 +5,13 @@
 	<groupId>jp.dataforms</groupId>
 	<artifactId>dataforms3tester</artifactId>
 	<version>3.0.1-SNAPSHOT</version>
+
+	<repositories>
+		<repository>
+			<id>jp.dataforms</id>
+			<url>https://www.dataforms.jp/mvn/repository</url>
+		</repository>
+	</repositories>
 	<!-- デプロイ先の設定 -->
 	<distributionManagement>
 		<repository>
@@ -59,6 +66,11 @@
 		    <groupId>org.seleniumhq.selenium</groupId>
 		    <artifactId>selenium-edge-driver</artifactId>
 		    <version>4.18.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>jp.dataforms</groupId>
+		    <artifactId>ExcelToXSLFO</artifactId>
+		    <version>1.03</version>
 		</dependency>
 	</dependencies>
 	<build>

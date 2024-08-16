@@ -339,7 +339,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	 */
 	private void testReport(final Browser browser) throws Exception {
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
-		prj.copyWebappSrc("/edittable/page/SamplePage.html", "/edittable/page/SamplePage.html");
+		prj.copyWebappSrc("/edittable/page/SamplePage.html.1", "/edittable/page/SamplePage.html");
 		prj.copyWebappSrc("/edittable/page/SampleEditForm.js.1", "/edittable/page/SampleEditForm.js");
 		prj.copyTestApi();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
@@ -376,7 +376,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 		}
 		String imgfile = this.saveScreenShot(browser, "function4.png");
-		ImageEditor.addMarkRect(imgfile, 368, 200, 414, 236);
+		ImageEditor.addMarkRect(imgfile, 368, 236, 414, 268);
 
 		
 	}
@@ -485,7 +485,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			this.saveScreenShot(browser, "enum6.png");
 		}
 		{
-			prj.copyWebappSrc("/edittable/page/SamplePage.html.1", "/edittable/page/SamplePage.html");
+			prj.copyWebappSrc("/edittable/page/SamplePage.html", "/edittable/page/SamplePage.html");
 			prj.copyJavaSrc("/jp/dataforms/sample/edittable/field/SampleSelectField.java", "/jp/dataforms/sample/edittable/field/SampleSelectField.java");
 			Browser.sleep(this.getConf().getTestApp().getBuildWait());
 			this.reloadWebApp("/sample");
@@ -526,12 +526,10 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		this.sortTest(browser, SAMPLE_JSON);
 		this.testValidator(browser);
 		this.testAutocomplete(browser);
-		this.testReport(browser);
 		this.testEnum(browser);
+		this.testReport(browser);
 		proj.saveSnapshot("step02");
 		proj.exportDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		
-//		browser.close();
-
+		browser.close();
 	}
 }

@@ -56,6 +56,9 @@
 									日付
 								</th>
 								<th>
+									選択
+								</th>
+								<th>
 									操作
 								</th>
 							</tr>
@@ -78,6 +81,9 @@
 								</td>
 								<td>
 									<span id="queryResult[0].sampleDate"></span>
+								</td>
+								<td>
+									<span id="queryResult[0].sampleSelect"></span>
 								</td>
 								<td>
 									<input type="button" id="queryResult[0].viewButton" value="表示">
@@ -110,12 +116,15 @@
 						<div class="label"><label for="sampleDate">日付</label></div>
 						<div class="field"><div class="multiField"><input type="text" id="sampleDate" /></div></div>
 					</div>
+					<div class="fieldDiv">
+						<div class="label"><label for="sampleSelect">サンプル選択肢</label></div>
+						<div class="field"><select id="sampleSelect"></select></div>
+					</div>
 				</div>
 				<input type="button" id="confirmButton" class="largeButton" value="確認"/>
 				<input type="button" id="saveButton" class="largeButton" value="登録"/>
 				<input type="button" id="deleteButton" class="largeButton" value="削除"/>
 				<input type="button" id="backButton" class="largeButton" value="戻る"/>
-				<input type="button" id="printButton" class="largeButton" value="印刷"/>
 			</form>
 
 		</div>
