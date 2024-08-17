@@ -6,6 +6,8 @@ import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.devtool.db.page.TableManagementPage;
 import jp.dataforms.test.element.controller.QueryResultFormTestElement;
+import jp.dataforms.test.element.devtool.db.page.DeveloperEditFormTestElement;
+import jp.dataforms.test.element.devtool.db.page.InitializeDatabasePageTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementPageTestElement;
 import jp.dataforms.test.element.devtool.db.page.TableManagementQueryFormTestElement;
 import jp.dataforms.test.element.field.FieldTestElement;
@@ -43,6 +45,7 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
 		qf.getFunctionSelect().setValue("/dataforms/app");
 		qf.query();
+		Browser.sleep(this.getConf().getTestApp().getLongWait());
 		QueryResultFormTestElement qrf = p.getQueryResultForm();
 		TableTestElement table = qrf.getQueryResultTable();
 		for (int i = 0; i < table.getRowCount(); i++) {
@@ -62,13 +65,42 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		ImageEditor.addMarkRect(imgfile, 392, 602, 594, 642);
 
 		qrf.getButton("exportAsInitialDataButton").click();
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getLongWait());
 		p.getConfirmDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getLongWait());
 		p.getAlertDialog().clickOkButton();
+		this.logout(browser);
 	}
 	
-	
+	/**
+	 * アプリケーションの初期化。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void testInitApp(final  Browser browser) throws Exception {
+		this.cleanDB();
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		proj.setReleaseMode();
+		proj.copyTestApi();
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		browser.open(this.getConf().getTestApp().getApplicationURL());
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
+		DeveloperEditFormTestElement ef = p.getDeveloperEditForm();
+		this.saveScreenShot(browser, "initapp1.png");
+		String password = this.getConf().getTestUser("admin").getPassword();
+		ef.getPassword().setValue(password);
+		ef.getPasswordCheck().setValue(password);
+		ef.confirm();
+		ef.save();
+		p.getAlertDialog().clickOkButton();
+		Browser.sleep(this.getConf().getTestApp().getLongWait());
+		this.login(browser, "admin");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.saveScreenShot(browser, "initapp2.png");
+
+	}
 	
 	
 	@Override
@@ -80,8 +112,14 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.exportInitialData(browser);
+		this.testInitApp(browser);
+		proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		proj.loadSnapshot("step02");
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+
+		browser.close();
+
 //		proj.saveSnapshot("step03");
 //		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-//		browser.close();
 	}
 }

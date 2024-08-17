@@ -2,6 +2,7 @@ package jp.dataforms.test.proj;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.io.Files;
 
+import jp.dataforms.fw.util.ConfUtil;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.JsonUtil;
 import jp.dataforms.fw.util.SequentialProperties;
@@ -20,7 +22,6 @@ import jp.dataforms.test.tester.PageTester.Conf;
 import jp.dataforms.test.tester.PageTester.Project;
 import jp.dataforms.test.xml.ServerXml;
 import jp.dataforms.test.xml.TomcatUsersXml;
-import jp.dataforms.test.xml.WebXml;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -257,6 +258,14 @@ public class WebAppProject {
 		return new File(this.path + "/src/main/webapp/WEB-INF/web.xml");
 	}
 	
+	/**
+	 * プロジェクト中のdataforms.conf.jsoncを取得します。
+	 * @return プロジェクト中のdataforms.conf.jsonc。
+	 */
+	public File getDataformsConfJsonc() {
+		return new File(this.path + "/src/main/webapp/WEB-INF/dataforms.conf.jsonc");
+	}
+	
 
 	/**
 	 * web.xmlを初期状態に戻します。
@@ -277,13 +286,18 @@ public class WebAppProject {
 	 * @throws Exception 例外。
 	 */
 	public void setReleaseMode() throws Exception {
-		WebXml webxml = new WebXml(this.getWebXmlFile());
-		webxml.setContextParam("json-debug", "false");
-		webxml.setContextParam("client-log-level", "info");
-		webxml.setContextParam("disable-developer-tools", "true");
-		webxml.setContextParam("initialize-package-list", "dataforms.app,sample");
-		webxml.setContextParam("initialize-user-level", "admin");
-		webxml.save();
+		File confFile = this.getDataformsConfJsonc();
+		ConfUtil.Conf webAppConf = ConfUtil.Conf.read(confFile.getAbsolutePath());
+		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
+		pkglist.add("jp.dataforms.sample");
+		webAppConf.getInitialize().setDatabasePackageList(pkglist);
+		webAppConf.getInitialize().setUserLevel("admin");
+		webAppConf.getDevelopmentTool().setDisableCodeGenerationTool(true);
+		webAppConf.getApplication().setJsonDebug(false);
+		webAppConf.getApplication().setClientLogLevel("info");
+		String json = JsonUtil.encode(webAppConf, true);
+		logger.debug("json=" + json);
+		FileUtil.writeTextFile(confFile.getAbsolutePath(), json, "utf-8");
 		logger.info("web.xmlをreleaseモードに更新しました。");
 	}
 	
@@ -293,7 +307,7 @@ public class WebAppProject {
 	 * web.xmlを開発モードに設定する。
 	 * @throws Exception 例外。
 	 */
-	public void setDevelopMode() throws Exception {
+/*	public void setDevelopMode() throws Exception {
 		WebXml webxml = new WebXml(this.getWebXmlFile());
 		webxml.setContextParam("json-debug", "true");
 		webxml.setContextParam("client-log-level", "debug");
@@ -303,7 +317,7 @@ public class WebAppProject {
 		webxml.save();
 		logger.info("web.xmlをdevelopモードに更新しました。");
 	}
-
+*/
 	/**
 	 * プロジェクト中のcontext.xmlを取得します。
 	 * @return プロジェクト中のcontext.xml。
