@@ -40,7 +40,7 @@ import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.util.ImageEditor;
 
 /**
- * プロジェクトの初期化のスクリーンショットを取得するツール。
+ * 「2.3.ページのカスタマイズ」のスクリーンショットを取得するツール。
  */
 public class DocScreenShot231Tester extends DocScreenShotTester {
 

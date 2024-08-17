@@ -6,7 +6,7 @@ import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.testitem.TestItem;
 
 /**
- * プロジェクトの初期化のスクリーンショットを取得するツール。
+ * 「2.1.開発環境の構築」その2 データベース初期化のスクリーンショットを取得するツール。
  */
 public class DocScreenShot212Tester extends DocScreenShotTester {
 

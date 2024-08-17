@@ -35,7 +35,7 @@ import jp.dataforms.test.testitem.TestItem;
 import jp.dataforms.test.util.ImageEditor;
 
 /**
- * プロジェクトの初期化のスクリーンショットを取得するツール。
+ * 「2.2.開発ツールでページを作成」のスクリーンショットを取得するツール。
  */
 public class DocScreenShot221Tester extends DocScreenShotTester {
 
