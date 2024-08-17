@@ -113,9 +113,9 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		this.login(browser, "developer");
 		this.exportInitialData(browser);
 		this.testInitApp(browser);
-		proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		proj.loadSnapshot("step02");
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		//proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		//proj.loadSnapshot("step02");
+		//this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 
 		browser.close();
 
