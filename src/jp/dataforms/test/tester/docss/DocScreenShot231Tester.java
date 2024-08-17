@@ -16,6 +16,7 @@ import jp.dataforms.test.element.app.enumtype.page.EnumEditFormTestElement;
 import jp.dataforms.test.element.app.enumtype.page.EnumPageTestElement;
 import jp.dataforms.test.element.app.enumtype.page.EnumQueryFormTestElement;
 import jp.dataforms.test.element.app.enumtype.page.EnumQueryResultFormTestElement;
+import jp.dataforms.test.element.app.menu.page.SiteMapPageTestElement;
 import jp.dataforms.test.element.app.user.page.UserEditFormTestElement;
 import jp.dataforms.test.element.app.user.page.UserManagementPageTestElement;
 import jp.dataforms.test.element.app.user.page.UserQueryFormTestElement;
@@ -58,7 +59,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	 */
 	private void restoreTable(final Browser browser) throws Exception {
 		browser.setSize(new Dimension(1600, 800));
-		this.openPage(browser, TableManagementPage.class);
+		browser.open(TableManagementPage.class);
 		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
 		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
 		qf.getFunctionSelect().setValue("/edittable");
@@ -119,7 +120,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void userMaint(final Browser browser) throws Exception {
-		this.openPage(browser, UserManagementPage.class);
+		browser.open(UserManagementPage.class);
 		UserManagementPageTestElement p = browser.getPageTestElement(UserManagementPageTestElement.class);
 		UserQueryFormTestElement qf = p.getUserQueryForm();
 		qf.query();
@@ -140,7 +141,8 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SamplePage.java", "/jp/dataforms/sample/edittable/page/SamplePage.java");
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		PageTestElement p = this.openPage(browser, SiteMapPage.class);
+		browser.open(SiteMapPage.class);
+		SiteMapPageTestElement p = browser.getPageTestElement(SiteMapPageTestElement.class);
 		browser.setSize(new Dimension(1280, 600));
 		p.clickAllMenuGroup();
 		this.saveScreenShot(browser, "userManagement3.png");
@@ -266,7 +268,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		}
 		{
 			WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
-			this.openPage(browser, WebResourcePage.class);
+			browser.open(WebResourcePage.class);
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
 			WebResourceQueryFormTestElement qf = p.getWebResourceQueryForm();
@@ -388,7 +390,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	 */
 	private void testEnum(final Browser browser) throws Exception {
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
-		this.openPage(browser, EnumPage.class);
+		browser.open(EnumPage.class);
 		{
 			EnumPageTestElement p = browser.getPageTestElement(EnumPageTestElement.class);
 			EnumQueryFormTestElement qf = p.getEnumQueryForm();
@@ -432,7 +434,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		}
 		{
 			browser.setSize(new Dimension(1720, 840));
-			this.openPage(browser, TableGeneratorPage.class);
+			browser.open(TableGeneratorPage.class);
 			TableGeneratorPageTestElement p = browser.getPageTestElement(TableGeneratorPageTestElement.class);
 			TableGeneratorQueryFormTestElement qf = p.getTableGeneratorQueryForm();
 			qf.getFunctionSelect().setValue("/edittable");
@@ -465,7 +467,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		}
 		{
 			browser.setSize(new Dimension(1600, 800));
-			this.openPage(browser, TableManagementPage.class);
+			browser.open(TableManagementPage.class);
 			TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
 			TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
 			qf.getFunctionSelect().setValue("/edittable");

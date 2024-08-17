@@ -15,7 +15,7 @@ public class DaoAndPageGeneratorPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public DaoAndPageGeneratorPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

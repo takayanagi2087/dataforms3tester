@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
+import jp.dataforms.fw.controller.Page;
+import jp.dataforms.fw.menu.FunctionMap;
 import jp.dataforms.test.element.TestElement;
 import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.tester.PageTester.Conf;
@@ -175,6 +177,19 @@ public class Browser {
 
 	/**
 	 * ページを開きます。
+	 * @param pageClass ページクラス。
+	 * @throws Exception 例外。
+	 */
+	public void open(final Class<? extends Page> pageClass) throws Exception {
+		FunctionMap map = FunctionMap.getAppFunctionMap();
+		String uri = map.getWebPath(pageClass.getName());
+		logger.info("uri = " + uri);
+		this.open(Browser.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".html");
+	}
+	
+	
+	/**
+	 * ページを開きます。
 	 * @param <T> ページテスト要素。
 	 * @param url URL。
 	 * @param cls ページテスト要素のクラス。
@@ -188,34 +203,6 @@ public class Browser {
 	/**
 	 * ページを開きます。
 	 * @param url URL。
-	 * @param id ページが表示されたと判定する要素ID。
-	 * @return ページのインスタンス。
-	 */
-	public PageTestElement open(final String url, final String id) {
-		String xpath = "//*[@data-id='" + id + "']";
-		logger.debug("xpath=" + xpath);
-		return this.open(url, By.xpath(xpath));
-	}
-
-
-	/**
-	 * ページを開きます。
-	 * @param <T> ページテスト要素。
-	 * @param url URL。
-	 * @param id ページが表示されたと判定する要素ID
-	 * @param cls ページテスト要素のクラス。
-	 * @return ページテスト要素のインスタンス。
-	 */
-	public <T extends PageTestElement> T open(final String url, final String id, final Class<T> cls) {
-		String xpath = "//*[@data-id='" + id + "']";
-		logger.debug("xpath=" + xpath);
-		return this.open(url, By.xpath(xpath), cls);
-	}
-
-	
-	/**
-	 * ページを開きます。
-	 * @param url URL。
 	 * @param locator ページが表示されたと判定する要素の指定。
 	 * @return ページのインスタンス。
 	 */
@@ -225,7 +212,7 @@ public class Browser {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
-		PageTestElement page = new PageTestElement(this, null, element);
+		PageTestElement page = new PageTestElement(this, element);
 		return page;
 	}
 	
@@ -243,7 +230,7 @@ public class Browser {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		Browser.sleep(Browser.conf.getTestApp().getMiddleWait());
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
-		T ret = newPageTestElement(cls, element);
+		T ret = this.newPageTestElement(cls, element);
 		return ret;
 	}
 
@@ -253,7 +240,7 @@ public class Browser {
 	 */
 	public PageTestElement getPageTestElement() {
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
-		PageTestElement page = new PageTestElement(this, null, element);
+		PageTestElement page = new PageTestElement(this, element);
 		return page;
 	}
 
@@ -452,7 +439,7 @@ public class Browser {
 		By locator = By.xpath("//body");
 		this.waitVisibility(locator);
 		WebElement element = this.webDriver.findElement(By.xpath("//body"));
-		return new PageTestElement(this, null, element);
+		return new PageTestElement(this, element);
 	}
 
 	/**

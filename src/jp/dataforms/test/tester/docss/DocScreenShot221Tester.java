@@ -76,7 +76,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	 */
 	private void editMenu(final Browser browser) throws Exception {
 		this.login(browser, "developer");
-		this.openPage(browser, MenuEditPage.class);
+		browser.open(MenuEditPage.class);
 		MenuEditPageTestElement p = browser.getPageTestElement(MenuEditPageTestElement.class);
 		MenuEditFormTestElement f = p.getMenuEditForm();
 		this.saveScreenShot(browser, "menuedit001.png");
@@ -134,7 +134,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void editTable(final Browser browser) throws Exception {
-		this.openPage(browser, TableGeneratorPage.class);
+		browser.open(TableGeneratorPage.class);
 		browser.setClientSize(new Dimension(1700, 600));
 		TableGeneratorPageTestElement p = browser.getPageTestElement(TableGeneratorPageTestElement.class);
 		TableGeneratorQueryFormTestElement qf = p.getQueryForm(TableGeneratorQueryFormTestElement.class);
@@ -166,7 +166,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void createTable(final Browser browser) throws Exception {
-		this.openPage(browser, TableManagementPage.class);
+		browser.open(TableManagementPage.class);
 		browser.setClientSize(new Dimension(1600, 600));
 		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
 		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
@@ -188,7 +188,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void createDaoAndPage(final Browser browser) throws Exception {
-		this.openPage(browser, DaoAndPageGeneratorPage.class);
+		browser.open(DaoAndPageGeneratorPage.class);
 		browser.setClientSize(new Dimension(1600, 600));
 		DaoAndPageGeneratorPageTestElement p = browser.getPageTestElement(DaoAndPageGeneratorPageTestElement.class);
 		PageGeneratorQueryFormTestElement qf = p.getPageGeneratorQueryForm();
@@ -218,7 +218,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void createHtmlPage(final Browser browser) throws Exception {
-		this.openPage(browser, WebResourcePage.class);
+		browser.open(WebResourcePage.class);
 		browser.setClientSize(new Dimension(1600, 600));
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
 		WebResourceQueryFormTestElement qf = p.getWebResourceQueryForm();
@@ -241,7 +241,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		frm.getCloseButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
-		this.openPage(browser, SiteMapPage.class);
+		browser.open(SiteMapPage.class);
 		img = this.saveScreenShot(browser, "samplepage1.png");
 		ImageEditor.addMarkRect(img, 240, 94, 346, 114);
 	}

@@ -15,7 +15,7 @@ public class UserManagementPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public UserManagementPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

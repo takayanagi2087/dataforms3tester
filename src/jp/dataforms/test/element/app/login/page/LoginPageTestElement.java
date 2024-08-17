@@ -15,7 +15,7 @@ public class LoginPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public LoginPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

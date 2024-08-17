@@ -15,7 +15,7 @@ public class TestSrcGeneratorPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public TestSrcGeneratorPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

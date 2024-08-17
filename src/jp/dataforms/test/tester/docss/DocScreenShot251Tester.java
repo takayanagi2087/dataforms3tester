@@ -17,20 +17,20 @@ import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.util.ImageEditor;
 
 /**
- * 「2.4.アプリケーションのデプロイ」のスクリーンショットを取得するツール。
+ * 「2.5.問合せクラスの作成」のスクリーンショットを取得するツール。
  */
-public class DocScreenShot241Tester extends DocScreenShotTester {
+public class DocScreenShot251Tester extends DocScreenShotTester {
 	
 	/**
 	 * Logger.
 	 */
-	private static Logger logger = LogManager.getLogger(DocScreenShot241Tester.class);
+	private static Logger logger = LogManager.getLogger(DocScreenShot251Tester.class);
 
 	/**
 	 * コンストラクタ。
 	 */
-	public DocScreenShot241Tester() {
-		super("2.4.deploy");
+	public DocScreenShot251Tester() {
+		super("2.5.query");
 	}
 	
 	/**
@@ -113,13 +113,7 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		this.login(browser, "developer");
 		this.exportInitialData(browser);
 		this.testInitApp(browser);
-		//proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		//proj.loadSnapshot("step02");
-		//this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 
 		browser.close();
-
-//		proj.saveSnapshot("step03");
-//		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
 	}
 }

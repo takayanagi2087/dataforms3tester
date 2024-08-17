@@ -84,7 +84,7 @@ public class DaoAndPageGeneratorPageTester extends PageTester {
 	public void exec() throws Exception {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
-		this.openPage(browser);
+		browser.open(getPageClass());
 		String pageName = browser.getTitle();
 		List<TestItem> resultList = new ArrayList<TestItem>();
 		

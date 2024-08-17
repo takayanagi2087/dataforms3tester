@@ -15,7 +15,7 @@ public class MenuEditPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public MenuEditPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

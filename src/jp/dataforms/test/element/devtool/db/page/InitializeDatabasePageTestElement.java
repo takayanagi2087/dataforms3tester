@@ -15,7 +15,7 @@ public class InitializeDatabasePageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public InitializeDatabasePageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

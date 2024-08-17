@@ -15,7 +15,7 @@ public class TableGeneratorPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public TableGeneratorPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

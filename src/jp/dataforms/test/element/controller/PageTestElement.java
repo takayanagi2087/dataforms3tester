@@ -19,7 +19,7 @@ import jp.dataforms.test.selenium.Browser;
  */
 public class PageTestElement extends DataFormsTestElement {
 	/**
-	 * ログインボタンのID。
+	 * ログアウトボタンのID。
 	 */
 	private static final String ID_LOGOUT_BUTTON = "logoutButton";
 	
@@ -28,14 +28,14 @@ public class PageTestElement extends DataFormsTestElement {
 	 */
 	private static Logger logger = LogManager.getLogger(PageTestElement.class);
 
+	
 	/**
 	 * コンストラクタ。
 	 * @param browser ブラウザ。
-	 * @param parent 親コンポーネント。
 	 * @param element 要素。
 	 */
-	public PageTestElement(final Browser browser, final TestElement parent, final WebElement element) {
-		super(browser, parent, element);
+	public PageTestElement(final Browser browser, final WebElement element) {
+		super(browser, null, element); // ページなので親要素無
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class InitDevelopmentToolPageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public InitDevelopmentToolPageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**

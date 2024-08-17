@@ -17,7 +17,6 @@ import org.openqa.selenium.Dimension;
 import jp.dataforms.fw.controller.Page;
 import jp.dataforms.fw.controller.WebComponent;
 import jp.dataforms.fw.devtool.javasrc.JavaSrcGenerator.Template;
-import jp.dataforms.fw.menu.FunctionMap;
 import jp.dataforms.fw.util.ClassFinder;
 import jp.dataforms.fw.util.FileUtil;
 import jp.dataforms.fw.util.JsonUtil;
@@ -25,7 +24,6 @@ import jp.dataforms.fw.util.WebClient;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
 import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
-import jp.dataforms.test.element.controller.PageTestElement;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.selenium.BrowserInfo;
 import jp.dataforms.test.testitem.TestItem;
@@ -300,6 +298,7 @@ public abstract class PageTester {
 	/**
 	 * テスト対象のページクラス。
 	 */
+	@Getter
 	private Class<? extends Page> pageClass = null;
 	
 	/**
@@ -679,32 +678,6 @@ public abstract class PageTester {
 		Browser.setConf(this.conf);
 		TestItem.setConf(this.conf);
 	}
-	
-	/**
-	 * ページをオープンします。
-	 * @param browser ブラウザ。
-	 * @param pageClass ページクラス。
-	 * @return オープンしたページ要素。
-	 * @throws Exception 例外。
-	 */
-	protected PageTestElement openPage(final Browser browser, final Class<? extends Page> pageClass) throws Exception {
-		FunctionMap map = FunctionMap.getAppFunctionMap();
-		String uri = map.getWebPath(pageClass.getName());
-		logger.info("uri = " + uri);
-		PageTestElement pt = (PageTestElement) browser.open(this.conf.getTestApp().getApplicationURL() + uri.substring(1) + ".html");
-		return pt;
-	}
-
-	/**
-	 * ページをオープンします。
-	 * @param browser ブラウザ。
-	 * @return オープンしたページ要素。
-	 * @throws Exception 例外。
-	 */
-	protected PageTestElement openPage(final Browser browser) throws Exception {
-		return this.openPage(browser, this.pageClass);
-	}
-
 	
 	/**
 	 * 指定したWebアプリケーションをリロードする。

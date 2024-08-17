@@ -72,7 +72,7 @@ public class InitializeDatabasePageTester extends PageTester {
 		proj.copyUserInitialData();
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
-		this.openPage(browser);
+		browser.open(getPageClass());
 		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
 		list.addAll(this.testResponsive(browser, InitializeDatabasePage.class, DeveloperEditForm.class));

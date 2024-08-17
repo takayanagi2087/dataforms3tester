@@ -53,7 +53,7 @@ public class MenuEditPageTester extends PageTester {
 		TestItem.setTestResult(this.getConf().getTestApp().getTestResult());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
-		this.openPage(browser);
+		browser.open(getPageClass());
 		String pageName = browser.getTitle();
 		List<TestItem> list = new ArrayList<TestItem>();
 		//list.addAll(this.testResponsive(browser, MenuEditPage.class, MenuEditForm.class));

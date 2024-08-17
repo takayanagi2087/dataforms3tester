@@ -15,7 +15,7 @@ public class WebResourcePageTestElement extends PageTestElement {
 	 * @param element WebElement。
 	 */
 	public WebResourcePageTestElement(final Browser browser, final WebElement element) {
-		super(browser, null, element);
+		super(browser, element);
 	}
 	
 	/**
