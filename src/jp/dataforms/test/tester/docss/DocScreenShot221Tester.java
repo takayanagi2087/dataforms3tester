@@ -1,5 +1,7 @@
 package jp.dataforms.test.tester.docss;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.app.menu.page.SiteMapPage;
@@ -38,6 +40,11 @@ import jp.dataforms.test.util.ImageEditor;
  * 「2.2.開発ツールでページを作成」のスクリーンショットを取得するツール。
  */
 public class DocScreenShot221Tester extends DocScreenShotTester {
+
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LogManager.getLogger(DocScreenShot212Tester.class);
 
 	/**
 	 * コンストラクタ。
@@ -87,8 +94,8 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		table.setValue(0, "defaultName", "Edit table");
 		table.setValue(0, "jaName", "テーブル編集");
 		String img = this.saveScreenShot(browser, "menuedit002.png");
-		ImageEditor.addMarkRect(img, 220, 100, 940, 138);
-		ImageEditor.addMarkRect(img, 100, 250, 869, 286);
+		ImageEditor.addMarkRect(img, 240, 100, 1380, 138);
+		ImageEditor.addMarkRect(img, 240, 250, 1090, 286);
 		f.getConfirmButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		f.getSaveButton().click();
@@ -243,7 +250,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		browser.open(SiteMapPage.class);
 		img = this.saveScreenShot(browser, "samplepage1.png");
-		ImageEditor.addMarkRect(img, 240, 94, 346, 114);
+		ImageEditor.addMarkRect(img, 240, 94, 384, 114);
 	}
 	
 	/**
@@ -298,5 +305,6 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		proj.saveSnapshot("step01");
 		proj.exportDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
 		browser.close();
+		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

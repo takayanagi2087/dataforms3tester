@@ -1,5 +1,8 @@
 package jp.dataforms.test.tester.docss;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolFormTestElement;
 import jp.dataforms.test.element.devtool.init.page.InitDevelopmentToolPageTestElement;
 import jp.dataforms.test.selenium.Browser;
@@ -10,6 +13,11 @@ import jp.dataforms.test.testitem.TestItem;
  */
 public class DocScreenShot211Tester extends DocScreenShotTester {
 
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LogManager.getLogger(DocScreenShot211Tester.class);
+	
 	/**
 	 * コンストラクタ。
 	 */
@@ -31,5 +39,6 @@ public class DocScreenShot211Tester extends DocScreenShotTester {
 		Browser.sleep(TestItem.getConf().getTestApp().getMiddleWait());
 		this.saveScreenShot(browser, "initproj002.png");
 		browser.close();
+		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

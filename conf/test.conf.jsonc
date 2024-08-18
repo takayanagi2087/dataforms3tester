@@ -1,7 +1,7 @@
 {
 	// WebDriver設定ファイル。
 	"selenium": {
-		// テスト対象のブラウザを指定してください。
+		// テスト対象のブラウザを指定してください
 		"driver": "chromedriver"	// Google Chrome
 //		"driver": "geckodriver"		// Firefox
 //		"driver": "msedgedriver"	// Microsoft Edge

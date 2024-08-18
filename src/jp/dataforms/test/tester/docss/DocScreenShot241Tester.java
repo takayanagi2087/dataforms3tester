@@ -61,8 +61,8 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		}
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		String imgfile = this.saveScreenShot(browser, "initialdata1.png");
-		ImageEditor.addMarkRect(imgfile, 270, 440, 300, 496);
-		ImageEditor.addMarkRect(imgfile, 392, 602, 594, 642);
+		ImageEditor.addMarkRect(imgfile, 265, 425, 300, 486);
+		ImageEditor.addMarkRect(imgfile, 389, 576, 585, 616);
 
 		qrf.getButton("exportAsInitialDataButton").click();
 		Browser.sleep(this.getConf().getTestApp().getLongWait());
@@ -121,5 +121,6 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 
 //		proj.saveSnapshot("step03");
 //		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

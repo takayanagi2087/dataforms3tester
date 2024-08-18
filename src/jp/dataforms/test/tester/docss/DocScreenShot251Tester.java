@@ -4,17 +4,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
-import jp.dataforms.fw.devtool.db.page.TableManagementPage;
-import jp.dataforms.test.element.controller.QueryResultFormTestElement;
-import jp.dataforms.test.element.devtool.db.page.DeveloperEditFormTestElement;
-import jp.dataforms.test.element.devtool.db.page.InitializeDatabasePageTestElement;
-import jp.dataforms.test.element.devtool.db.page.TableManagementPageTestElement;
-import jp.dataforms.test.element.devtool.db.page.TableManagementQueryFormTestElement;
-import jp.dataforms.test.element.field.FieldTestElement;
+import jp.dataforms.fw.devtool.query.page.QueryExecutorPage;
+import jp.dataforms.fw.devtool.query.page.QueryGeneratorPage;
+import jp.dataforms.test.element.devtool.query.page.QueryExecutorPageTestElement;
+import jp.dataforms.test.element.devtool.query.page.QueryExecutorQueryFormTestElement;
+import jp.dataforms.test.element.devtool.query.page.QueryGeneratorEditFormTestElement;
+import jp.dataforms.test.element.devtool.query.page.QueryGeneratorPageTestElement;
+import jp.dataforms.test.element.devtool.query.page.QueryGeneratorQueryFormTestElement;
 import jp.dataforms.test.element.htmltable.TableTestElement;
 import jp.dataforms.test.proj.WebAppProject;
 import jp.dataforms.test.selenium.Browser;
-import jp.dataforms.test.util.ImageEditor;
 
 /**
  * 「2.5.問合せクラスの作成」のスクリーンショットを取得するツール。
@@ -34,75 +33,135 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 	}
 	
 	/**
-	 * テーブルを作成します。
+	 * 問合せを作成します。
 	 * @param browser ブラウザ。
 	 * @throws Exception 例外。
 	 */
-	private void exportInitialData(final Browser browser) throws Exception {
-		browser.open(TableManagementPage.class);
+	private void createQuer(final Browser browser) throws Exception {
+		browser.open(QueryGeneratorPage.class);
 		browser.setClientSize(new Dimension(1600, 800));
-		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
-		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
-		qf.getFunctionSelect().setValue("/dataforms/app");
-		qf.query();
-		Browser.sleep(this.getConf().getTestApp().getLongWait());
-		QueryResultFormTestElement qrf = p.getQueryResultForm();
-		TableTestElement table = qrf.getQueryResultTable();
-		for (int i = 0; i < table.getRowCount(); i++) {
-			FieldTestElement ck = table.getField(i, "checkedClass");
-			String v = ck.getValue();
-			logger.debug("v=" + v);
-			if ("jp.dataforms.fw.app.enumtype.dao.EnumNameTable".equals(v)) {
-				ck.click();
-			}
-			if ("jp.dataforms.fw.app.enumtype.dao.EnumTable".equals(v)) {
-				ck.click();
-			}
-		}
+		QueryGeneratorPageTestElement p = browser.getPageTestElement(QueryGeneratorPageTestElement.class);
+		QueryGeneratorQueryFormTestElement qf = p.getQueryGeneratorQueryForm();
+		qf.newData();
+		QueryGeneratorEditFormTestElement ef = p.getQueryGeneratorEditForm();
+		ef.getFunctionSelect().setValue("/edittable");
+		ef.getQueryClassName().setValue("Enum01Query");
+		ef.getQueryComment().setValue("単純な結合問合わせ");
+		ef.getMainTableFunctionSelect().setValue("/dataforms/app");
+		ef.getMainTableClassName().setValue("EnumTable");
+		ef.getQueryClassName().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
-		String imgfile = this.saveScreenShot(browser, "initialdata1.png");
-		ImageEditor.addMarkRect(imgfile, 270, 440, 300, 496);
-		ImageEditor.addMarkRect(imgfile, 392, 602, 594, 642);
-
-		qrf.getButton("exportAsInitialDataButton").click();
-		Browser.sleep(this.getConf().getTestApp().getLongWait());
-		p.getConfirmDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getLongWait());
-		p.getAlertDialog().clickOkButton();
-		this.logout(browser);
-	}
-	
-	/**
-	 * アプリケーションの初期化。
-	 * @param browser ブラウザ。
-	 * @throws Exception 例外。
-	 */
-	private void testInitApp(final  Browser browser) throws Exception {
-		this.cleanDB();
-		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-		proj.setReleaseMode();
-		proj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
-		browser.open(this.getConf().getTestApp().getApplicationURL());
+		TableTestElement t = ef.getJoinTableList();
+		t.addRow();
+		t.getField(0, "functionSelect").setValue("/dataforms/app");
+		t.getField(0, "tableClassName").setValue("EnumNameTable");
+		ef.getQueryClassName().click();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
+		ef.getButton("selectAll").click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
-		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
-		DeveloperEditFormTestElement ef = p.getDeveloperEditForm();
-		this.saveScreenShot(browser, "initapp1.png");
-		String password = this.getConf().getTestUser("admin").getPassword();
-		ef.getPassword().setValue(password);
-		ef.getPasswordCheck().setValue(password);
+		this.saveScreenShot(browser, "simpleJoin.png");
 		ef.confirm();
 		ef.save();
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getLongWait());
-		this.login(browser, "admin");
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
-		this.saveScreenShot(browser, "initapp2.png");
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+	}
 
+	/**
+	 * 問合せの実行テスト。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void executeQuer(final Browser browser) throws Exception {
+		browser.open(QueryExecutorPage.class);
+		QueryExecutorPageTestElement p = browser.getPageTestElement(QueryExecutorPageTestElement.class);
+		QueryExecutorQueryFormTestElement qf = p.getQueryExecutorQueryForm();
+		qf.getFunctionSelect().setValue("/edittable");
+		qf.getQueryClassName().setValue("Enum01Query");
+		qf.getSql().click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		qf.query();
+		browser.maximize();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.saveScreenShot(browser, "queryExec.png");
 	}
 	
 	
+	/**
+	 * 問合せ2を作成します。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void createQuer2(final Browser browser) throws Exception {
+		browser.open(QueryGeneratorPage.class);
+		browser.setClientSize(new Dimension(1600, 800));
+		QueryGeneratorPageTestElement p = browser.getPageTestElement(QueryGeneratorPageTestElement.class);
+		QueryGeneratorQueryFormTestElement qf = p.getQueryGeneratorQueryForm();
+		qf.newData();
+		QueryGeneratorEditFormTestElement ef = p.getQueryGeneratorEditForm();
+		ef.getFunctionSelect().setValue("/edittable");
+		ef.getQueryClassName().setValue("Enum02Query");
+		ef.getQueryComment().setValue("複雑な結合問合わせ");
+		ef.getMainTableFunctionSelect().setValue("/dataforms/app");
+		ef.getMainTableClassName().setValue("EnumTable");
+		ef.getQueryClassName().click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		TableTestElement t = ef.getJoinTableList();
+		t.addRow();
+		t.addRow();
+		t.addRow();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		t.setValue(0, "functionSelect", "/dataforms/app");
+		t.setValue(0, "tableClassName", "EnumTable");
+		t.setValue(0, "aliasName", "p");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		t.setValue(1, "functionSelect", "/dataforms/app");
+		t.setValue(1, "tableClassName", "EnumNameTable");
+		t.setValue(1, "aliasName", "nm");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		t.setValue(2, "functionSelect", "/dataforms/app");
+		t.setValue(2, "tableClassName", "EnumNameTable");
+		t.setValue(2, "aliasName", "pnm");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		ef.getQueryClassName().click();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
+		ef.getButton("selectAll").click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		
+		TableTestElement ft = ef.getSelectFieldList();
+		ft.setValue(13, "sel", "1");
+		ft.setValue(13, "alias", "parentCode");
+		ft.setValue(22, "sel", "1");
+		ft.setValue(29, "sel", "1");
+		ft.setValue(29, "alias", "parentName");
+		this.saveScreenShot(browser, "complexquery.png");
+		ef.confirm();
+		ef.save();
+		p.getAlertDialog().clickOkButton();
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+	}
+	
+	/**
+	 * 問合せの実行テスト。
+	 * @param browser ブラウザ。
+	 * @throws Exception 例外。
+	 */
+	private void executeQuer2(final Browser browser) throws Exception {
+		browser.open(QueryExecutorPage.class);
+		QueryExecutorPageTestElement p = browser.getPageTestElement(QueryExecutorPageTestElement.class);
+		QueryExecutorQueryFormTestElement qf = p.getQueryExecutorQueryForm();
+		qf.getFunctionSelect().setValue("/edittable");
+		qf.getQueryClassName().setValue("Enum02Query");
+		qf.getSql().click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		qf.query();
+		browser.maximize();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		this.saveScreenShot(browser, "queryExec2.png");
+	}
+	
+
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
@@ -111,9 +170,14 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
-		this.exportInitialData(browser);
-		this.testInitApp(browser);
-
+		this.createQuer(browser);
+		this.executeQuer(browser);
+		this.createQuer2(browser);
+		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/Enum02Query.java", "/jp/dataforms/sample/edittable/dao/Enum02Query.java");
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.executeQuer2(browser);
 		browser.close();
+		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

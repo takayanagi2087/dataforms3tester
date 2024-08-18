@@ -3,6 +3,8 @@ package jp.dataforms.test.tester.docss;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.app.enumtype.page.EnumPage;
@@ -44,6 +46,10 @@ import jp.dataforms.test.util.ImageEditor;
  * 「2.3.ページのカスタマイズ」のスクリーンショットを取得するツール。
  */
 public class DocScreenShot231Tester extends DocScreenShotTester {
+	/**
+	 * Logger.
+	 */
+	private static Logger logger = LogManager.getLogger(DocScreenShot212Tester.class);
 
 	/**
 	 * コンストラクタ。
@@ -71,6 +77,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		qrf.getUpdateTableButton().click();
 		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		p.getConfirmDialog().clickOkButton();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 	}
 	
 
@@ -99,16 +106,16 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		table.setValue(0, "userAttributeType", "userLevel");
 		table.setValue(0, "userAttributeValue", user);
 		table.getField(0, "userAttributeValue").click();
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		if (screenShot) {
 			this.saveScreenShot(browser, "userManagement2.png", false);
 		}
 		table.getField(0, "userAttributeValue").click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		ef.confirm();
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		ef.save();
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		p.getAlertDialog().clickOkButton();
 	}
 
@@ -191,7 +198,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		qf.query();
 		{
 			String imgfile = this.saveScreenShot(browser, "columnSort1.png");
-			ImageEditor.addMarkRect(imgfile, 266, 334, 480, 366);
+			ImageEditor.addMarkRect(imgfile, 266, 334, 448, 366);
 		}
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleQueryResultForm.java", "/jp/dataforms/sample/edittable/page/SampleQueryResultForm.java");
@@ -202,7 +209,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		{
 			String imgfile = this.saveScreenShot(browser, "columnSort2.png");
-			ImageEditor.addMarkRect(imgfile, 266, 334, 480, 366);
+			ImageEditor.addMarkRect(imgfile, 266, 334, 448, 366);
 		}
 	}
 	
@@ -280,13 +287,13 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			browser.setSize(new Dimension(1280, 900));
 			String imgfile = this.saveScreenShot(browser, "validator5.png");
-			ImageEditor.addMarkRect(imgfile, 270, 430, 620, 460);
+			ImageEditor.addMarkRect(imgfile, 264, 430, 552, 460);
 			//
 			WebResourceQueryResultFormTestElement qrf = p.getWebResourceQueryResultForm();
 			TableTestElement table = qrf.getQueryResultTable();
 			table.getField(0, "className").click();
 			imgfile = this.saveScreenShot(browser, "validator6.png");
-			ImageEditor.addMarkRect(imgfile, 980, 410, 1024, 442);
+			ImageEditor.addMarkRect(imgfile, 988, 484, 1032, 518);
 			//
 			p.getWebResourceDialog().getWebResourceForm().getGenerateJavascriptButton().click();
 			p.getAlertDialog().clickOkButton();
@@ -331,6 +338,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		ImageEditor.addMarkRect(imgfile, 442, 98, 1240, 182);
 		ef.getField("sampleText").setValue("aaa");
 		ef.getField("sampleDate").click();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		this.saveScreenShot(browser, "reference1.png");
 	}
 
@@ -464,6 +472,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getBuildWait());
 			this.reloadWebApp("/sample");
 			qf.query();
+			Browser.sleep(this.getConf().getTestApp().getLongWait());
 		}
 		{
 			browser.setSize(new Dimension(1600, 800));
@@ -503,6 +512,8 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			ef.getField("sampleNumeric").setValue("1111.11");
 			ef.getField("sampleDate").setValue("2024/08/11");
 			ef.getField("sampleSelect").setValue("1");
+			ef.getField("sampleSelect").click();
+			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			this.saveScreenShot(browser, "enum7.png");
 			ef.confirm();
 			ef.save();
@@ -533,5 +544,6 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		proj.saveSnapshot("step02");
 		proj.exportDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
 		browser.close();
+		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

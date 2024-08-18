@@ -815,6 +815,11 @@ public abstract class PageTester {
 		 * テスタークラス。
 		 */
 		private String testerClass = null;
+		
+		/**
+		 * Headlessオプション。
+		 */
+		private boolean headless = false;
 	}
 	
 	/**
@@ -827,6 +832,8 @@ public abstract class PageTester {
 		for (String arg: args) {
 			if ("-r".equals(arg)) {
 				cmdArg.setRegression(true);
+			} else if ("-h".equals(arg)) {
+				cmdArg.headless = true;
 			} else {
 				if (cmdArg.getConf() == null) {
 					cmdArg.setConf(arg);
@@ -857,7 +864,13 @@ public abstract class PageTester {
 				PageTester exec = testerClass.getConstructor().newInstance();
 				exec.regression = cmdArg.isRegression();
 				exec.readConf(cmdArg.getConf());
+				Browser.setHeadless(exec.getConf().getSelenium().getHeadless());
+				if (cmdArg.isHeadless()) {
+					Browser.setHeadless(cmdArg.isHeadless());
+				}
+				logger.info(cmdArg.getTesterClass() + " 開始");
 				exec.exec();
+				logger.info(cmdArg.getTesterClass() + " 終了");
 			} else {
 				System.out.println("使い方:java -jar df3tester.jar [option] <ConfFile> <PageTesterClass>\n");
 				System.out.println("[option] \n");
