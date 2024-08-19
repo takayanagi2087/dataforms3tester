@@ -1,10 +1,11 @@
-package sample.dao;
+package jp.dataforms.sample.edittable.dao;
 
-import java.util.List;
 import java.util.ArrayList;
-import dataforms.dao.ForeignKey;
-import dataforms.dao.Table;
-import dataforms.dao.TableRelation;
+import java.util.List;
+
+import jp.dataforms.fw.dao.ForeignKey;
+import jp.dataforms.fw.dao.Table;
+import jp.dataforms.fw.dao.TableRelation;
 
 /**
  * JoinTestTableの関係を定義するクラスです。

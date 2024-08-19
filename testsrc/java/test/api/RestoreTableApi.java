@@ -12,7 +12,7 @@ import jp.dataforms.fw.response.JsonResponse;
 import jp.dataforms.fw.response.Response;
 
 /**
- * バックアップAPI。
+ * リストアAPI。
  *
  */
 public class RestoreTableApi extends TestWebApi {
