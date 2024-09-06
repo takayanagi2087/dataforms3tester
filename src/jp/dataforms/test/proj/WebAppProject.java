@@ -282,7 +282,7 @@ public class WebAppProject {
 */	
 
 	/**
-	 * web.xmlをリリースモードに設定する。
+	 * dataforms.conf.jsoncをリリースモードに設定する。
 	 * @throws Exception 例外。
 	 */
 	public void setReleaseMode() throws Exception {
@@ -298,26 +298,27 @@ public class WebAppProject {
 		String json = JsonUtil.encode(webAppConf, true);
 		logger.debug("json=" + json);
 		FileUtil.writeTextFile(confFile.getAbsolutePath(), json, "utf-8");
-		logger.info("web.xmlをreleaseモードに更新しました。");
+		logger.info("dataforms.conf.jsoncをreleaseモードに更新しました。");
 	}
 	
 
 	/**
-	 * 
-	 * web.xmlを開発モードに設定する。
+	 * dataforms.conf.jsoncを開発モードに設定する。
 	 * @throws Exception 例外。
 	 */
-/*	public void setDevelopMode() throws Exception {
-		WebXml webxml = new WebXml(this.getWebXmlFile());
-		webxml.setContextParam("json-debug", "true");
-		webxml.setContextParam("client-log-level", "debug");
-		webxml.setContextParam("disable-developer-tools", "false");
-		webxml.setContextParam("initialize-package-list", "dataforms.app,sample");
-		webxml.setContextParam("initialize-user-level", "developer");
-		webxml.save();
-		logger.info("web.xmlをdevelopモードに更新しました。");
+	public void setDevelopMode() throws Exception {
+		File confFile = this.getDataformsConfJsonc();
+		ConfUtil.Conf webAppConf = ConfUtil.Conf.read(confFile.getAbsolutePath());
+		webAppConf.getInitialize().setUserLevel("developer");
+		webAppConf.getDevelopmentTool().setDisableCodeGenerationTool(false);
+		webAppConf.getApplication().setJsonDebug(true);
+		webAppConf.getApplication().setClientLogLevel("debug");
+		String json = JsonUtil.encode(webAppConf, true);
+		logger.debug("json=" + json);
+		FileUtil.writeTextFile(confFile.getAbsolutePath(), json, "utf-8");
+		logger.info("dataforms.conf.jsoncをdevelopモードに更新しました。");
 	}
-*/
+
 	/**
 	 * プロジェクト中のcontext.xmlを取得します。
 	 * @return プロジェクト中のcontext.xml。

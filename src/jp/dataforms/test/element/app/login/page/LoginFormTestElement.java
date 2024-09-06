@@ -18,6 +18,10 @@ public class LoginFormTestElement extends FormTestElement {
 	 */
 	public static final String ID = "loginForm";
 	/**
+	 * 次へボタンのID。
+	 */
+	public static final String ID_NEXT_BUTTON = "nextButton";
+	/**
 	 * ログインボタンのID。
 	 */
 	public static final String ID_LOGIN_BUTTON = "loginButton";
@@ -38,6 +42,14 @@ public class LoginFormTestElement extends FormTestElement {
 	 */
 	public LoginFormTestElement(final Browser browser, final TestElement parent, final WebElement webElement) {
 		super(browser, parent, webElement);
+	}
+	
+	/**
+	 * 次へボタンを取得します。
+	 * @return 次へボタンのテスト要素。
+	 */
+	public ButtonTestElement getNextButton() {
+		return this.getButton(ID_NEXT_BUTTON);
 	}
 	
 	/**

@@ -1,13 +1,13 @@
-package sample.page;
+package jp.dataforms.sample.edittable.page;
 
 import java.util.Map;
 
-import dataforms.controller.Page;
-import dataforms.controller.QueryResultForm;
-import dataforms.field.base.FieldList;
-import dataforms.htmltable.PageScrollHtmlTable;
-import sample.dao.Sample2Dao;
-import sample.dao.SampleTable;
+import jp.dataforms.fw.controller.Page;
+import jp.dataforms.fw.controller.QueryResultForm;
+import jp.dataforms.fw.field.base.FieldList;
+import jp.dataforms.fw.htmltable.PageScrollHtmlTable;
+import jp.dataforms.sample.edittable.dao.Sample2Dao;
+import jp.dataforms.sample.edittable.dao.SampleTable;
 
 
 

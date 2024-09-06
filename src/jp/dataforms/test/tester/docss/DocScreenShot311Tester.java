@@ -258,7 +258,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		this.dropTables("join_test");
 		proj.loadSnapshot("step02");
-		proj.copyWebappSrc("/WEB-INF/dataforms.conf.jsonc", "/WEB-INF/dataforms.conf.jsonc");
+		proj.setDevelopMode();;
 		proj.copyTestApi();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
@@ -274,6 +274,9 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		this.createSqlfuncQuery(browser);
 		
 		browser.close();
+		proj.saveSnapshot("step03");
+		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+
 		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

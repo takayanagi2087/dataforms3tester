@@ -762,7 +762,7 @@ public abstract class PageTester {
 		this.executeUpdateSql("alter table enum drop constraint fk_enum_table01");
 		this.executeUpdateSql("alter table user_attribute drop constraint fk_user_attribute_table01");
 		this.executeUpdateSql("alter table web_authn drop constraint fk_web_authn_table01");
-		this.dropTables("web_authn", "user_attribute", "user_info", "enum_name", "enum");
+		this.dropTables("recovery_code", "web_authn", "user_attribute", "user_info", "enum_name", "enum");
 	}
 
 	
@@ -777,6 +777,8 @@ public abstract class PageTester {
 		LoginPageTestElement page = browser.open(appUrl, LoginPageTestElement.class);
 		LoginFormTestElement form = page.getLoginForm();
 		form.getLoginIdField().setValue(loginId);
+		form.getNextButton().click();
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		form.getPasswordField().setValue(password);
 		form.getLoginButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
