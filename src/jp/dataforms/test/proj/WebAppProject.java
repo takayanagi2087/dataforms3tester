@@ -309,6 +309,8 @@ public class WebAppProject {
 	public void setDevelopMode() throws Exception {
 		File confFile = this.getDataformsConfJsonc();
 		ConfUtil.Conf webAppConf = ConfUtil.Conf.read(confFile.getAbsolutePath());
+		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
+		pkglist.add("jp.dataforms.sample");
 		webAppConf.getInitialize().setUserLevel("developer");
 		webAppConf.getDevelopmentTool().setDisableCodeGenerationTool(false);
 		webAppConf.getApplication().setJsonDebug(true);

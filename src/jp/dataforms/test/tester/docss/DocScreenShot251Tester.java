@@ -167,6 +167,7 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
 		proj.loadSnapshot("step02");
+		proj.setDevelopMode();
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");

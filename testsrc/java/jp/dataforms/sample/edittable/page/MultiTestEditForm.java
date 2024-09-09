@@ -1,14 +1,15 @@
-package sample.page;
+package jp.dataforms.sample.edittable.page;
 
 import java.util.Map;
 
-import dataforms.controller.EditForm;
-import dataforms.dao.Table;
-import dataforms.validator.RequiredValidator;
-import sample.dao.MultiTestDao;
+import jp.dataforms.fw.controller.EditForm;
+import jp.dataforms.fw.dao.Table;
+import jp.dataforms.fw.field.base.Field.Display;
+import jp.dataforms.fw.validator.RequiredValidator;
+import jp.dataforms.sample.edittable.dao.MultiTestDao;
 
 /**
- * 編集フォームクラス。
+ * 複数レコード編集ページ用編集フォームクラス。
  */
 public class MultiTestEditForm extends EditForm {
 	/**
@@ -16,8 +17,19 @@ public class MultiTestEditForm extends EditForm {
 	 */
 	public MultiTestEditForm() {
 		MultiTestDao dao = new MultiTestDao();
-		dao.getCode1Field().addValidator(new RequiredValidator());
-		dao.getMultiTestTable().getCode2Field().addValidator(new RequiredValidator());
+		// 各フィールドの設定処理。
+		dao.getCode1Field().setEditFormDisplay(Display.INPUT).addValidator(new RequiredValidator());
+		dao.getMultiTestTable().getMultiTestIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getMultiTestTable().getSortOrderField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getMultiTestTable().getCode1Field().setEditFormDisplay(Display.INPUT);
+		dao.getMultiTestTable().getCode2Field().setEditFormDisplay(Display.INPUT).addValidator(new RequiredValidator());
+		dao.getMultiTestTable().getMultiTextField().setEditFormDisplay(Display.INPUT);
+		dao.getMultiTestTable().getCreateUserIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getMultiTestTable().getCreateTimestampField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getMultiTestTable().getUpdateUserIdField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		dao.getMultiTestTable().getUpdateTimestampField().setEditFormDisplay(Display.INPUT_HIDDEN);
+		// このメソッドでdaoに設定された編集対象取得問合せのフィールドをフォームに展開します。
+		// 複数レコード問合せを指定した場合、そのフィールドを持つHtmlTableフォームに配置します。
 		this.addFields(dao);
 	}
 

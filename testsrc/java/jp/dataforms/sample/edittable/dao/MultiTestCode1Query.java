@@ -1,15 +1,13 @@
-package sample.dao;
+package jp.dataforms.sample.edittable.dao;
 
 import java.util.Map;
 
-import dataforms.dao.Query;
-import dataforms.field.base.FieldList;
-import dataforms.field.sqlfunc.CountField;
-import dataforms.field.sqltype.BigintField;
-import dataforms.util.NumberUtil;
+import jp.dataforms.fw.dao.Query;
+import jp.dataforms.fw.field.base.FieldList;
+import jp.dataforms.fw.field.sqlfunc.CountField;
+import jp.dataforms.fw.field.sqltype.BigintField;
+import jp.dataforms.fw.util.NumberUtil;
 import sample.field.Code1Field;
-
-
 
 
 /**
@@ -51,7 +49,7 @@ public class MultiTestCode1Query extends Query {
 	/**
 	 * Entity操作クラスです。
 	 */
-	public static class Entity extends dataforms.dao.Entity {
+	public static class Entity extends jp.dataforms.fw.dao.Entity {
 		/** レコードIDのフィールドID。 */
 		public static final String ID_MULTI_TEST_ID = "multiTestId";
 		/** コード1のフィールドID。 */
