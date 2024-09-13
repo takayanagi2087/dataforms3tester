@@ -121,6 +121,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/JoinTestTableRelation.java", "/jp/dataforms/sample/edittable/dao/JoinTestTableRelation.java");
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		browser.open(TableManagementPage.class);
 		TableManagementPageTestElement p = browser.getPageTestElement(TableManagementPageTestElement.class);
 		TableManagementQueryFormTestElement qf = p.getTableManagementQueryForm();
@@ -129,6 +130,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		browser.setSize(new Dimension(1600, 800));
 		TableManagementQueryResultFormTestElement qrf = p.getTableManagementQueryResultForm();
 		qrf.getButton("selectDiffButton").click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		String imgfile = this.saveScreenShot(browser, "fkey.png");
 		ImageEditor.addMarkRect(imgfile, 242, 426, 1486, 458);
 		ImageEditor.addMarkRect(imgfile, 242, 486, 286, 526);

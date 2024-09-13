@@ -62,7 +62,7 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		String imgfile = this.saveScreenShot(browser, "initialdata1.png");
 		ImageEditor.addMarkRect(imgfile, 265, 425, 300, 486);
-		ImageEditor.addMarkRect(imgfile, 389, 576, 585, 616);
+		ImageEditor.addMarkRect(imgfile, 389, 610, 585, 652);
 
 		qrf.getButton("exportAsInitialDataButton").click();
 		Browser.sleep(this.getConf().getTestApp().getLongWait());

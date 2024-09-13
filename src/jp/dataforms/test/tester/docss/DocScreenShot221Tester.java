@@ -90,6 +90,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		f.getAppBasePackage().setValue("jp.dataforms.sample");
 		TableTestElement table = f.getMenuList();
 		table.addRow(0);
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		table.setValue(0, "path", "/edittable");
 		table.setValue(0, "defaultName", "Edit table");
 		table.setValue(0, "jaName", "テーブル編集");

@@ -2,7 +2,6 @@ package jp.dataforms.test.proj;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -288,9 +287,9 @@ public class WebAppProject {
 	public void setReleaseMode() throws Exception {
 		File confFile = this.getDataformsConfJsonc();
 		ConfUtil.Conf webAppConf = ConfUtil.Conf.read(confFile.getAbsolutePath());
-		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
-		pkglist.add("jp.dataforms.sample");
-		webAppConf.getInitialize().setDatabasePackageList(pkglist);
+//		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
+//		pkglist.add("jp.dataforms.sample");
+//		webAppConf.getInitialize().setDatabasePackageList(pkglist);
 		webAppConf.getInitialize().setUserLevel("admin");
 		webAppConf.getDevelopmentTool().setDisableCodeGenerationTool(true);
 		webAppConf.getApplication().setJsonDebug(false);
@@ -309,8 +308,8 @@ public class WebAppProject {
 	public void setDevelopMode() throws Exception {
 		File confFile = this.getDataformsConfJsonc();
 		ConfUtil.Conf webAppConf = ConfUtil.Conf.read(confFile.getAbsolutePath());
-		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
-		pkglist.add("jp.dataforms.sample");
+//		List<String> pkglist = webAppConf.getInitialize().getDatabasePackageList();
+//		pkglist.add("jp.dataforms.sample");
 		webAppConf.getInitialize().setUserLevel("developer");
 		webAppConf.getDevelopmentTool().setDisableCodeGenerationTool(false);
 		webAppConf.getApplication().setJsonDebug(true);

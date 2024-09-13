@@ -287,13 +287,13 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			browser.setSize(new Dimension(1280, 900));
 			String imgfile = this.saveScreenShot(browser, "validator5.png");
-			ImageEditor.addMarkRect(imgfile, 264, 430, 552, 460);
+			ImageEditor.addMarkRect(imgfile, 264, 430, 605, 466);
 			//
 			WebResourceQueryResultFormTestElement qrf = p.getWebResourceQueryResultForm();
 			TableTestElement table = qrf.getQueryResultTable();
 			table.getField(0, "className").click();
 			imgfile = this.saveScreenShot(browser, "validator6.png");
-			ImageEditor.addMarkRect(imgfile, 988, 484, 1032, 518);
+			ImageEditor.addMarkRect(imgfile, 980, 408, 1022, 442);
 			//
 			p.getWebResourceDialog().getWebResourceForm().getGenerateJavascriptButton().click();
 			p.getAlertDialog().clickOkButton();

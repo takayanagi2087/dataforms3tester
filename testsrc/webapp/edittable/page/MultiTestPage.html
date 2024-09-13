@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>複数レコード編集ページ</title>
+		<meta name="description" content="">
+	</head>
+	<body>
+		<div id="mainDiv">
+			<form id="queryForm">
+				<div class="formHeader">検索条件</div>
+				<div class="gridLayout">
+					<div class="fieldDiv">
+						<div class="label"><label for="code1">コード1</label></div>
+						<div class="field"><input type="text" id="code1" /></div>
+					</div>
+				</div>
+				<input type="submit" id="queryButton" class="largeButton" value="検索">
+				<input type="button" id="exportButton" class="largeButton" value="エクスポート">
+				<input type="button" id="newButton" class="largeButton" value="新規登録">
+				<input type="button" id="excelButton" class="largeButton" value="Excel出力">
+				<input type="button" id="pdfButton" class="largeButton" value="Pdf出力">
+			</form>
+			<form id="queryResultForm">
+				<div class="formHeader">検索結果</div>
+				<div class="gridLayout">
+				</div>
+				<div>
+					<table id="queryResult">
+						<thead>
+							<tr>
+								<th>
+									No.
+								</th>
+								<th>
+									コード1
+								</th>
+								<th>
+									multiTestId
+								</th>
+								<th>
+									操作
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<span id="queryResult[0].rowNo"></span>
+								</td>
+								<td>
+									<a id="queryResult[0].updateButton" href="javascript:void(0);"><span id="queryResult[0].code1"></span></a>
+								</td>
+								<td>
+									<span id="queryResult[0].multiTestId"></span>
+								</td>
+								<td>
+									<input type="button" id="queryResult[0].viewButton" value="表示">
+									<input type="button" id="queryResult[0].referButton" value="参照登録">
+									<input type="button" id="queryResult[0].deleteButton" value="削除">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+			<form id="editForm">
+				<div class="formHeader"><span id="editFormTitle"></span></div>
+				<input type="hidden" id="saveMode" />
+				<div class="gridLayout">
+					<div class="fieldDiv">
+						<div class="label"><label for="code1">コード1</label></div>
+						<div class="field"><input type="text" id="code1" /></div>
+					</div>
+				</div>
+				<div>
+					<table id="multiTestList" class="editableTable">
+						<thead>
+							<tr>
+								<th colspan="2" nowrap>
+									
+								</th>
+								<th nowrap>
+									No.
+								</th>
+								<th>
+									コード2
+								</th>
+								<th>
+									テキスト
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="buttonColumn">
+									<input type="button" id="multiTestList[0].addButton" value="+"/>
+								</td>
+								<td class="buttonColumn">
+									<input type="button" id="multiTestList[0].deleteButton" value="-"/>
+								</td>
+								<td style="text-align: right;" class="rowno">
+									<span id="multiTestList[0].no"></span>
+								</td>
+								<td>
+									<input type="text" id="multiTestList[0].code2" />
+									<input type="hidden" id="multiTestList[0].multiTestId" />
+									<input type="hidden" id="multiTestList[0].sortOrder" />
+									<input type="hidden" id="multiTestList[0].code1" />
+									<input type="hidden" id="multiTestList[0].createUserId" />
+									<input type="hidden" id="multiTestList[0].createTimestamp" />
+									<input type="hidden" id="multiTestList[0].updateUserId" />
+									<input type="hidden" id="multiTestList[0].updateTimestamp" />
+								</td>
+								<td>
+									<input type="text" id="multiTestList[0].multiText" />
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th class="buttonColumn">
+									<input type="button" id="multiTestList.addButton" value="+"/>
+								</th>
+								<th colspan="4">
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<input type="button" id="confirmButton" class="largeButton" value="確認"/>
+				<input type="button" id="saveButton" class="largeButton" value="登録"/>
+				<input type="button" id="deleteButton" class="largeButton" value="削除"/>
+				<input type="button" id="backButton" class="largeButton" value="戻る"/>
+			</form>
+
+		</div>
+	</body>
+</html>
