@@ -165,6 +165,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		joinTableList.setValue(0, "tableClassName", "SampleTable");
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		ef.getField("queryClassName").click();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		ef.getButton("selectAll").click();
 		String img = this.saveScreenShot(browser, "query.png");
 		ImageEditor.addMarkRect(img , 1170, 408, 1473, 480);
@@ -275,10 +276,10 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		this.createGroupByQuery(browser);
 		this.createSqlfuncQuery(browser);
 		
-		browser.close();
 		proj.saveSnapshot("step03");
 		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
+
 	}
 }

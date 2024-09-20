@@ -44,8 +44,8 @@ public class DocScreenShot212Tester extends DocScreenShotTester {
 		this.login(browser, "developer");
 		Browser.sleep(TestItem.getConf().getTestApp().getMiddleWait());
 		this.saveScreenShot(browser, "initdb003.png");
-		browser.close();
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
 
 	}
 }

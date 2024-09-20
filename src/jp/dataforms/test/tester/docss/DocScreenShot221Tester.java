@@ -305,7 +305,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.testSamplePage(browser);
 		proj.saveSnapshot("step01");
 		proj.exportDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		browser.close();
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
 	}
 }

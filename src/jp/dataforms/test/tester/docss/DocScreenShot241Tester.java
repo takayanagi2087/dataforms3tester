@@ -117,10 +117,10 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		//proj.loadSnapshot("step02");
 		//this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 
+		logger.info(this.getDocumentPath() + "取得終了");
 		browser.close();
 
 //		proj.saveSnapshot("step03");
 //		proj.exportDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		logger.info(this.getDocumentPath() + "取得終了");
 	}
 }

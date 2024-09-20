@@ -493,8 +493,8 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		this.showMultiTestPage(browser);
 		this.showMultiTestData(browser);
 		this.showMultiRecValidator(browser);
-		browser.close();
 		proj.saveSnapshot("step04");
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
 	}
 }

@@ -38,7 +38,7 @@ public class DocScreenShot211Tester extends DocScreenShotTester {
 		f.getSaveButton().click();
 		Browser.sleep(TestItem.getConf().getTestApp().getMiddleWait());
 		this.saveScreenShot(browser, "initproj002.png");
-		browser.close();
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
 	}
 }

@@ -50,7 +50,7 @@ public class DocScreenShot341Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		this.login(browser, "developer");
-//		browser.close();
 		logger.info(this.getDocumentPath() + "取得終了");
+		browser.close();
 	}
 }
