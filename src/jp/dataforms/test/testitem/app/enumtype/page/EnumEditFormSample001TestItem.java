@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.app.enumtype.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.app.enumtype.page.EnumPageTestElement;
 import jp.dataforms.test.element.app.enumtype.page.EnumEditFormTestElement;
+import jp.dataforms.test.element.app.enumtype.page.EnumPageTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
@@ -43,6 +42,7 @@ public class EnumEditFormSample001TestItem extends EnumEditFormTestItem {
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		EnumPageTestElement p = browser.getPageTestElement(EnumPageTestElement.class);
+		@SuppressWarnings("unused")
 		EnumEditFormTestElement f = p.getEnumEditForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

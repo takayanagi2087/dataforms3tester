@@ -44,6 +44,7 @@ public class WebResourceFormSample001TestItem extends WebResourceFormTestItem {
 	protected ResultType test(Browser browser) throws Exception {
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
 		WebResourceDialogTestElement d = p.getWebResourceDialog();
+		@SuppressWarnings("unused")
 		WebResourceFormTestElement f = d.getWebResourceForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

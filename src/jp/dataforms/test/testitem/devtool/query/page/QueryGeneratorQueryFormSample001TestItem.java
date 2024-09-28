@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.devtool.query.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
 import jp.dataforms.test.element.devtool.query.page.QueryGeneratorPageTestElement;
 import jp.dataforms.test.element.devtool.query.page.QueryGeneratorQueryFormTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
@@ -43,6 +42,7 @@ public class QueryGeneratorQueryFormSample001TestItem extends QueryGeneratorQuer
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		QueryGeneratorPageTestElement p = browser.getPageTestElement(QueryGeneratorPageTestElement.class);
+		@SuppressWarnings("unused")
 		QueryGeneratorQueryFormTestElement f = p.getQueryGeneratorQueryForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

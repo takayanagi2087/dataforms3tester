@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.devtool.webres.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
 import jp.dataforms.test.element.devtool.webres.page.WebResourcePageTestElement;
 import jp.dataforms.test.element.devtool.webres.page.WebResourceQueryFormTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
@@ -43,6 +42,7 @@ public class WebResourceQueryFormSample001TestItem extends WebResourceQueryFormT
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
+		@SuppressWarnings("unused")
 		WebResourceQueryFormTestElement f = p.getWebResourceQueryForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

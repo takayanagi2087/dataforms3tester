@@ -42,6 +42,7 @@ public class TableGeneratorQueryFormSample001TestItem extends TableGeneratorQuer
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		TableGeneratorPageTestElement p = browser.getPageTestElement(TableGeneratorPageTestElement.class);
+		@SuppressWarnings("unused")
 		TableGeneratorQueryFormTestElement f = p.getTableGeneratorQueryForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

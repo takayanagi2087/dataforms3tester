@@ -2,10 +2,9 @@ package jp.dataforms.test.testitem.app.user.page;
 
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.annotation.TestItemInfo.Type;
-import jp.dataforms.test.selenium.Browser;
-
-import jp.dataforms.test.element.app.user.page.UserManagementPageTestElement;
 import jp.dataforms.test.element.app.user.page.UserEditFormTestElement;
+import jp.dataforms.test.element.app.user.page.UserManagementPageTestElement;
+import jp.dataforms.test.selenium.Browser;
 
 
 /**
@@ -43,6 +42,7 @@ public class UserEditFormSample001TestItem extends UserEditFormTestItem {
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		UserManagementPageTestElement p = browser.getPageTestElement(UserManagementPageTestElement.class);
+		@SuppressWarnings("unused")
 		UserEditFormTestElement f = p.getUserEditForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

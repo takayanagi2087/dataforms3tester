@@ -42,6 +42,7 @@ public class PageGeneratorQueryFormSample001TestItem extends PageGeneratorQueryF
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		TestSrcGeneratorPageTestElement p = browser.getPageTestElement(TestSrcGeneratorPageTestElement.class);
+		@SuppressWarnings("unused")
 		PageGeneratorQueryFormTestElement f = p.getPageGeneratorQueryForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);

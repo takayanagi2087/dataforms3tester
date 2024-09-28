@@ -42,6 +42,7 @@ public class TestSrcGeneratorEditFormSample001TestItem extends TestSrcGeneratorE
 	@Override
 	protected ResultType test(Browser browser) throws Exception {
 		TestSrcGeneratorPageTestElement p = browser.getPageTestElement(TestSrcGeneratorPageTestElement.class);
+		@SuppressWarnings("unused")
 		TestSrcGeneratorEditFormTestElement f = p.getTestSrcGeneratorEditForm();
 		// TODO:指定した条件で処理を行い、期待した結果になっていることを確認する処理を記述してください。
 		Browser.sleep(2);
