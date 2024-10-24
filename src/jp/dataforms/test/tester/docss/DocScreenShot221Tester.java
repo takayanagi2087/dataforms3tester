@@ -211,10 +211,20 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		ef.getListQueryClassName().setValue("SampleTable");
 		ef.getEditQueryFunctionSelect().setValue("/edittable");
 		ef.getEditQueryClassName().setValue("SampleTable");
-		this.saveScreenShot(browser, "page1.png");
-		ef.getConfirmButton().click();
+		
+		ef.getPageClassName().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		
+		this.saveScreenShot(browser, "page1.png");
+
+//		browser.maximize();
+
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
+		ef.getConfirmButton().click();
+		
+		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		ef.getSaveButton().click();
+		
 		p.getAlertDialog().clickOkButton();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());

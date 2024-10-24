@@ -82,9 +82,11 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		ef.getEditQueryFunctionSelect().setValue("/edittable");
 		ef.getEditQueryPackageName().setValue("jp.dataforms.sample.edittable");
 		ef.getEditQueryClassName().setValue("SampleTable");
+		ef.getPageClassName().click();
 		
 		TableTestElement table = ef.getMultiRecordQueryList();
 		table.addRow();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		table.getField(0, "functionSelect").setValue("/edittable");
 		table.getField(0, "queryClassName").setValue("JoinTestTable");
 		ef.getDaoClassName().click();
