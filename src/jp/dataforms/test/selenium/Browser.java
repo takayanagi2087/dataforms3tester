@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -109,11 +111,18 @@ public class Browser {
 			String optcls = this.browserInfo.getOptionClassName();
 			logger.debug("optionClass=" + optcls);
 			Class<?> optionClass = (Class<?>) Class.forName(optcls);
-			Method m = optionClass.getMethod("addArguments", List.class);
+			Method addArguments = optionClass.getMethod("addArguments", List.class);
 			Object opt = optionClass.getConstructor().newInstance();
 			List<String> argList = new ArrayList<String>();
 			argList.add("--headless");
-			m.invoke(opt, argList); // opt.addArguments("--headless");
+			addArguments.invoke(opt, argList); // opt.addArguments("--headless");
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			// パスワードマネージャの無効化
+			prefs.put("credentials_enable_service", false);
+			prefs.put("profile.password_manager_enabled", false);
+			Method setExperimentalOption = optionClass.getMethod("setExperimentalOption", List.class);
+			setExperimentalOption.invoke(opt, prefs);
+
 			WebDriver webDriver = driverClass.getConstructor(optionClass).newInstance(opt);
 			webDriver.manage().window().setSize(new Dimension(1400, 800));
 			return webDriver;

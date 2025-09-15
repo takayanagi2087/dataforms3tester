@@ -56,10 +56,10 @@
 	}
 	// テストに使用するユーザ。
 	, "userList": [
-		{ "loginId": "developer", "password": "developer"},
-		{ "loginId": "admin", "password": "admin"},	
-		{ "loginId": "user", "password": "user" },
-		{ "loginId": "guest", "password": "guest"}
+		{ "loginId": "developer", "password": "[Pasow0rd)"},
+		{ "loginId": "admin", "password": "[Pasow0rd)"},	
+		{ "loginId": "user", "password": "[Pasow0rd)" },
+		{ "loginId": "guest", "password": "[Pasow0rd)"}
 	]
 	// テスト対象プロジェクト。
 	, "project": {

@@ -210,6 +210,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		this.saveScreenShot(browser, "alias.png");
 		ef.confirm();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		ef.save();
 		p.getAlertDialog().clickOkButton();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
@@ -249,6 +250,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		sqlFieldList.setValue(0, "sql", "m.sample_numeric * 2");
 		this.saveScreenShot(browser, "sqlfield.png");
 		ef.confirm();
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		ef.save();
 		p.getAlertDialog().clickOkButton();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());

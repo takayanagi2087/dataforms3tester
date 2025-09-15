@@ -516,6 +516,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			this.saveScreenShot(browser, "enum7.png");
 			ef.confirm();
+			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			ef.save();
 			p.getAlertDialog().clickOkButton();
 			Browser.sleep(this.getConf().getTestApp().getShortWait());

@@ -312,6 +312,9 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.createTable(browser);
 		this.createDaoAndPage(browser);
 		this.createHtmlPage(browser);
+//		proj.copyTestApi();	// 
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		proj.update();
 		this.testSamplePage(browser);
 		proj.saveSnapshot("step01");
 		proj.exportDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");

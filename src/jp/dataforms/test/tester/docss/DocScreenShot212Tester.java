@@ -32,8 +32,10 @@ public class DocScreenShot212Tester extends DocScreenShotTester {
 		this.saveScreenShot(browser, "initdb001.png");
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
 		DeveloperEditFormTestElement f = p.getDeveloperEditForm();
-		f.getPassword().setValue("developer");
-		f.getPasswordCheck().setValue("developer");
+		String password = this.getConf().getTestUser("developer").getPassword();
+
+		f.getPassword().setValue(password);
+		f.getPasswordCheck().setValue(password);
 		f.getConfirmButton().click();
 		Browser.sleep(TestItem.getConf().getTestApp().getShortWait());
 		f.getSaveButton().click();
