@@ -1,7 +1,7 @@
 package jp.dataforms.test.testitem.devtool.db.page;
 
-import jp.dataforms.fw.devtool.db.page.TableManagementPage;
-import jp.dataforms.fw.devtool.db.page.TableManagementQueryResultForm;
+import jp.dataforms.fw.dbtool.db.page.TableManagementPage;
+import jp.dataforms.fw.dbtool.db.page.TableManagementQueryResultForm;
 import jp.dataforms.test.testitem.TestItem;
 
 

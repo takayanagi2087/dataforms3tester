@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
 import jp.dataforms.fw.app.menu.page.SiteMapPage;
-import jp.dataforms.fw.devtool.db.page.TableManagementPage;
+import jp.dataforms.fw.dbtool.db.page.TableManagementPage;
 import jp.dataforms.fw.devtool.menu.page.MenuEditPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
@@ -160,7 +160,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		p.getAlertDialog().clickOkButton();
 		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
-		Browser.sleep(this.getConf().getTestApp().getShortWait());
+		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 		qf.getFunctionSelect().setValue("/edittable");
 		qf.query();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());

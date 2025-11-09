@@ -11,7 +11,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import jp.dataforms.fw.devtool.db.page.TableManagementPage;
+import jp.dataforms.fw.dbtool.db.page.TableManagementPage;
 import jp.dataforms.fw.devtool.pageform.page.DaoAndPageGeneratorPage;
 import jp.dataforms.fw.devtool.query.page.QueryGeneratorPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
@@ -440,7 +440,7 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 	 */
 	private void showMultiTestData(final Browser browser) throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-		String url = proj.getUrl() + "dataforms/devtool/query/page/QueryExecutorPage.html?t=multi_test";
+		String url = proj.getUrl() + "dataforms/dbtool/query/page/QueryExecutorPage.html?t=multi_test";
 		PageTestElement p = browser.open(url);
 		p.getQueryForm().query();
 		this.saveScreenShot(browser, "mdata.png");

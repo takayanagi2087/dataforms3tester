@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 
-import jp.dataforms.fw.devtool.query.page.QueryExecutorPage;
+import jp.dataforms.fw.dbtool.query.page.QueryExecutorPage;
 import jp.dataforms.fw.devtool.query.page.QueryGeneratorPage;
 import jp.dataforms.test.element.devtool.query.page.QueryExecutorPageTestElement;
 import jp.dataforms.test.element.devtool.query.page.QueryExecutorQueryFormTestElement;

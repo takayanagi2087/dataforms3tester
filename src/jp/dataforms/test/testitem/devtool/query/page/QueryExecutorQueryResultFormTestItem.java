@@ -1,8 +1,8 @@
 package jp.dataforms.test.testitem.devtool.query.page;
 
 import jp.dataforms.test.testitem.TestItem;
-import jp.dataforms.fw.devtool.query.page.QueryExecutorPage;
-import jp.dataforms.fw.devtool.query.page.QueryExecutorQueryResultForm;
+import jp.dataforms.fw.dbtool.query.page.QueryExecutorPage;
+import jp.dataforms.fw.dbtool.query.page.QueryExecutorQueryResultForm;
 
 
 /**

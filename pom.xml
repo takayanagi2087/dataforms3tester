@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>jp.dataforms</groupId>
 			<artifactId>dataforms3</artifactId>
-			<version>3.0.1-SNAPSHOT</version>
+			<version>3.1.0-SNAPSHOT</version>
 		</dependency>
 		<!-- Selenum関連ライブラリ -->		
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->

@@ -10,7 +10,7 @@ import org.openqa.selenium.Dimension;
 import jp.dataforms.fw.app.enumtype.page.EnumPage;
 import jp.dataforms.fw.app.menu.page.SiteMapPage;
 import jp.dataforms.fw.app.user.page.UserManagementPage;
-import jp.dataforms.fw.devtool.db.page.TableManagementPage;
+import jp.dataforms.fw.dbtool.db.page.TableManagementPage;
 import jp.dataforms.fw.devtool.table.page.TableGeneratorPage;
 import jp.dataforms.fw.devtool.webres.page.WebResourcePage;
 import jp.dataforms.fw.util.JsonUtil;

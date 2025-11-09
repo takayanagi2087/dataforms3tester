@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.Dimension;
 
-import jp.dataforms.fw.devtool.query.page.QueryExecutorPage;
+import jp.dataforms.fw.dbtool.query.page.QueryExecutorPage;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.tester.PageTester;
 import jp.dataforms.test.testitem.TestItem;
