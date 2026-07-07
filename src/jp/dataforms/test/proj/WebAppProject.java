@@ -1,6 +1,8 @@
 package jp.dataforms.test.proj;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -247,6 +249,7 @@ public class WebAppProject {
 		}
 		this.cleanPackage("jp");
 		this.cleanWebSrc("/edittable");
+		this.runMaven(conf, "clean");
 	}
 	
 	/**
@@ -765,6 +768,42 @@ public class WebAppProject {
 	public File getSnapshotWebSrcDirectory(final String name, final String pkg) {
 		File webDst = new File(this.snapshot.replaceAll("\\\\", "/") + "/src/" + name + WebAppProject.WEB_SRC + "/" + pkg);
 		return webDst;
+	}
+
+	/**
+	 * Mavenを実行します。
+	 * @param conf プロジェクト設定ファイル。
+	 * @param arg Mavenの引数。
+	 * @throws IOException 例外。
+	 */
+	public void runMaven(final Conf conf, final String arg) throws IOException {
+		String projectPath = conf.getProject().getProjectPath();
+		String maven = conf.getProject().getMaven();
+		logger.debug("projectPath=" + projectPath);
+		logger.debug("maven=" + maven);
+		ProcessBuilder pb = new ProcessBuilder(maven, arg); // Windowsの例
+		pb.directory(new File(projectPath));
+		pb.redirectErrorStream(true);
+		Process process = pb.start();
+		try (InputStream is = process.getInputStream()) {
+			is.transferTo(System.out);
+			System.out.flush(); // 即時反映
+		}
+	}
+
+	/**
+	 * プロジェクトをビルドします。
+	 * @param conf プロジェクト設定ファイル。
+	 * @throws Exception 例外。
+	 */
+	public void build(final Conf conf) throws Exception {
+		this.runMaven(conf, "package");
+		String deployPath =conf.getProject().getDeployPath();
+		FileUtils.cleanDirectory(new File(deployPath));
+		File srcPath = new File(conf.getProject().getTargetPath());
+		logger.debug("srcPath=" + srcPath.getAbsolutePath());
+		logger.debug("deployPath=" + deployPath);
+		FileUtils.copyDirectory(srcPath, new File(deployPath));
 	}
 
 

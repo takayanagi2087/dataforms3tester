@@ -24,6 +24,7 @@ import jp.dataforms.fw.util.WebClient;
 import jp.dataforms.test.annotation.TestItemInfo;
 import jp.dataforms.test.element.app.login.page.LoginFormTestElement;
 import jp.dataforms.test.element.app.login.page.LoginPageTestElement;
+import jp.dataforms.test.proj.WebAppProject;
 import jp.dataforms.test.selenium.Browser;
 import jp.dataforms.test.selenium.BrowserInfo;
 import jp.dataforms.test.testitem.TestItem;
@@ -64,7 +65,7 @@ public abstract class PageTester {
 		/**
 		 * ドライバのフォルダ。
 		 */
-		private String driverFolder = null;
+		// private String driverFolder = null;
 		/**
 		 * headlessフラグ。
 		 */
@@ -82,7 +83,7 @@ public abstract class PageTester {
 			
 		}
 		
-		private String getDriverPath() throws Exception {
+/*		private String getDriverPath() throws Exception {
 			String ret = null;
 			File dir = new File(this.getDriverFolder());
 			File[] list = dir.listFiles();
@@ -94,19 +95,20 @@ public abstract class PageTester {
 			}
 			return ret;
 		}
+*/
 		
 		/**
 		 * ブラウザ情報を取得します。
 		 * @return ブラウザ情報。
 		 */
 		public BrowserInfo getBrowserInfo() throws Exception {
-			String driverPath = this.getDriverPath();
-			logger.debug("driverPath=" + driverPath);
+//			String driverPath = this.getDriverPath();
+//			logger.debug("driverPath=" + driverPath);
 			BrowserInfo ret = null;
 			for (BrowserInfo bi: this.driverList) {
 				if (bi.getDriver().equals(this.driver)) {
 					ret = bi;
-					ret.setDriver(driverPath);
+//					ret.setDriver(driverPath);
 					break;
 				}
 			}
@@ -200,6 +202,20 @@ public abstract class PageTester {
 		 * ソースのsnapshot。
 		 */
 		private String snapshot = null;
+		
+		/**
+		 * ビルド結果のパス。
+		 */
+		private String targetPath =null;
+		
+		/**
+		 * テスト対象のWebアプリケーションのデプロイ先パス。
+		 */
+		private String deployPath = null;
+		/**
+		 * Mavenのパス。
+		 */
+		private String maven = null;
 		/**
 		 * コンストラクタ。
 		 */
@@ -680,18 +696,59 @@ public abstract class PageTester {
 	}
 	
 	/**
+	 * WebAppProjectを作成します。
+	 * @param proj プロジェクト。
+	 */
+	public void build(final WebAppProject proj) throws Exception {
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
+		proj.build(getConf());
+		this.startWebApp(this.getConf().getTestApp().getContextPath());
+	}
+	
+	/**
 	 * 指定したWebアプリケーションをリロードする。
-	 * @param context コンテキストパース。
+	 * @param context コンテキストパス。
 	 * @return HTTP ステータス。
 	 * @throws Exception 例外。
 	 */
 	public int reloadWebApp(final String context) throws Exception {
+		return this.manageWebApp(context, "reload");
+	}
+
+	/**
+	 * 指定したWebアプリケーションを起動する。
+	 * @param context コンテキストパス。
+	 * @return HTTP ステータス。
+	 * @throws Exception 例外。
+	 */
+	public int startWebApp(final String context) throws Exception {
+		return this.manageWebApp(context, "start");
+	}
+
+	/**
+	 * 指定したWebアプリケーションを停止する。
+	 * @param context コンテキストパス。
+	 * @return HTTP ステータス。
+	 * @throws Exception 例外。
+	 */
+	public int stopWebApp(final String context) throws Exception {
+		return this.manageWebApp(context, "stop");
+	}
+	
+	/**
+	 * 指定したWebアプリケーションに関して管理コマンドを実行します。
+	 * @param context コンテキストパス。
+	 * @param command コマンド。
+	 * @return HTTP ステータス。
+	 * @throws Exception 例外。
+	 */
+	public int manageWebApp(final String context, final String command) throws Exception {
 		String url = this.conf.getTomcat().getManagerUrl();
 		String user = this.conf.getTomcat().getAdminUser();
 		String password = this.conf.getTomcat().getAdminPassword();
 		String basicSource  = user + ":" + password;
 		String basicCrypt = Base64.getEncoder().encodeToString(basicSource.getBytes());
-		String reloadUrl = url + "/reload?path=" + context;
+		String reloadUrl = url + "/" + command + "?path=" + context;
 		logger.info("reloadURL=" + reloadUrl);
 		WebClient client = new WebClient(reloadUrl, WebClient.METHOD_GET);
 		client.addRequestHeader("Authorization", "basic " + basicCrypt);
@@ -700,6 +757,8 @@ public abstract class PageTester {
 		logger.info("resp=" + resp);
 		return client.getHttpStatus();
 	}
+
+	
 	
 	/**
 	 * APIを呼び出します。

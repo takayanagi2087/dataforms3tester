@@ -98,7 +98,7 @@ public class Browser {
 	 * @throws Exception 例外。
 	 */
 	private WebDriver newWebDriver() throws Exception {
-		System.setProperty(this.browserInfo.getPropName(), this.browserInfo.getDriver());
+		// System.setProperty(this.browserInfo.getPropName(), this.browserInfo.getDriver());
 		String cls = this.browserInfo.getClassName();
 		logger.info("className=" + cls);
 		@SuppressWarnings("unchecked")

@@ -1,12 +1,12 @@
-package sample.dao;
+package jp.dataforms.sample.edittable.dao.table;
 
 import java.util.Map;
-import dataforms.dao.Table;
-import sample.field.SampleDateField;
-import sample.field.SampleTextField;
-import sample.field.SampleNumericField;
-import dataforms.util.NumberUtil;
-import sample.field.SampleIdField;
+import jp.dataforms.fw.dao.Table;
+import jp.dataforms.fw.util.NumberUtil;
+import jp.dataforms.sample.edittable.field.SampleTextField;
+import jp.dataforms.sample.edittable.field.SampleIdField;
+import jp.dataforms.sample.edittable.field.SampleNumericField;
+import jp.dataforms.sample.edittable.field.SampleDateField;
 
 
 /**
@@ -36,7 +36,7 @@ public class SampleTable extends Table {
 	/**
 	 * Entity操作クラスです。
 	 */
-	public static class Entity extends dataforms.dao.Entity {
+	public static class Entity extends jp.dataforms.fw.dao.Entity {
 		/** レコードIDのフィールドID。 */
 		public static final String ID_SAMPLE_ID = "sampleId";
 		/** 文字列のフィールドID。 */
@@ -125,6 +125,7 @@ public class SampleTable extends Table {
 
 
 	}
+
 	/**
 	 * レコードIDフィールドを取得します。
 	 * @return レコードIDフィールド。
@@ -156,6 +157,7 @@ public class SampleTable extends Table {
 	public SampleDateField getSampleDateField() {
 		return (SampleDateField) this.getField(Entity.ID_SAMPLE_DATE);
 	}
+
 
 
 }

@@ -53,6 +53,8 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		super("2.2.devtool");
 	}
 	
+
+	
 	/**
 	 * システム名の変更。
 	 * 
@@ -66,8 +68,7 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		this.saveScreenShot(browser, "sitemap.png");
 		this.logout(browser);
 		proj.setSystemName("サンプルシステム", "Sample system");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 		Browser.sleep(this.getConf().getTestApp().getMiddleWait());
 		browser.reload();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
@@ -79,9 +80,10 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	/**
 	 * システム名の変更。
 	 * @param browser ブラウザ。
+	 * @param proj プロジェクト。
 	 * @throws Exception 例外。
 	 */
-	private void editMenu(final Browser browser) throws Exception {
+	private void editMenu(final Browser browser, final WebAppProject proj) throws Exception {
 		this.login(browser, "developer");
 		browser.open(MenuEditPage.class);
 		MenuEditPageTestElement p = browser.getPageTestElement(MenuEditPageTestElement.class);
@@ -102,8 +104,9 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		f.getSaveButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 	}
 	
 	/**
@@ -139,9 +142,10 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	/**
 	 * テーブルJavaクラス作成のスクリーンショットを所得します。
 	 * @param browser ブラウザ。
+	 * @param proj プロジェクト。
 	 * @throws Exception 例外。
 	 */
-	private void editTable(final Browser browser) throws Exception {
+	private void editTable(final Browser browser, final WebAppProject proj) throws Exception {
 		browser.open(TableGeneratorPage.class);
 		browser.setClientSize(new Dimension(1700, 600));
 		TableGeneratorPageTestElement p = browser.getPageTestElement(TableGeneratorPageTestElement.class);
@@ -158,10 +162,9 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		ef.getSaveButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.build(proj);
 		qf.getFunctionSelect().setValue("/edittable");
+		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		qf.query();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		browser.setClientSize(new Dimension(1200, 600));
@@ -193,9 +196,10 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 	/**
 	 * DAO&ページの作成。
 	 * @param browser ブラウザ。
+	 * @param proj プロジェクト。
 	 * @throws Exception 例外。
 	 */
-	private void createDaoAndPage(final Browser browser) throws Exception {
+	private void createDaoAndPage(final Browser browser, final WebAppProject proj) throws Exception {
 		browser.open(DaoAndPageGeneratorPage.class);
 		browser.setClientSize(new Dimension(1600, 600));
 		DaoAndPageGeneratorPageTestElement p = browser.getPageTestElement(DaoAndPageGeneratorPageTestElement.class);
@@ -226,16 +230,18 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		ef.getSaveButton().click();
 		
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 	}
 	
 	/**
 	 * Webリソースの作成。
 	 * @param browser ブラウザ。
+	 * @param proj プロジェクト。
 	 * @throws Exception 例外。
 	 */
-	private void createHtmlPage(final Browser browser) throws Exception {
+	private void createHtmlPage(final Browser browser, final  WebAppProject proj) throws Exception {
 		browser.open(WebResourcePage.class);
 		browser.setClientSize(new Dimension(1600, 600));
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
@@ -258,7 +264,8 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		p.getAlertDialog().clickOkButton();
 		frm.getCloseButton().click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 		browser.open(SiteMapPage.class);
 		img = this.saveScreenShot(browser, "samplepage1.png");
 		ImageEditor.addMarkRect(img, 240, 94, 384, 114);
@@ -303,18 +310,14 @@ public class DocScreenShot221Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.initSrc();
 		this.dropTables("sample");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 		Browser browser = this.getBrowser();
 		this.changeSystemName(browser, proj);
-		this.editMenu(browser);
-		this.editTable(browser);
+		this.editMenu(browser, proj);
+		this.editTable(browser, proj);
 		this.createTable(browser);
-		this.createDaoAndPage(browser);
-		this.createHtmlPage(browser);
-//		proj.copyTestApi();	// 
-//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		proj.update();
+		this.createDaoAndPage(browser, proj);
+		this.createHtmlPage(browser, proj);
 		this.testSamplePage(browser);
 		proj.saveSnapshot("step01");
 		proj.exportDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");

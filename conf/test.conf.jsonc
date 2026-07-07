@@ -6,7 +6,7 @@
 //		"driver": "geckodriver"		// Firefox
 //		"driver": "msedgedriver"	// Microsoft Edge
 		// 以下のパスにの直下にSeleniumの各種ドライバを配置してください。
-		, "driverFolder":  "C:/eclipse/selenium/driver/win64"
+		// , "driverFolder":  "C:/eclipse/selenium/driver/win64"
 		, "headless": false
 		// 各種ブラウザで使用するクラスを指定します。
 		, "driverList": [
@@ -51,7 +51,7 @@
 		// 重いDB更新等を含むサーバ処理の待ち時間
 		, "longWait": 10
 		// プロジェクトのソースを更新->Eclipseの自動ビルド->Tomcatのリロードの待ち時間
-		, "buildWait": 30
+		, "buildWait": 60
 		
 	}
 	// テストに使用するユーザ。
@@ -70,7 +70,13 @@
 		// テストソース。
 		"testSrc": "C:/eclipse/workspaceDataforms3/dataforms3tester/testsrc",
 		// ソースのsnapshot
-		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot"
+		"snapshot": "C:/eclipse/workspaceDataforms3/dataforms3tester/snapshot",
+		// デプロイ先のパス
+		"targetPath": "C:/eclipse/pleiades/workspace/sample/target/sample-0.0.1-SNAPSHOT",
+		// デプロイ先のパス
+		"deployPath": "C:/eclipse/pleiades/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sample",
+		// mavenコマンドのパス
+		"maven": "C:/eclipse/maven/bin/mvn.cmd"
 	}
 	// Tomcat関連設定。
 	, "tomcat": {
