@@ -59,7 +59,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	}
 	
 	/**
-	 * sampleテーブルをテーブルクラスの構造にうわせる。
+	 * sampleテーブルをテーブルクラスの構造に合わせる。
 	 * @param browser ブラウザ。
 	 * @throws Exception 例外。
 	 */
@@ -147,7 +147,8 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	private void testUserLevel(final Browser  browser) throws Exception {
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SamplePage.java", "/jp/dataforms/sample/edittable/page/SamplePage.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.build(prj);
 		browser.open(SiteMapPage.class);
 		SiteMapPageTestElement p = browser.getPageTestElement(SiteMapPageTestElement.class);
 		browser.setSize(new Dimension(1280, 600));
@@ -202,7 +203,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		}
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleQueryResultForm.java", "/jp/dataforms/sample/edittable/page/SampleQueryResultForm.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.build(prj);
+		// Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		
 		browser.reload();
 		p = browser.getPageTestElement();
 		p.getQueryForm().query();
@@ -236,7 +239,8 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		{
 			WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 			prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleEditForm.java", "/jp/dataforms/sample/edittable/page/SampleEditForm.java");
-			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+			// Browser.sleep(this.getConf().getTestApp().getBuildWait());
+			this.build(prj);
 			browser.reload();
 			PageTestElement p = browser.open(url);
 			QueryFormTestElement qf = p.getQueryForm();
@@ -248,7 +252,8 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		{
 			WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 			prj.copyJavaSrc("/jp/dataforms/sample/edittable/field/SampleTextField.java", "/jp/dataforms/sample/edittable/field/SampleTextField.java");
-			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+			this.build(prj);
 			browser.reload();
 			PageTestElement p = browser.open(url);
 			QueryFormTestElement qf = p.getQueryForm();
@@ -262,10 +267,12 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 			prj.copyWebappSrc("/edittable/page/SamplePage.properties", "/edittable/page/SamplePage.properties");
 			prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleEditForm.java.1", "/jp/dataforms/sample/edittable/page/SampleEditForm.java");
-			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+			// Browser.sleep(this.getConf().getTestApp().getBuildWait());
+			this.build(prj);
 			browser.reload();
 			PageTestElement p = browser.open(url);
 			QueryFormTestElement qf = p.getQueryForm();
+			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			qf.newData();
 			EditFormTestElement ef = p.getEditForm();
 			ef.getField("sampleText").setValue("abc");
@@ -323,8 +330,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		WebAppProject prj = WebAppProject.newWebAppProject(this.getConf());
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/field/SampleTextField.java.1", "/jp/dataforms/sample/edittable/field/SampleTextField.java");
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleEditForm.java.2", "/jp/dataforms/sample/edittable/page/SampleEditForm.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp("/sample");
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp("/sample");
+		this.build(prj);
 		String url = prj.getUrl() + "edittable/page/SamplePage.html";
 		browser.open(url);
 		PageTestElement p = browser.getPageTestElement();
@@ -352,8 +360,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		prj.copyWebappSrc("/edittable/page/SamplePage.html.1", "/edittable/page/SamplePage.html");
 		prj.copyWebappSrc("/edittable/page/SampleEditForm.js.1", "/edittable/page/SampleEditForm.js");
 		prj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp("/sample");
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp("/sample");
+		this.build(prj);
 		String url = prj.getUrl() + "edittable/page/SamplePage.html";
 		browser.open(url);
 		browser.setSize(new Dimension(1280, 900));
@@ -373,8 +382,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/report/SampleExcelReport.java", "/jp/dataforms/sample/edittable/report/SampleExcelReport.java");
 		prj.copyWebappSrc("/edittable/page/SampleEditForm.js.2", "/edittable/page/SampleEditForm.js");
 		prj.copyJavaSrc("/jp/dataforms/sample/edittable/page/SampleEditForm.java.3", "/jp/dataforms/sample/edittable/page/SampleEditForm.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp("/sample");
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp("/sample");
+		this.build(prj);
 		browser.open(url);
 		browser.setSize(new Dimension(1280, 900));
 		{
@@ -469,8 +479,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			ef.save();
 			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			p.getAlertDialog().clickOkButton();
-			Browser.sleep(this.getConf().getTestApp().getBuildWait());
-			this.reloadWebApp("/sample");
+//			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//			this.reloadWebApp("/sample");
+			this.build(prj);
 			qf.query();
 			Browser.sleep(this.getConf().getTestApp().getLongWait());
 		}
@@ -498,8 +509,9 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 		{
 			prj.copyWebappSrc("/edittable/page/SamplePage.html", "/edittable/page/SamplePage.html");
 			prj.copyJavaSrc("/jp/dataforms/sample/edittable/field/SampleSelectField.java", "/jp/dataforms/sample/edittable/field/SampleSelectField.java");
-			Browser.sleep(this.getConf().getTestApp().getBuildWait());
-			this.reloadWebApp("/sample");
+//			Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//			this.reloadWebApp("/sample");
+			this.build(prj);
 			String url = prj.getUrl() + "edittable/page/SamplePage.html";
 			browser.open(url);
 			browser.setSize(new Dimension(1280, 900));

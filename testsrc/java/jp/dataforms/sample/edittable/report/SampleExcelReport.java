@@ -1,7 +1,7 @@
 package jp.dataforms.sample.edittable.report;
 
 import jp.dataforms.fw.report.ExcelReport;
-import jp.dataforms.sample.edittable.dao.SampleTable;
+import jp.dataforms.sample.edittable.dao.table.SampleTable;
 
 /**
  * Excelレポートクラス。

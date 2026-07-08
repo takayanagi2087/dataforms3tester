@@ -681,7 +681,8 @@ public class WebAppProject {
 		File webDst = getSnapshotWebSrcDirectory(name, pkg);
 		logger.debug(webSrc + " <- " + webDst);
 		FileUtils.copyDirectory(webDst, webSrc);
-		Browser.sleep(this.conf.getTestApp().getBuildWait());
+//		Browser.sleep(this.conf.getTestApp().getBuildWait());
+		this.build(conf);
 	}
 
 	/**
@@ -776,7 +777,7 @@ public class WebAppProject {
 	 * @param arg Mavenの引数。
 	 * @throws IOException 例外。
 	 */
-	public void runMaven(final Conf conf, final String arg) throws IOException {
+	public void runMaven(final Conf conf, final String arg) throws Exception {
 		String projectPath = conf.getProject().getProjectPath();
 		String maven = conf.getProject().getMaven();
 		logger.debug("projectPath=" + projectPath);
@@ -789,6 +790,7 @@ public class WebAppProject {
 			is.transferTo(System.out);
 			System.out.flush(); // 即時反映
 		}
+		process.waitFor();
 	}
 
 	/**

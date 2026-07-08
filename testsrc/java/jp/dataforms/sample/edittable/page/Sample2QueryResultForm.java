@@ -7,7 +7,7 @@ import jp.dataforms.fw.controller.QueryResultForm;
 import jp.dataforms.fw.field.base.FieldList;
 import jp.dataforms.fw.htmltable.PageScrollHtmlTable;
 import jp.dataforms.sample.edittable.dao.Sample2Dao;
-import jp.dataforms.sample.edittable.dao.SampleTable;
+import jp.dataforms.sample.edittable.dao.table.SampleTable;
 
 
 
