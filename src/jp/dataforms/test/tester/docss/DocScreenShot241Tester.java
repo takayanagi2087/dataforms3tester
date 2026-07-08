@@ -82,8 +82,7 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.setReleaseMode();
 		proj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 		browser.open(this.getConf().getTestApp().getApplicationURL());
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		InitializeDatabasePageTestElement p = browser.getPageTestElement(InitializeDatabasePageTestElement.class);
@@ -106,9 +105,12 @@ public class DocScreenShot241Tester extends DocScreenShotTester {
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 		proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
 		proj.loadSnapshot("step02");
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.startWebApp(this.getConf().getTestApp().getContextPath());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.exportInitialData(browser);

@@ -63,8 +63,11 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 		ef.confirm();
 		ef.save();
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
+		
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 	}
 
 	/**
@@ -138,8 +141,10 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 		ef.confirm();
 		ef.save();
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 	}
 	
 	/**
@@ -166,17 +171,21 @@ public class DocScreenShot251Tester extends DocScreenShotTester {
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.importDb("step02", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		this.build(proj);
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
 		proj.loadSnapshot("step02");
 		proj.setDevelopMode();
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.startWebApp(this.getConf().getTestApp().getContextPath());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.createQuer(browser);
 		this.executeQuer(browser);
 		this.createQuer2(browser);
 		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/Enum02Query.java", "/jp/dataforms/sample/edittable/dao/Enum02Query.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		this.executeQuer2(browser);
 		logger.info(this.getDocumentPath() + "取得終了");
 		browser.close();

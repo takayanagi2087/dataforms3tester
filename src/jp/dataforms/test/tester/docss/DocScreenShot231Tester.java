@@ -414,6 +414,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			EnumQueryFormTestElement qf = p.getEnumQueryForm();
 			qf.getEnumCode().setValue("userLevel");
 			qf.query();
+			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			EnumQueryResultFormTestElement qrf = p.getEnumQueryResultForm();
 			TableTestElement qrt = qrf.getQueryResultTable();
 			qrt.getField(0, "enumCode").click();
@@ -541,9 +542,11 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 		proj.importDb("step01", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
 		proj.loadSnapshot("step01");
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.startWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.restoreTable(browser);

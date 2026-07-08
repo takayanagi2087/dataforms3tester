@@ -799,6 +799,7 @@ public class WebAppProject {
 	 * @throws Exception 例外。
 	 */
 	public void build(final Conf conf) throws Exception {
+		this.runMaven(conf, "clean");
 		this.runMaven(conf, "package");
 		String deployPath =conf.getProject().getDeployPath();
 		FileUtils.cleanDirectory(new File(deployPath));
