@@ -2,7 +2,7 @@ package jp.dataforms.sample.edittable.report;
 
 import jp.dataforms.fw.report.ExcelReport;
 import jp.dataforms.fw.report.ReportTable;
-import jp.dataforms.sample.edittable.dao.MultiTestTable;
+import jp.dataforms.sample.edittable.dao.table.MultiTestTable;
 
 /**
 *

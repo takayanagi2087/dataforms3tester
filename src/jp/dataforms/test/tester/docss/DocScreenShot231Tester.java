@@ -391,6 +391,7 @@ public class DocScreenShot231Tester extends DocScreenShotTester {
 			PageTestElement p = browser.getPageTestElement();
 			QueryFormTestElement qf = p.getQueryForm();
 			qf.query();
+			Browser.sleep(this.getConf().getTestApp().getShortWait());
 			QueryResultFormTestElement el = p.getQueryResultForm();
 			el.getQueryResultTable().getField(0, "sampleText").click();
 			Browser.sleep(this.getConf().getTestApp().getShortWait());

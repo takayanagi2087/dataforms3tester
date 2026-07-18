@@ -1,4 +1,4 @@
-package jp.dataforms.sample.edittable.dao;
+package jp.dataforms.sample.edittable.dao.table;
 
 import java.util.ArrayList;
 import java.util.List;

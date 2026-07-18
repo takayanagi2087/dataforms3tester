@@ -18,7 +18,7 @@ import jp.dataforms.fw.response.JsonResponse;
 import jp.dataforms.fw.response.Response;
 import jp.dataforms.fw.validator.ValidationError;
 import jp.dataforms.sample.edittable.dao.MultiTestDao;
-import jp.dataforms.sample.edittable.dao.MultiTestTable;
+import jp.dataforms.sample.edittable.dao.table.MultiTestTable;
 import jp.dataforms.sample.edittable.report.MultiExcelReport;
 import jp.dataforms.sample.edittable.report.MultiPdfReport;
 import sample.field.Code1Field;

@@ -1,4 +1,4 @@
-package jp.dataforms.sample.edittable.dao;
+package jp.dataforms.sample.edittable.dao.query;
 
 import java.util.Map;
 
@@ -7,6 +7,7 @@ import jp.dataforms.fw.field.base.FieldList;
 import jp.dataforms.fw.field.sqlfunc.CountField;
 import jp.dataforms.fw.field.sqltype.BigintField;
 import jp.dataforms.fw.util.NumberUtil;
+import jp.dataforms.sample.edittable.dao.table.MultiTestTable;
 import sample.field.Code1Field;
 
 

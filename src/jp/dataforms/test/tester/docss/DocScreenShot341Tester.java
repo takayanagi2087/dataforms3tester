@@ -44,11 +44,13 @@ public class DocScreenShot341Tester extends DocScreenShotTester {
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
 		proj.loadSnapshot("step04");
 		this.copyReportSrc();
+		this.build(proj);
+//		this.startWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		this.login(browser, "developer");
 		logger.info(this.getDocumentPath() + "取得終了");
 		browser.close();

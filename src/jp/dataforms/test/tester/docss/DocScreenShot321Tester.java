@@ -98,8 +98,10 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		ef.save();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 	}
 
 	/**
@@ -135,9 +137,9 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
-		
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 	}
 	
 	/**
@@ -177,8 +179,9 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.copyJavaSrc("/jp/dataforms/sample/edittable/page/Sample2QueryResultForm.java", "/jp/dataforms/sample/edittable/page/Sample2QueryResultForm.java");
 		proj.copyWebappSrc("/edittable/page/Sample2Page.html", "/edittable/page/Sample2Page.html");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 		
 		String url = proj.getUrl() + "edittable/page/Sample2Page.html";
 		PageTestElement p = browser.open(url);
@@ -252,8 +255,10 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		ef.confirm();
 		ef.save();
 		p.getAlertDialog().clickOkButton();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 	}
 
 	
@@ -285,8 +290,9 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 	 */
 	private void makeCode1CountQuery(final Browser browser) throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/MultiTestCode1Query.java", "/jp/dataforms/sample/edittable/dao/MultiTestCode1Query.java");
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/query/MultiTestCode1Query.java", "/jp/dataforms/sample/edittable/dao/query/MultiTestCode1Query.java");
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+		this.build(proj);
 
 		browser.open(QueryGeneratorPage.class);
 		QueryGeneratorPageTestElement p = browser.getPageTestElement(QueryGeneratorPageTestElement.class); 
@@ -352,6 +358,8 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		ef.save();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
 		p.getAlertDialog().clickOkButton();
+		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 	}
 	
 	/**
@@ -364,7 +372,7 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		WebResourcePageTestElement p = browser.getPageTestElement(WebResourcePageTestElement.class);
 		WebResourceQueryFormTestElement qf = p.getWebResourceQueryForm();
 		qf.getField("functionSelect").setValue("/edittable");
-		qf.getField("packageName").setValue("jp.dataforms.sample.edittable");
+		qf.getField("packageName").setValue("jp.dataforms.sample.edittable.page");
 		qf.getField("pageClassName").setValue("MultiTestPage");
 		qf.getField("className").click();
 		Browser.sleep(this.getConf().getTestApp().getShortWait());
@@ -387,8 +395,9 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 		
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
 	}
 	
 	/**
@@ -473,17 +482,20 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 	@Override
 	public void exec() throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
+		this.build(proj);
 		this.dropTables("multi_test");
-		proj.loadSnapshot("step03");
 		proj.importDb("step03", "jp.dataforms.fw.app", "jp.dataforms.sample.edittable");
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.stopWebApp(this.getConf().getTestApp().getContextPath());
+		proj.loadSnapshot("step03");
+		this.startWebApp(this.getConf().getTestApp().getContextPath());
 		Browser browser = this.getBrowser();
 		this.login(browser, "developer");
 		this.testDaoAndPage(browser);
 		this.testDaoAndHtml(browser);
 		proj.copyTestApi();
-		Browser.sleep(this.getConf().getTestApp().getBuildWait());
-		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
+		this.build(proj);
+//		Browser.sleep(this.getConf().getTestApp().getBuildWait());
+//		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		this.showSample2Page(browser);
 		this.testColumnFixedTable(browser);
 		this.makeMultiTestTable(browser);

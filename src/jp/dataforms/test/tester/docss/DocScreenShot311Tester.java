@@ -122,7 +122,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 	 */
 	private void createFk(final Browser browser) throws Exception {
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
-		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/JoinTestTableRelation.java", "/jp/dataforms/sample/edittable/dao/JoinTestTableRelation.java");
+		proj.copyJavaSrc("/jp/dataforms/sample/edittable/dao/table/JoinTestTableRelation.java", "/jp/dataforms/sample/edittable/dao/table/JoinTestTableRelation.java");
 //		Browser.sleep(this.getConf().getTestApp().getBuildWait());
 //		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		this.build(proj);
