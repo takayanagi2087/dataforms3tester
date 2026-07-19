@@ -463,9 +463,11 @@ public class DocScreenShot321Tester extends DocScreenShotTester {
 	 * @throws Exception 例外。
 	 */
 	private void showMultiRecValidator(final Browser browser) throws Exception {
+		Conf conf = this.getConf();
 		WebAppProject proj = WebAppProject.newWebAppProject(this.getConf());
 		proj.copyJavaSrc("/jp/dataforms/sample/edittable/page/MultiTestEditForm.java", "/jp/dataforms/sample/edittable/page/MultiTestEditForm.java");
-		Browser.sleep(30);
+		Browser.sleep(conf.getTestApp().getShortWait());
+		this.build(proj);
 		this.reloadWebApp(this.getConf().getTestApp().getContextPath());
 		String url = proj.getUrl() + "edittable/page/MultiTestPage.html";
 		PageTestElement p = browser.open(url);

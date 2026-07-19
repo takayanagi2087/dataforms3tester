@@ -188,7 +188,7 @@ public class DocScreenShot311Tester extends DocScreenShotTester {
 		Browser.sleep(this.getConf().getTestApp().getLongWait());
 		qf.query();
 		String imgfile = this.saveScreenShot(browser, "subquery.png");
-		ImageEditor.addMarkRect(imgfile , 702, 298, 795, 332);
+		ImageEditor.addMarkRect(imgfile , 732, 298, 822, 332);
 	}
 	
 	/**
